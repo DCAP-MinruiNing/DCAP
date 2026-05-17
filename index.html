@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCAP - Daily CV Alert Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            font-weight: 600;
+        }
+
+        .section-description {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        th {
+            padding: 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+            border: 1px solid #667eea;
+        }
+
+        td {
+            padding: 15px 18px;
+            border: 1px solid #eee;
+            font-size: 0.95em;
+        }
+
+        tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #f8f9ff;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #fafbfc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .badge-cv {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .badge-sn {
+            background-color: #fff3e0;
+            color: #f57c00;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #eee;
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            th, td {
+                padding: 10px;
+                font-size: 0.85em;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-value {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 DCAP</h1>
+            <p>Daily CV Alert Project - ZTF Transient Analysis Pipeline</p>
+        </div>
+
+        <div class="content">
+            <h2 class="section-title">About DCAP</h2>
+            <p class="section-description">
+                The Daily CV Alert Project (DCAP) is an automated pipeline for analyzing the public ZTF (Zwicky Transient Facility) alert stream. 
+                We provide manually screened ZTF transient targets, with a focus on identifying and classifying unknown astronomical objects. 
+                Our goal is to help confirm discoveries faster and support the astronomical community.
+            </p>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="total-count">0</div>
+                    <div class="stat-label">Total Objects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="cv-count">0</div>
+                    <div class="stat-label">CV Candidates</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="sn-count">0</div>
+                    <div class="stat-label">SN Candidates</div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Recent Classifications</h2>
+            <div class="table-wrapper">
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th>Object ID</th>
+                            <th>ZTF ID</th>
+                            <th>Type</th>
+                            <th>Classification Time (UTC)</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <tr>
+                            <td colspan="5" style="text-align: center; color: #999;">Loading data...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>DCAP Project | <a href="https://github.com/DCAP-MinruiNing/DCAP" target="_blank">View on GitHub</a></p>
+            <p style="margin-top: 10px; opacity: 0.7;">Last updated: <span id="update-date"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // 直接内嵌CSV数据
+        const csvData = `object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP91,ZTF18abznkyr,Cataclysmic variable candidate,2026/5/16 13:41,
+DCAP90,ZTF26aawzpcp,SN candidate,2026/5/16 13:40,
+DCAP89,ZTF26aawlagq,Cataclysmic variable candidate,2026/5/16 13:39,
+DCAP88,ZTF26aawdrhu,Cataclysmic variable candidate,2026/5/16 13:33,
+DCAP87,ZTF26aawvsjv,SN candidate,2026/5/16 13:32,
+DCAP86,ZTF26aawkdqa,Cataclysmic variable candidate,2026/5/16 13:29`;
+
+        function getTypeClass(type) {
+            return type.includes('Cataclysmic') ? 'badge-cv' : 'badge-sn';
+        }
+
+        function getTypeLabel(type) {
+            return type.includes('Cataclysmic') ? 'CV Candidate' : 'SN Candidate';
+        }
+
+        function loadData() {
+            const lines = csvData.trim().split('\n');
+            const headers = lines[0].split(',');
+            const tbody = document.getElementById('table-body');
+            tbody.innerHTML = '';
+            
+            let cvCount = 0;
+            let snCount = 0;
+
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',');
+                const row = {};
+                
+                headers.forEach((header, index) => {
+                    row[header.trim()] = values[index] ? values[index].trim() : '';
+                });
+
+                if (row.object_ID) {
+                    if (row.Type.includes('Cataclysmic')) cvCount++;
+                    if (row.Type.includes('SN')) snCount++;
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><strong>${row.object_ID}</strong></td>
+                        <td>${row.ZTF_ID}</td>
+                        <td><span class="badge ${getTypeClass(row.Type)}">${getTypeLabel(row.Type)}</span></td>
+                        <td>${row['Classification_time(UTC)']}</td>
+                        <td>${row.Note || '-'}</td>
+                    `;
+                    tbody.appendChild(tr);
+                }
+            }
+
+            const totalCount = lines.length - 1;
+            document.getElementById('total-count').textContent = totalCount;
+            document.getElementById('cv-count').textContent = cvCount;
+            document.getElementById('sn-count').textContent = snCount;
+            document.getElementById('update-date').textContent = new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+
+        // 页面加载完成后执行
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadData);
+        } else {
+            loadData();
+        }
+    </script>
+</body>
+</html>
