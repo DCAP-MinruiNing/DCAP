@@ -211,7 +211,7 @@
                 The Daily CV Alert Project (DCAP) is the pipeline for analyzing the public ZTF alert stream.
             </p>
             <p class="section-description">
-                We will release manually screened ZTF transient targets; typically, only those classified as unknown at the time of classification will be published. If a target is already known, it will be noted.
+                We will release manually screened ZTF transient targets; typically, only those classified as unknown at the time of classification will be published. If a target is already known,[...]
             </p>
             <p class="section-description">
                 If you publish to TNS using DCAP's classification, you can note that you used DCAP (or not) — it's up to you. DCAP's goal is to help confirm discoveries faster.
@@ -262,12 +262,15 @@
     <script>
         // 直接内嵌CSV数据
         const csvData = `object_ID,ZTF_ID,Type,Classification_time(UTC),Note
-DCAP91,ZTF18abznkyr,Cataclysmic variable candidate,2026/5/16 13:41,
-DCAP90,ZTF26aawzpcp,SN candidate,2026/5/16 13:40,
-DCAP89,ZTF26aawlagq,Cataclysmic variable candidate,2026/5/16 13:39,
-DCAP88,ZTF26aawdrhu,Cataclysmic variable candidate,2026/5/16 13:33,
-DCAP87,ZTF26aawvsjv,SN candidate,2026/5/16 13:32,
-DCAP86,ZTF26aawkdqa,Cataclysmic variable candidate,2026/5/16 13:29`;
+DCAP94,ZTF26aawnlrb,SN candidate,2026/5/19 13:00:42,
+DCAP93,ZTF26aaxchoq,SN candidate,2026/5/19 12:59:17,
+DCAP92,ZTF26aawsizn,Cataclysmic variable candidate,2026/5/19 12:57:58,
+DCAP91,ZTF18abznkyr,Cataclysmic variable candidate,2026/5/16 13:41:45,
+DCAP90,ZTF26aawzpcp,SN candidate,2026/5/16 13:40:37,
+DCAP89,ZTF26aawlagq,Cataclysmic variable candidate,2026/5/16 13:39:15,
+DCAP88,ZTF26aawdrhu,Cataclysmic variable candidate,2026/5/16 13:33:05,
+DCAP87,ZTF26aawvsjv,SN candidate,2026/5/16 13:32:14,
+DCAP86,ZTF26aawkdqa,Cataclysmic variable candidate,2026/5/16 13:29:28`;
 
         function getTypeClass(type) {
             return type.includes('Cataclysmic') ? 'badge-cv' : 'badge-sn';
