@@ -211,7 +211,7 @@
                 The Daily CV Alert Project (DCAP) is the pipeline for analyzing the public ZTF alert stream.
             </p>
             <p class="section-description">
-                We will release manually screened ZTF transient targets; typically, only those classified as unknown at the time of classification will be published. If a target is already known, it will be noted in the remarks.
+                We will release manually screened ZTF transient targets; typically, only those classified as unknown at the time of classification will be published. If a target is already known, we will not release it. We will also release targets with uncertain classifications or high-priority objects that require prompt community follow-up.
             </p>
             <p class="section-description">
                 If you publish to TNS using DCAP's classification, you can note that you used DCAP (or not) — it's up to you. DCAP's goal is to help confirm discoveries faster.
@@ -260,18 +260,6 @@
     </div>
 
     <script>
-        // 直接内嵌CSV数据
-        const csvData = `object_ID,ZTF_ID,Type,Classification_time(UTC),Note
-DCAP94,ZTF26aawnlrb,SN candidate,2026/5/19 13:00:42,
-DCAP93,ZTF26aaxchoq,SN candidate,2026/5/19 12:59:17,
-DCAP92,ZTF26aawsizn,Cataclysmic variable candidate,2026/5/19 12:57:58,
-DCAP91,ZTF18abznkyr,Cataclysmic variable candidate,2026/5/16 13:41:45,
-DCAP90,ZTF26aawzpcp,SN candidate,2026/5/16 13:40:37,
-DCAP89,ZTF26aawlagq,Cataclysmic variable candidate,2026/5/16 13:39:15,
-DCAP88,ZTF26aawdrhu,Cataclysmic variable candidate,2026/5/16 13:33:05,
-DCAP87,ZTF26aawvsjv,SN candidate,2026/5/16 13:32:14,
-DCAP86,ZTF26aawkdqa,Cataclysmic variable candidate,2026/5/16 13:29:28`;
-
         function getTypeClass(type) {
             return type.includes('Cataclysmic') ? 'badge-cv' : 'badge-sn';
         }
@@ -281,47 +269,61 @@ DCAP86,ZTF26aawkdqa,Cataclysmic variable candidate,2026/5/16 13:29:28`;
         }
 
         function loadData() {
-            const lines = csvData.trim().split('\n');
-            const headers = lines[0].split(',');
-            const tbody = document.getElementById('table-body');
-            tbody.innerHTML = '';
-            
-            let cvCount = 0;
-            let snCount = 0;
+            fetch('data3.csv')
+                .then(response => response.text())
+                .then(csvData => {
+                    const lines = csvData.trim().split('\n');
+                    const headers = lines[0].split(',');
+                    const tbody = document.getElementById('table-body');
+                    tbody.innerHTML = '';
+                    
+                    let cvCount = 0;
+                    let snCount = 0;
 
-            for (let i = 1; i < lines.length; i++) {
-                const values = lines[i].split(',');
-                const row = {};
-                
-                headers.forEach((header, index) => {
-                    row[header.trim()] = values[index] ? values[index].trim() : '';
-                });
+                    for (let i = 1; i < lines.length; i++) {
+                        if (lines[i].trim() === '') continue;
+                        
+                        const values = lines[i].split(',');
+                        const row = {};
+                        
+                        headers.forEach((header, index) => {
+                            row[header.trim()] = values[index] ? values[index].trim() : '';
+                        });
 
-                if (row.object_ID) {
-                    if (row.Type.includes('Cataclysmic')) cvCount++;
-                    if (row.Type.includes('SN')) snCount++;
+                        if (row.object_ID) {
+                            if (row.Type.includes('Cataclysmic')) cvCount++;
+                            if (row.Type.includes('SN')) snCount++;
 
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td><strong>${row.object_ID}</strong></td>
-                        <td>${row.ZTF_ID}</td>
-                        <td><span class="badge ${getTypeClass(row.Type)}">${getTypeLabel(row.Type)}</span></td>
-                        <td>${row['Classification_time(UTC)']}</td>
-                        <td>${row.Note || '-'}</td>
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `
+                                <td><strong>${row.object_ID}</strong></td>
+                                <td>${row.ZTF_ID}</td>
+                                <td><span class="badge ${getTypeClass(row.Type)}">${getTypeLabel(row.Type)}</span></td>
+                                <td>${row['Classification_time(UTC)']}</td>
+                                <td>${row.Note || '-'}</td>
+                            `;
+                            tbody.appendChild(tr);
+                        }
+                    }
+
+                    const totalCount = lines.length - 1;
+                    document.getElementById('total-count').textContent = totalCount;
+                    document.getElementById('cv-count').textContent = cvCount;
+                    document.getElementById('sn-count').textContent = snCount;
+                    document.getElementById('update-date').textContent = new Date().toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading CSV:', error);
+                    document.getElementById('table-body').innerHTML = `
+                        <tr>
+                            <td colspan="5" style="text-align: center; color: #d32f2f;">Error loading data. Please try again later.</td>
+                        </tr>
                     `;
-                    tbody.appendChild(tr);
-                }
-            }
-
-            const totalCount = lines.length - 1;
-            document.getElementById('total-count').textContent = totalCount;
-            document.getElementById('cv-count').textContent = cvCount;
-            document.getElementById('sn-count').textContent = snCount;
-            document.getElementById('update-date').textContent = new Date().toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
+                });
         }
 
         // 页面加载完成后执行
