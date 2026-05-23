@@ -1,8 +1,9 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
-DCAP111,ZTF19abfsvbs,Cataclysmic variable candidate,2026/5/22 12:57:27,19.40 zg  
-DCAP110,ZTF26aaxttuf,Cataclysmic variable candidate,2026/5/22 12:54:06,18.10 zi  
-DCAP109,ZTF26aaxzenj,SN candidate,2026/5/22 12:53:26,19.19 zr   WISE J202949.10+012048.9
-DCAP108,ZTF26aaxrewv,Cataclysmic variable candidate,2026/5/22 12:52:51,18.98 zr  
+DCAP112,ZTF26aaxofdc,Cataclysmic variable candidate,2026/5/22 12:57:42,Known target, XOSS-AT2026nhw-M31 nova candidate
+DCAP111,ZTF19abfsvbs,Cataclysmic variable candidate,2026/5/22 12:57:27,19.40 zg
+DCAP110,ZTF26aaxttuf,Cataclysmic variable candidate,2026/5/22 12:54:06,18.10 zi
+DCAP109,ZTF26aaxzenj,SN candidate,2026/5/22 12:53:26,19.19 zr WISE J202949.10+012048.9
+DCAP108,ZTF26aaxrewv,Cataclysmic variable candidate,2026/5/22 12:52:51,18.98 zr
 DCAP107,ZTF26aaxtpkn,Cataclysmic variable candidate,2026/5/22 12:52:07,18.70 zr
 DCAP106,ZTF18abnuemk,Cataclysmic variable candidate,2026/5/21 13:14:42,
 DCAP105,ZTF19aboknme,Cataclysmic variable candidate,2026/5/21 13:13:31,
