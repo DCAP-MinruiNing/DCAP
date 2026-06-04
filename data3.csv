@@ -1,4 +1,9 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP143,ZTF26aazewqv,SN candidate,2026/6/4 8:51:30,19.90 zg 2MASX J15435258+1114107
+DCAP142,ZTF26aazperz,Cataclysmic variable candidate,2026/6/4 8:49:43,19.05 zg
+DCAP141,ZTF26aazenpt,SN candidate,2026/6/4 8:44:53,18.94 zr DESI J125532.60+074718.1
+DCAP140,ZTF26aaxaiao,SN candidate,2026/6/4 8:36:15,19.96 zr DESI J122048.43+035044.6
+DCAP139,ZTF26aazjyhl,Cataclysmic variable candidate,2026/6/4 8:28:55,19.39 zg
 DCAP138,ZTF20abcsyir,Cataclysmic variable candidate,2026/6/3 13:33:43,18.36 zr
 DCAP137,ZTF20aaxckws,Cataclysmic variable candidate,2026/6/3 13:33:40,18.52 zr
 DCAP136,ZTF26aaygdjj,Cataclysmic variable candidate,2026/6/3 13:21:34,Microlensing event candidate 18.74 zr GaiaDR3 4188154452944540288
