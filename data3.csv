@@ -1,5 +1,4 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
-DCAP163,ZTF26abaqxpw,SN candidate,2026/6/10 11:39:18,19.58 zr WISEA J171036.26+064344.9
 DCAP162,ZTF26abaodln,SN candidate,2026/6/10 11:39:18,19.47 zr LEDA 1241446
 DCAP161,ZTF19adiqzyf,Cataclysmic variable candidate,2026/6/10 11:29:48,Known target V0510 Aqr (AM Herculis-type variables)
 DCAP160,ZTF26abasrob,SN candidate,2026/6/10 11:25:30,19.07 zr GALEXASC J201430.36+050548.9
@@ -77,3 +76,4 @@ DCAP89,ZTF26aawlagq,Cataclysmic variable candidate,2026/5/16 13:39:15,
 DCAP88,ZTF26aawdrhu,Cataclysmic variable candidate,2026/5/16 13:33:05,
 DCAP87,ZTF26aawvsjv,SN candidate,2026/5/16 13:32:14,
 DCAP86,ZTF26aawkdqa,Cataclysmic variable candidate,2026/5/16 13:29:28,
+DCAP86,ZTF26aawkdqa,Cataclysmic variable candidate,2026/5/16 13:29,
