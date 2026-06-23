@@ -1,4 +1,7 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP212,ZTF26abdgzsu,Cataclysmic variable candidate,2026/6/23 11:35:14,17.32 zr
+DCAP211,ZTF26abcujyq,SN candidate,2026/6/23 11:28:43,18.33 zr WISEA J024117.42+504654.5
+DCAP210,ZTF26abcxnxn,Cataclysmic variable candidate,2026/6/23 11:27:07,19.64 zg
 DCAP209,ZTF18abnbxvj,Cataclysmic variable candidate,2026/6/23 8:40:00,19.04 zg
 DCAP208,ZTF19aalbzxf,Cataclysmic variable candidate,2026/6/23 8:36:41,19.08 zr
 DCAP207,ZTF21aasxfkt,Cataclysmic variable candidate,2026/6/23 5:27:51,18.12 zr
