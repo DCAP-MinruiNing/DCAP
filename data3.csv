@@ -1,4 +1,8 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP216,ZTF26abdhmyz,SN candidate,2026/6/24 7:17:02,20.10 zr
+DCAP215,170560681681093108,SN candidate,2026/6/24 6:48:30,21.99 r LSST WISEA J162452.13-124347.3 Selected from ALeRCE
+DCAP214,ZTF21acgozbz,SN candidate,2026/6/24 6:40:18,19.77 zr Detected at 19.82 mag in the LSST r-band 170560739818864648. LEDA 899309
+DCAP213,170560681520660667,SN candidate,2026/6/24 6:34:09,22.41 r LSST WISEA J161051.45-121646.8 Selected from ALeRCE
 DCAP212,ZTF26abdgzsu,Cataclysmic variable candidate,2026/6/23 11:35:14,17.32 zr
 DCAP211,ZTF26abcujyq,SN candidate,2026/6/23 11:28:43,18.33 zr WISEA J024117.42+504654.5
 DCAP210,ZTF26abcxnxn,Cataclysmic variable candidate,2026/6/23 11:27:07,19.64 zg
