@@ -1,6 +1,6 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
 DCAP220,ZTF26abdfxkb,SN candidate,2026/6/24 9:52:22,19.71 zr
-DCAP219,ZTF26abdpfno,Cataclysmic variable candidate,2026/6/24 9:45:00,18.47 zr We used a RASA 11 telescope with a total exposure time of 600 seconds but did not detect the target. The Galactic reddening at this position is E(B?V) S&F= 0.6064 (mag)  AvS&F= 1.8798 (mag)
+DCAP219,ZTF26abdpfno,Cataclysmic variable candidate,2026/6/24 9:45:00,18.47 zr We used a RASA 11 telescope with a total exposure time of 600 seconds but did not detect the target. The Galactic reddening at this position is E(B-V) S&F= 0.6064 (mag)  AvS&F= 1.8798 (mag)
 DCAP218,ZTF26abdbwty,Cataclysmic variable candidate,2026/6/24 9:43:01,18.77 zr
 DCAP217,ZTF26abdiqon,SN candidate,2026/6/24 9:40:05,19.83 zr
 DCAP216,ZTF26abdhmyz,SN candidate,2026/6/24 7:17:02,20.10 zr
