@@ -1,4 +1,7 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP231,ZTF26abecjxu,Cataclysmic variable candidate,2026/6/28 7:54:46,17.01 zr
+DCAP230,ZTF26abecqfo,SN candidate,2026/6/28 7:44:58,19.67 zi
+DCAP229,ZTF26abckjvu,Cataclysmic variable candidate,2026/6/28 2:28:54,18.35 zr Microlensing event candidate
 DCAP228,ZTF26abebhvt,Cataclysmic variable candidate,2026/6/27 12:35:21,14.85 zg
 DCAP227,ZTF26abeboii,Cataclysmic variable candidate,2026/6/27 6:58:51,15.60 zg
 DCAP226,ZTF20abyleux,Cataclysmic variable candidate,2026/6/27 6:58:27,19.58 zr
