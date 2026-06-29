@@ -1,4 +1,6 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP234,ZTF26abeiasz,Cataclysmic variable candidate,2026/6/29 12:59:18,18.14 zr
+DCAP233,ZTF26abeigru,Cataclysmic variable candidate,2026/6/29 12:41:40,18.96 zr
 DCAP232,ZTF26abcvoab,SN candidate,2026/6/29 7:03:01,20.07 zg KiDS DR5 J150810.8-000446.9
 DCAP231,ZTF26abecjxu,Cataclysmic variable candidate,2026/6/28 7:54:46,17.01 zr
 DCAP230,ZTF26abecqfo,SN candidate,2026/6/28 7:44:58,19.67 zi
