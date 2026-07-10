@@ -1,4 +1,10 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP275,ZTF26abfaduz,Cataclysmic variable candidate,2026/7/10 10:58:13,18.43 zg
+DCAP274,ZTF26abgbfxf,SN candidate,2026/7/10 10:47:06,19.91 zg
+DCAP273,ZTF26abfqjst,SN candidate,2026/7/10 10:44:39,19.57 zg
+DCAP272,ZTF26abfqhnp,SN candidate,2026/7/10 10:40:01,19.80 zg
+DCAP271,ZTF26abfpuvz,SN candidate,2026/7/10 10:36:39,20.18 zg WISEA J205819.02+065104.6 z=0.11084
+DCAP270,ZTF26abfztef,Cataclysmic variable candidate,2026/7/10 10:28:22,18.05 zg There is a variable star at 2 C3 asec ZTF J174524.08-133518.6
 DCAP269,ZTF26abfokua,Cataclysmic variable candidate,2026/7/8 11:54:52,15.06 zr
 DCAP268,ZTF26abfigop,Cataclysmic variable candidate,2026/7/8 11:54:34,19.54 zg
 DCAP267,ZTF26abewkky,SN candidate,2026/7/8 6:00:45,19.18 zi
