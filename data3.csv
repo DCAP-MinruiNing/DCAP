@@ -1,4 +1,6 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP279,ZTF19aalwioe,Cataclysmic variable candidate,2026/7/15 2:00:22,"The target was reported by ATLAS on 2019-03-04 at 17.597 mag (orange-ATLAS), and ATLAS classified it as a SN. This target is very close to WISEA J031736.42+491727.2, and ZTF data recorded multiple outbursts afterwards, so it should not be a supernova."
+DCAP278,ZTF26abfymgo,SN candidate,2026/7/15 1:43:34,19.70 zg WISEA J152234.68-053747.4
 DCAP277,ZTF26abgkoej,Cataclysmic variable candidate,2026/7/12 13:24:27,16.91 zg
 DCAP276,ZTF26abglqca,Cataclysmic variable candidate,2026/7/12 13:21:36,18.26 zg
 DCAP275,ZTF26abfaduz,Cataclysmic variable candidate,2026/7/10 10:58:13,18.43 zg
