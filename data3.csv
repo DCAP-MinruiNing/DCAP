@@ -1,4 +1,11 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP292,ZTF26abhlybf,SN candidate,2026/7/17 12:49:07,19.89 zr DESI J221637.20+071635.5
+DCAP291,ZTF26abhtvzs,SN candidate,2026/7/17 12:42:58,19.40 zg forced phot
+DCAP290,ZTF26abhpssk,SN candidate,2026/7/17 12:39:53,20.23 zr WISEA J170329.61+015806.7
+DCAP289,ZTF26abgztiu,Cataclysmic variable candidate,2026/7/17 12:32:28,18.75 zg
+DCAP288,ZTF26abhkypw,SN candidate,2026/7/17 12:30:36,20.04 zr
+DCAP287,ZTF26abgtouy,SN candidate,2026/7/17 12:27:44,19.11 zr WISE J160454.90+034807.7
+DCAP286,ZTF26abhinpe,Cataclysmic variable candidate,2026/7/17 12:25:08,19.38 zg
 DCAP285,ZTF19abgprjx,Cataclysmic variable candidate,2026/7/16 12:45:45,18.88 zg Pan-STARRS DR1 rmag=21.0848
 DCAP284,ZTF26abhlaue,SN candidate,2026/7/16 12:16:14,19.41 zg LEDA 1113897
 DCAP283,ZTF26abgzodv,Cataclysmic variable candidate,2026/7/16 12:09:18,19.34 zr
