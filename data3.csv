@@ -1,4 +1,7 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP295,ZTF26abhwvpe,Cataclysmic variable candidate,2026/7/19 13:47:38,16.38 zi Known target (Gaia19ejz=AT2019ryd) new outburst?
+DCAP294,ZTF26abhxpzs,SN candidate,2026/7/19 13:37:58,19.65 zg DESI J160907.40+005407.6
+DCAP293,ZTF26abhsgch,Cataclysmic variable candidate,2026/7/19 13:36:48,19.63 zr
 DCAP292,ZTF26abhlybf,SN candidate,2026/7/17 12:49:07,19.89 zr DESI J221637.20+071635.5
 DCAP291,ZTF26abhtvzs,SN candidate,2026/7/17 12:42:58,19.40 zg forced phot
 DCAP290,ZTF26abhpssk,SN candidate,2026/7/17 12:39:53,20.23 zr WISEA J170329.61+015806.7
