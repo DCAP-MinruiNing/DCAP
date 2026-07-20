@@ -1,5 +1,6 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
-DCAP295,ZTF26abhwvpe,Cataclysmic variable candidate,2026/7/19 13:47:38,16.38 zi Known target (Gaia19ejz=AT2019ryd) new outburst?
+DCAP296,ZTF26abhzfgq,Cataclysmic variable candidate,2026/7/20 9:47:36,"2026-07-19 zg=20.28 2026-07-20 zg=17.54 Dwarf novae characterization using SDSS colors (Kato+, 2012) 2026-07-20 10:22:05 GOTO team reported it to TNS as AT 2026vdv."
+DCAP295,ZTF26abhwvpe,Cataclysmic variable candidate,2026/7/19 13:47:38,"16.38 zi Known target (Gaia19ejz=AT2019ryd) 2026-07-20, we used ASAS-SN and ATLAS data for confirmation; it is a real outburst."
 DCAP294,ZTF26abhxpzs,SN candidate,2026/7/19 13:37:58,19.65 zg DESI J160907.40+005407.6
 DCAP293,ZTF26abhsgch,Cataclysmic variable candidate,2026/7/19 13:36:48,19.63 zr
 DCAP292,ZTF26abhlybf,SN candidate,2026/7/17 12:49:07,19.89 zr DESI J221637.20+071635.5
