@@ -2,5 +2,6 @@
     "history_map": {},
     "RA": null,
     "Dec": null,
-    "latest_stamps": {}
+    "stamps_by_epoch": {},
+    "history": []
 }
