@@ -198,7 +198,7 @@
 
                     renderLightCurve(item);
                     renderPhotometryTable(item);
-                    initStampsEpochSelector(item);
+                    initStampsEpochSelector(item, targetId);
 
                 } else {
                     $('#raw-json-data').text("⚠️ 该目标的 JSON 文件内容为空。");
@@ -369,27 +369,26 @@
             });
         }
 
-        function initStampsEpochSelector(item) {
+        function initStampsEpochSelector(item, targetId) {
             const selectElem = $('#epoch-select');
             selectElem.empty();
             let rawEpochs = item.stamps_by_epoch || item.stamps_history || item.stamps || item.latest_stamps || item.history_map || item.history;
             let parsedEpochs = [];
 
-            // 智能转换：支持数组与对象字典
+            // 支持字典与数组结构解析
             if (rawEpochs && typeof rawEpochs === 'object' && !Array.isArray(rawEpochs)) {
                 Object.keys(rawEpochs).forEach(key => {
                     let val = rawEpochs[key];
                     if (typeof val === 'object' && val !== null) {
-                        parsedEpochs.push({ epoch_key: key, ...val });
-                    } else if (typeof val === 'string' || Array.isArray(val)) {
-                        parsedEpochs.push({ epoch_key: key, files: val });
+                        parsedEpochs.push({ date: key, epoch_key: key, ...val });
+                    } else {
+                        parsedEpochs.push({ date: key, epoch_key: key, val: val });
                     }
                 });
             } else if (Array.isArray(rawEpochs)) {
                 parsedEpochs = rawEpochs;
             }
 
-            // 单个历元兜底匹配
             if (parsedEpochs.length === 0 && (item.science || item.difference || item.sci || item.stamp_sci)) {
                 parsedEpochs.push(item);
             }
@@ -403,22 +402,21 @@
 
             selectElem.prop('disabled', false);
             parsedEpochs.forEach((ep, index) => {
-                const timeLabel = ep.epoch_key || ep.jd || ep.mjd || ep.date || ep.time || `历元 ${index + 1}`;
+                const timeLabel = ep.date || ep.epoch_key || ep.jd || ep.mjd || ep.time || `历元 ${index + 1}`;
                 selectElem.append($('<option>', { value: index, text: `JD / 时间: ${timeLabel}` }));
             });
 
-            // 默认渲染第一个历元
-            setStampsImages(parsedEpochs[0]);
+            // 默认展示第一个历元
+            setStampsImages(parsedEpochs[0], targetId);
 
             selectElem.off('change').on('change', function() {
                 const idx = $(this).val();
                 if (parsedEpochs[idx]) {
-                    setStampsImages(parsedEpochs[idx]);
+                    setStampsImages(parsedEpochs[idx], targetId);
                 }
             });
         }
 
-        // 智能路径处理助手：若为纯文件名，自动加上 static/stamps/
         function formatImgPath(pathStr) {
             if (!pathStr || typeof pathStr !== 'string') return '';
             pathStr = pathStr.trim();
@@ -428,36 +426,31 @@
             return `static/stamps/${pathStr}`;
         }
 
-        function setStampsImages(stampObj) {
+        function setStampsImages(stampObj, targetId) {
             if (!stampObj) return;
 
             let sci = '', tmpl = '', diff = '';
 
-            let fileArray = Array.isArray(stampObj) ? stampObj : (stampObj.files && Array.isArray(stampObj.files) ? stampObj.files : null);
+            // 尝试直接提取 JSON 中可能写死的路径
+            if (typeof stampObj === 'object' && stampObj !== null) {
+                sci = stampObj.science || stampObj.sci || stampObj.stamp_sci || stampObj.science_path || '';
+                tmpl = stampObj.template || stampObj.tmpl || stampObj.stamp_tmpl || stampObj.template_path || '';
+                diff = stampObj.difference || stampObj.diff || stampObj.stamp_diff || stampObj.difference_path || '';
+            }
 
-            if (fileArray) {
-                fileArray.forEach(file => {
-                    if (typeof file !== 'string') return;
-                    const lower = file.toLowerCase();
-                    if (lower.includes('science') || lower.includes('_sci')) sci = file;
-                    else if (lower.includes('template') || lower.includes('ref') || lower.includes('_tmpl')) tmpl = file;
-                    else if (lower.includes('difference') || lower.includes('_diff')) diff = file;
-                });
-            } else if (typeof stampObj === 'object') {
-                sci = stampObj.science || stampObj.sci || stampObj.stamp_sci || stampObj.science_path || stampObj.science_url || stampObj.img_sci || stampObj.cutoutScience || '';
-                tmpl = stampObj.template || stampObj.tmpl || stampObj.stamp_tmpl || stampObj.template_path || stampObj.template_url || stampObj.img_tmpl || stampObj.cutoutTemplate || '';
-                diff = stampObj.difference || stampObj.diff || stampObj.stamp_diff || stampObj.difference_path || stampObj.difference_url || stampObj.img_diff || stampObj.cutoutDifference || '';
+            // 获取当前历元的日期标识 (例如 2026-07-20)
+            let dateStr = '';
+            if (typeof stampObj === 'string') {
+                dateStr = stampObj;
+            } else if (typeof stampObj === 'object' && stampObj !== null) {
+                dateStr = stampObj.date || stampObj.epoch_key || stampObj.time || stampObj.jd || '';
+            }
 
-                if (!sci && !tmpl && !diff) {
-                    Object.values(stampObj).forEach(val => {
-                        if (typeof val === 'string') {
-                            const lower = val.toLowerCase();
-                            if (lower.includes('science') || lower.includes('_sci')) sci = val;
-                            else if (lower.includes('template') || lower.includes('ref') || lower.includes('_tmpl')) tmpl = val;
-                            else if (lower.includes('difference') || lower.includes('_diff')) diff = val;
-                        }
-                    });
-                }
+            // 如果 JSON 里没有明确给出文件名，则按规则组合: static/stamps/目标ID_日期_类型.png
+            if (dateStr && targetId) {
+                if (!sci) sci = `static/stamps/${targetId}_${dateStr}_science.png`;
+                if (!tmpl) tmpl = `static/stamps/${targetId}_${dateStr}_template.png`;
+                if (!diff) diff = `static/stamps/${targetId}_${dateStr}_difference.png`;
             }
 
             $('#stamp-sci').attr('src', formatImgPath(sci));
