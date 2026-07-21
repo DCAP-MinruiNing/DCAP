@@ -155,6 +155,19 @@
             color: #f57c00;
         }
 
+        /* 🌟 ZTF ID 可点击超链接样式 */
+        .ztf-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .ztf-link:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
         .footer {
             background: #f8f9fa;
             padding: 30px;
@@ -198,7 +211,7 @@
         }
     </style>
 </head>
-    <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6L9RQZCTDV"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -304,9 +317,10 @@
                             if (row.Type.includes('SN')) snCount++;
 
                             const tr = document.createElement('tr');
+                            // 🌟 核心修改处：将 ZTF_ID 包装为指向 detail.html?id=xxx 的超链接，并加上 ↗ 符号提示
                             tr.innerHTML = `
                                 <td><strong>${row.object_ID}</strong></td>
-                                <td>${row.ZTF_ID}</td>
+                                <td><a href="detail.html?id=${row.ZTF_ID}" target="_blank" class="ztf-link">${row.ZTF_ID} ↗</a></td>
                                 <td><span class="badge ${getTypeClass(row.Type)}">${getTypeLabel(row.Type)}</span></td>
                                 <td>${row['Classification_time(UTC)']}</td>
                                 <td>${row.Note || '-'}</td>
