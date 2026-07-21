@@ -1,57 +1,54 @@
-{
-    "ZTF26abhzfgq": {
-        "RA": 227.65557,
-        "Dec": 8.68402,
-        "latest_detection": {
-            "mag": 17.87,
-            "filter": "zr",
-            "mjd": 61241.1978
-        },
-        "lightcurve_plot": "static/lightcurves/ZTF26abhzfgq_lc.png",
-        "detail_json": "targets/ZTF26abhzfgq.json"
-    },
-    "ZTF26abhaglb": {
-        "RA": 280.76703,
-        "Dec": 8.76432,
-        "latest_detection": {
-            "mag": 19.63,
-            "filter": "zr",
-            "mjd": 61241.2164
-        },
-        "lightcurve_plot": "static/lightcurves/ZTF26abhaglb_lc.png",
-        "detail_json": "targets/ZTF26abhaglb.json"
-    },
-    "ZTF26abdgtui": {
-        "RA": 261.52666,
-        "Dec": -19.8902,
-        "latest_detection": {
-            "mag": 17.51,
-            "filter": "zr",
-            "mjd": 61241.1921
-        },
-        "lightcurve_plot": "static/lightcurves/ZTF26abdgtui_lc.png",
-        "detail_json": "targets/ZTF26abdgtui.json"
-    },
-    "ZTF26abcfeco": {
-        "RA": 239.07581,
-        "Dec": -2.32823,
-        "latest_detection": {
-            "mag": 19.68,
-            "filter": "zr",
-            "mjd": 61241.1945
-        },
-        "lightcurve_plot": "static/lightcurves/ZTF26abcfeco_lc.png",
-        "detail_json": "targets/ZTF26abcfeco.json"
-    },
-    "ZTF26aaxuzjv": {
-        "RA": 223.39845,
-        "Dec": 1.04788,
-        "latest_detection": {
-            "mag": 19.48,
-            "filter": "zr",
-            "mjd": 61241.1973
-        },
-        "lightcurve_plot": "static/lightcurves/ZTF26aaxuzjv_lc.png",
-        "detail_json": "targets/ZTF26aaxuzjv.json"
-    }
-}
+// 页面加载后解析 URL 参数
+        $(document).ready(function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetId = urlParams.get('id'); // 例如 detail.html?id=ZTF26abhzfgq
+
+            if (!targetId) {
+                $('#target-title').text("❌ 未指定目标 ID");
+                return;
+            }
+
+            $('#target-title').text(`目标详情: ${targetId}`);
+            $('#val-oid').text(targetId);
+
+            // 动态请求 targets 目录下对应 ZTF ID 的独立 JSON 文件
+            loadTargetData(targetId);
+        });
+
+        function loadTargetData(targetId) {
+            $.getJSON(`targets/${targetId}.json`, function(item) {
+                if (item) {
+                    // 填充表格基本参数
+                    $('#val-ra').text(item.RA !== null ? item.RA : '-');
+                    $('#val-dec').text(item.Dec !== null ? item.Dec : '-');
+
+                    // 从 raw_alert_dict.candidate 中读取当前星等与误差
+                    if (item.raw_alert_dict && item.raw_alert_dict.candidate) {
+                        const cand = item.raw_alert_dict.candidate;
+                        $('#val-mag').text(cand.magpsf !== undefined ? cand.magpsf : '-');
+                        $('#val-magerr').text(cand.sigmapsf !== undefined ? cand.sigmapsf : '-');
+                    }
+                    
+                    // 填充原始数据 JSON 展示
+                    $('#raw-json-data').text(JSON.stringify(item.raw_alert_dict, null, 4));
+
+                    // 移动 Aladin 视场到目标的真实赤经赤纬
+                    if (aladin && item.RA !== null && item.Dec !== null) {
+                        aladin.gotoRaDec(item.RA, item.Dec);
+                        aladin.setFov(0.02);
+                    }
+
+                    // 绑定 ZTF 切片图片路径
+                    if (item.latest_stamps) {
+                        $('#stamp-sci').attr('src', item.latest_stamps.science || '');
+                        $('#stamp-tmpl').attr('src', item.latest_stamps.template || '');
+                        $('#stamp-diff').attr('src', item.latest_stamps.difference || '');
+                    }
+
+                } else {
+                    $('#raw-json-data').text("⚠️ 该目标的 JSON 文件内容为空。");
+                }
+            }).fail(function() {
+                $('#raw-json-data').text(`⚠️ 未能成功加载 targets/${targetId}.json，请检查该文件是否已推送到 GitHub。`);
+            });
+        }
