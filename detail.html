@@ -1,0 +1,54 @@
+// 页面加载后直接读取 detail.json
+        $(document).ready(function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetId = urlParams.get('id'); // 例如 detail.html?id=ZTF26abhzfgq
+
+            if (!targetId) {
+                $('#target-title').text("❌ 未指定目标 ID");
+                return;
+            }
+
+            $('#target-title').text(`目标详情: ${targetId}`);
+            $('#val-oid').text(targetId);
+
+            loadTargetData(targetId);
+        });
+
+        function loadTargetData(targetId) {
+            // 直接请求根目录下的 detail.json
+            $.getJSON('detail.json', function(item) {
+                if (item) {
+                    // 填充表格基本参数
+                    $('#val-ra').text(item.RA !== null ? item.RA : '-');
+                    $('#val-dec').text(item.Dec !== null ? item.Dec : '-');
+
+                    // 从 raw_alert_dict.candidate 中读取当前星等与误差
+                    if (item.raw_alert_dict && item.raw_alert_dict.candidate) {
+                        const cand = item.raw_alert_dict.candidate;
+                        $('#val-mag').text(cand.magpsf !== undefined ? cand.magpsf : '-');
+                        $('#val-magerr').text(cand.sigmapsf !== undefined ? cand.sigmapsf : '-');
+                    }
+                    
+                    // 填充原始数据 JSON 展示
+                    $('#raw-json-data').text(JSON.stringify(item.raw_alert_dict, null, 4));
+
+                    // 移动 Aladin 视场到目标的真实赤经赤纬
+                    if (aladin && item.RA !== null && item.Dec !== null) {
+                        aladin.gotoRaDec(item.RA, item.Dec);
+                        aladin.setFov(0.02);
+                    }
+
+                    // 绑定 ZTF 切片图片路径
+                    if (item.latest_stamps) {
+                        $('#stamp-sci').attr('src', item.latest_stamps.science || '');
+                        $('#stamp-tmpl').attr('src', item.latest_stamps.template || '');
+                        $('#stamp-diff').attr('src', item.latest_stamps.difference || '');
+                    }
+
+                } else {
+                    $('#raw-json-data').text("⚠️ detail.json 文件内容为空。");
+                }
+            }).fail(function() {
+                $('#raw-json-data').text("⚠️ 未能成功加载 detail.json，请检查文件是否已推送到 GitHub 根目录。");
+            });
+        }
