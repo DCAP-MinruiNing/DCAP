@@ -168,6 +168,11 @@
             text-decoration: underline;
         }
 
+        /* 无数据时的文本样式 */
+        .ztf-nolink {
+            color: #888;
+        }
+
         .footer {
             background: #f8f9fa;
             padding: 30px;
@@ -268,7 +273,7 @@
                     </thead>
                     <tbody id="table-body">
                         <tr>
-                            <td colspan="5" style="text-align: center; color: #999;">Loading data...</td>
+                            <td colspan="5" style="text-align: center; color: #999;">Loading data and checking availability...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -290,63 +295,92 @@
             return type.includes('Cataclysmic') ? 'CV Candidate' : 'SN Candidate';
         }
 
-        function loadData() {
-            fetch('data3.csv')
-                .then(response => response.text())
-                .then(csvData => {
-                    const lines = csvData.trim().split('\n');
-                    const headers = lines[0].split(',');
-                    const tbody = document.getElementById('table-body');
-                    tbody.innerHTML = '';
-                    
-                    let cvCount = 0;
-                    let snCount = 0;
+        async function loadData() {
+            try {
+                const response = await fetch('data3.csv');
+                const csvData = await response.text();
+                const lines = csvData.trim().split('\n');
+                const headers = lines[0].split(',');
+                const tbody = document.getElementById('table-body');
+                tbody.innerHTML = '';
+                
+                let cvCount = 0;
+                let snCount = 0;
 
-                    for (let i = 1; i < lines.length; i++) {
-                        if (lines[i].trim() === '') continue;
-                        
-                        const values = lines[i].split(',');
-                        const row = {};
-                        
-                        headers.forEach((header, index) => {
-                            row[header.trim()] = values[index] ? values[index].trim() : '';
-                        });
+                // 提取所有行数据
+                const rowsData = [];
+                for (let i = 1; i < lines.length; i++) {
+                    if (lines[i].trim() === '') continue;
+                    const values = lines[i].split(',');
+                    const row = {};
+                    headers.forEach((header, index) => {
+                        row[header.trim()] = values[index] ? values[index].trim() : '';
+                    });
+                    if (row.object_ID) {
+                        rowsData.push(row);
+                    }
+                }
 
-                        if (row.object_ID) {
-                            if (row.Type.includes('Cataclysmic')) cvCount++;
-                            if (row.Type.includes('SN')) snCount++;
-
-                            const tr = document.createElement('tr');
-                            // 🌟 核心修改处：将 ZTF_ID 包装为指向 detail.html?id=xxx 的超链接，并加上 ↗ 符号提示
-                            tr.innerHTML = `
-                                <td><strong>${row.object_ID}</strong></td>
-                                <td><a href="detail.html?id=${row.ZTF_ID}" target="_blank" class="ztf-link">${row.ZTF_ID} ↗</a></td>
-                                <td><span class="badge ${getTypeClass(row.Type)}">${getTypeLabel(row.Type)}</span></td>
-                                <td>${row['Classification_time(UTC)']}</td>
-                                <td>${row.Note || '-'}</td>
-                            `;
-                            tbody.appendChild(tr);
+                // 异步并发检测每一个目标的 targets/{ztf_id}.json 是否存在
+                const checkPromises = rowsData.map(async (row) => {
+                    const ztfId = row.ZTF_ID;
+                    let hasData = false;
+                    if (ztfId) {
+                        try {
+                            const res = await fetch(`targets/${ztfId}.json`, { method: 'HEAD' });
+                            hasData = res.ok;
+                        } catch (e) {
+                            hasData = false;
                         }
                     }
-
-                    const totalCount = lines.length - 1;
-                    document.getElementById('total-count').textContent = totalCount;
-                    document.getElementById('cv-count').textContent = cvCount;
-                    document.getElementById('sn-count').textContent = snCount;
-                    document.getElementById('update-date').textContent = new Date().toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                    });
-                })
-                .catch(error => {
-                    console.error('Error loading CSV:', error);
-                    document.getElementById('table-body').innerHTML = `
-                        <tr>
-                            <td colspan="5" style="text-align: center; color: #d32f2f;">Error loading data. Please try again later.</td>
-                        </tr>
-                    `;
+                    return { row, hasData };
                 });
+
+                const results = await Promise.all(checkPromises);
+
+                // 渲染表格
+                results.forEach(({ row, hasData }) => {
+                    if (row.Type.includes('Cataclysmic')) cvCount++;
+                    if (row.Type.includes('SN')) snCount++;
+
+                    const tr = document.createElement('tr');
+                    
+                    // 🌟 核心修改处：只有当目标有对应数据文件时才渲染为超链接，否则显示普通文本
+                    let ztfCellContent = '';
+                    if (hasData) {
+                        ztfCellContent = `<a href="detail.html?id=${row.ZTF_ID}" target="_blank" class="ztf-link">${row.ZTF_ID} ↗</a>`;
+                    } else {
+                        ztfCellContent = `<span class="ztf-nolink">${row.ZTF_ID}</span>`;
+                    }
+
+                    tr.innerHTML = `
+                        <td><strong>${row.object_ID}</strong></td>
+                        <td>${ztfCellContent}</td>
+                        <td><span class="badge ${getTypeClass(row.Type)}">${getTypeLabel(row.Type)}</span></td>
+                        <td>${row['Classification_time(UTC)']}</td>
+                        <td>${row.Note || '-'}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+                const totalCount = rowsData.length;
+                document.getElementById('total-count').textContent = totalCount;
+                document.getElementById('cv-count').textContent = cvCount;
+                document.getElementById('sn-count').textContent = snCount;
+                document.getElementById('update-date').textContent = new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+
+            } catch (error) {
+                console.error('Error loading CSV or checking data:', error);
+                document.getElementById('table-body').innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: #d32f2f;">Error loading data. Please try again later.</td>
+                    </tr>
+                `;
+            }
         }
 
         // 页面加载完成后执行
