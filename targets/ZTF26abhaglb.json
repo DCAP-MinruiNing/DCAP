@@ -1,0 +1,480 @@
+{
+    "history_map": {
+        "2461241.7164005": {
+            "jd": 2461241.7164005,
+            "mjd": 61241.2164,
+            "date": "MJD 61241.22",
+            "mag": 19.63,
+            "magerr": 0.146,
+            "filter": "zr",
+            "is_limit": false
+        },
+        "2461211.8728125": {
+            "jd": 2461211.8728125,
+            "mjd": 61211.3728,
+            "date": "MJD 61211.37",
+            "mag": 20.57,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461211.9125463": {
+            "jd": 2461211.9125463,
+            "mjd": 61211.4125,
+            "date": "MJD 61211.41",
+            "mag": 20.61,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461212.8611343": {
+            "jd": 2461212.8611343,
+            "mjd": 61212.3611,
+            "date": "MJD 61212.36",
+            "mag": 20.47,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461212.9118287": {
+            "jd": 2461212.9118287,
+            "mjd": 61212.4118,
+            "date": "MJD 61212.41",
+            "mag": 20.48,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461213.8030903": {
+            "jd": 2461213.8030903,
+            "mjd": 61213.3031,
+            "date": "MJD 61213.30",
+            "mag": 20.21,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461213.8787963": {
+            "jd": 2461213.8787963,
+            "mjd": 61213.3788,
+            "date": "MJD 61213.38",
+            "mag": 20.37,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461214.7804861": {
+            "jd": 2461214.7804861,
+            "mjd": 61214.2805,
+            "date": "MJD 61214.28",
+            "mag": 20.09,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461216.7907523": {
+            "jd": 2461216.7907523,
+            "mjd": 61216.2908,
+            "date": "MJD 61216.29",
+            "mag": 20.29,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461216.8577546": {
+            "jd": 2461216.8577546,
+            "mjd": 61216.3578,
+            "date": "MJD 61216.36",
+            "mag": 20.1,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461217.7947338": {
+            "jd": 2461217.7947338,
+            "mjd": 61217.2947,
+            "date": "MJD 61217.29",
+            "mag": 20.0,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461217.9216667": {
+            "jd": 2461217.9216667,
+            "mjd": 61217.4217,
+            "date": "MJD 61217.42",
+            "mag": 20.49,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461218.7985764": {
+            "jd": 2461218.7985764,
+            "mjd": 61218.2986,
+            "date": "MJD 61218.30",
+            "mag": 19.52,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461218.9237847": {
+            "jd": 2461218.9237847,
+            "mjd": 61218.4238,
+            "date": "MJD 61218.42",
+            "mag": 19.87,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461219.8356944": {
+            "jd": 2461219.8356944,
+            "mjd": 61219.3357,
+            "date": "MJD 61219.34",
+            "mag": 19.62,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461219.9227315": {
+            "jd": 2461219.9227315,
+            "mjd": 61219.4227,
+            "date": "MJD 61219.42",
+            "mag": 19.18,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461220.8398611": {
+            "jd": 2461220.8398611,
+            "mjd": 61220.3399,
+            "date": "MJD 61220.34",
+            "mag": 18.98,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461220.9285417": {
+            "jd": 2461220.9285417,
+            "mjd": 61220.4285,
+            "date": "MJD 61220.43",
+            "mag": 18.97,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461221.7949537": {
+            "jd": 2461221.7949537,
+            "mjd": 61221.295,
+            "date": "MJD 61221.29",
+            "mag": 19.43,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461222.7968981": {
+            "jd": 2461222.7968981,
+            "mjd": 61222.2969,
+            "date": "MJD 61222.30",
+            "mag": 19.35,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461222.8713773": {
+            "jd": 2461222.8713773,
+            "mjd": 61222.3714,
+            "date": "MJD 61222.37",
+            "mag": 19.0,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461223.8430324": {
+            "jd": 2461223.8430324,
+            "mjd": 61223.343,
+            "date": "MJD 61223.34",
+            "mag": 19.63,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461223.881088": {
+            "jd": 2461223.881088,
+            "mjd": 61223.3811,
+            "date": "MJD 61223.38",
+            "mag": 19.59,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461224.7106713": {
+            "jd": 2461224.7106713,
+            "mjd": 61224.2107,
+            "date": "MJD 61224.21",
+            "mag": 20.15,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461224.7975347": {
+            "jd": 2461224.7975347,
+            "mjd": 61224.2975,
+            "date": "MJD 61224.30",
+            "mag": 19.89,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461225.791713": {
+            "jd": 2461225.791713,
+            "mjd": 61225.2917,
+            "date": "MJD 61225.29",
+            "mag": 19.19,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461225.8627083": {
+            "jd": 2461225.8627083,
+            "mjd": 61225.3627,
+            "date": "MJD 61225.36",
+            "mag": 19.87,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461226.7452894": {
+            "jd": 2461226.7452894,
+            "mjd": 61226.2453,
+            "date": "MJD 61226.25",
+            "mag": 20.4,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461226.790162": {
+            "jd": 2461226.790162,
+            "mjd": 61226.2902,
+            "date": "MJD 61226.29",
+            "mag": 20.26,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461227.755463": {
+            "jd": 2461227.755463,
+            "mjd": 61227.2555,
+            "date": "MJD 61227.26",
+            "mag": 20.52,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461227.8223843": {
+            "jd": 2461227.8223843,
+            "mjd": 61227.3224,
+            "date": "MJD 61227.32",
+            "mag": 20.21,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461228.756713": {
+            "jd": 2461228.756713,
+            "mjd": 61228.2567,
+            "date": "MJD 61228.26",
+            "mag": 20.46,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461228.8307523": {
+            "jd": 2461228.8307523,
+            "mjd": 61228.3308,
+            "date": "MJD 61228.33",
+            "mag": 20.52,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461229.7764583": {
+            "jd": 2461229.7764583,
+            "mjd": 61229.2765,
+            "date": "MJD 61229.28",
+            "mag": 20.33,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461229.873044": {
+            "jd": 2461229.873044,
+            "mjd": 61229.373,
+            "date": "MJD 61229.37",
+            "mag": 20.29,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461230.8460069": {
+            "jd": 2461230.8460069,
+            "mjd": 61230.346,
+            "date": "MJD 61230.35",
+            "mag": 20.44,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461231.7707292": {
+            "jd": 2461231.7707292,
+            "mjd": 61231.2707,
+            "date": "MJD 61231.27",
+            "mag": 20.31,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461231.816412": {
+            "jd": 2461231.816412,
+            "mjd": 61231.3164,
+            "date": "MJD 61231.32",
+            "mag": 20.44,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461232.7490509": {
+            "jd": 2461232.7490509,
+            "mjd": 61232.2491,
+            "date": "MJD 61232.25",
+            "mag": 20.54,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461232.791169": {
+            "jd": 2461232.791169,
+            "mjd": 61232.2912,
+            "date": "MJD 61232.29",
+            "mag": 20.49,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461233.7734144": {
+            "jd": 2461233.7734144,
+            "mjd": 61233.2734,
+            "date": "MJD 61233.27",
+            "mag": 20.19,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461233.8414005": {
+            "jd": 2461233.8414005,
+            "mjd": 61233.3414,
+            "date": "MJD 61233.34",
+            "mag": 20.03,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461235.7472569": {
+            "jd": 2461235.7472569,
+            "mjd": 61235.2473,
+            "date": "MJD 61235.25",
+            "mag": 20.45,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461235.8044444": {
+            "jd": 2461235.8044444,
+            "mjd": 61235.3044,
+            "date": "MJD 61235.30",
+            "mag": 20.51,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        "2461236.7709722": {
+            "jd": 2461236.7709722,
+            "mjd": 61236.271,
+            "date": "MJD 61236.27",
+            "mag": 18.88,
+            "magerr": 0.092,
+            "filter": "zg",
+            "is_limit": false
+        },
+        "2461236.7993519": {
+            "jd": 2461236.7993519,
+            "mjd": 61236.2994,
+            "date": "MJD 61236.30",
+            "mag": 18.7,
+            "magerr": 0.062,
+            "filter": "zr",
+            "is_limit": false
+        },
+        "2461237.8072338": {
+            "jd": 2461237.8072338,
+            "mjd": 61237.3072,
+            "date": "MJD 61237.31",
+            "mag": 18.92,
+            "magerr": 0.081,
+            "filter": "zr",
+            "is_limit": false
+        },
+        "2461237.8666667": {
+            "jd": 2461237.8666667,
+            "mjd": 61237.3667,
+            "date": "MJD 61237.37",
+            "mag": 19.11,
+            "magerr": 0.083,
+            "filter": "zg",
+            "is_limit": false
+        },
+        "2461238.7488542": {
+            "jd": 2461238.7488542,
+            "mjd": 61238.2489,
+            "date": "MJD 61238.25",
+            "mag": 19.29,
+            "magerr": 0.109,
+            "filter": "zg",
+            "is_limit": false
+        },
+        "2461238.7906019": {
+            "jd": 2461238.7906019,
+            "mjd": 61238.2906,
+            "date": "MJD 61238.29",
+            "mag": 19.11,
+            "magerr": 0.113,
+            "filter": "zr",
+            "is_limit": false
+        },
+        "2461240.7347338": {
+            "jd": 2461240.7347338,
+            "mjd": 61240.2347,
+            "date": "MJD 61240.23",
+            "mag": 20.38,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        "2461240.8113426": {
+            "jd": 2461240.8113426,
+            "mjd": 61240.3113,
+            "date": "MJD 61240.31",
+            "mag": 19.5,
+            "magerr": 0.128,
+            "filter": "zr",
+            "is_limit": false
+        }
+    },
+    "RA": 280.767031,
+    "Dec": 8.7643183,
+    "latest_stamps": {
+        "science": "static/stamps/ZTF26abhaglb_science.png",
+        "template": "static/stamps/ZTF26abhaglb_template.png",
+        "difference": "static/stamps/ZTF26abhaglb_difference.png"
+    },
+    "lightcurve_plot": "static/lightcurves/ZTF26abhaglb_lc.png"
+}
