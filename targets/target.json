@@ -1,0 +1,11 @@
+{
+    "history_map": {},
+    "RA": null,
+    "Dec": null,
+    "latest_stamps": {},
+    "lightcurve_plot": "",
+    "raw_alert_dict": {
+        "candidate": {},
+        "prv_candidates": []
+    }
+}
