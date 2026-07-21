@@ -51,7 +51,7 @@
                 <!-- 光变曲线卡片 -->
                 <div class="card p-4">
                     <h4 class="card-title text-secondary mb-3">📈 光变曲线 (Light Curve)</h4>
-                    <div style="position: relative; height: 280px; width: 100%;">
+                    <div style="position: relative; height: 320px; width: 100%;">
                         <canvas id="lightcurveChart"></canvas>
                     </div>
                 </div>
@@ -138,51 +138,35 @@
         function loadTargetData(targetId) {
             $.getJSON(`targets/${targetId}.json`, function(item) {
                 if (item) {
-                    // 1. 填充 RA/Dec
                     $('#val-ra').text(item.RA !== null ? item.RA.toFixed(5) : '-');
                     $('#val-dec').text(item.Dec !== null ? item.Dec.toFixed(5) : '-');
 
-                    // 2. 解析当前星等、误差与滤镜
                     if (item.raw_alert_dict && item.raw_alert_dict.candidate) {
                         const cand = item.raw_alert_dict.candidate;
-                        
-                        if (cand.magpsf !== undefined) {
-                            $('#val-mag').text(cand.magpsf.toFixed(3));
-                        }
-                        if (cand.sigmapsf !== undefined) {
-                            $('#val-magerr').text(cand.sigmapsf.toFixed(3));
-                        }
+                        if (cand.magpsf !== undefined) $('#val-mag').text(cand.magpsf.toFixed(3));
+                        if (cand.sigmapsf !== undefined) $('#val-magerr').text(cand.sigmapsf.toFixed(3));
 
-                        // 识别滤镜 fid (1=g绿, 2=r红, 3=i黄)
                         let fid = cand.fid;
                         let filterName = '-';
                         let badgeClass = 'bg-secondary';
-                        if (fid === 1 || fid === '1') {
-                            filterName = 'ZTF-g (绿)';
-                            badgeClass = 'bg-success';
-                        } else if (fid === 2 || fid === '2') {
-                            filterName = 'ZTF-r (红)';
-                            badgeClass = 'bg-danger';
-                        } else if (fid === 3 || fid === '3') {
-                            filterName = 'ZTF-i';
-                            badgeClass = 'bg-warning text-dark';
+                        if (fid === 1 || fid === '1' || fid === 'zg') {
+                            filterName = 'ZTF-g (绿)'; badgeClass = 'bg-success';
+                        } else if (fid === 2 || fid === '2' || fid === 'zr') {
+                            filterName = 'ZTF-r (红)'; badgeClass = 'bg-danger';
+                        } else if (fid === 3 || fid === '3' || fid === 'zi') {
+                            filterName = 'ZTF-i (黄)'; badgeClass = 'bg-warning text-dark';
                         }
                         $('#val-filter').html(`<span class="badge ${badgeClass}">${filterName}</span>`);
                     }
                     
-                    // 3. 原始 JSON 展示
                     $('#raw-json-data').text(JSON.stringify(item.raw_alert_dict, null, 4));
 
-                    // 4. 移动视场
                     if (aladin && item.RA !== null && item.Dec !== null) {
                         aladin.gotoRaDec(item.RA, item.Dec);
                         aladin.setFov(0.02);
                     }
 
-                    // 5. 渲染光变曲线
                     renderLightCurve(item);
-
-                    // 6. 初始化时间切片选择器
                     initStampsEpochSelector(item);
 
                 } else {
@@ -196,28 +180,46 @@
         function renderLightCurve(item) {
             const history = item.history_map || item.history || [];
             let points = Array.isArray(history) ? history : Object.values(history);
-            points.sort((a, b) => (a.jd || a.mjd || 0) - (b.jd || b.mjd || 0));
 
-            const gData = [];
-            const rData = [];
-            const otherData = [];
+            // 同时支持独立的强制测光数据字段（如 item.forced_photometry 或 item.forced）
+            const forcedPointsInput = item.forced_photometry || item.forced || [];
+            let forcedPoints = Array.isArray(forcedPointsInput) ? forcedPointsInput : Object.values(forcedPointsInput);
 
+            // 定义 6 个分类数据集：常规与强制分别对应 g, r, i
+            let gReg = [], rReg = [], iReg = [];
+            let gForced = [], rForced = [], iForced = [];
+
+            // 解析常规测光点
             points.forEach(p => {
                 const jd = p.jd || p.mjd;
                 const mag = p.mag || p.magpsf;
-                const magerr = p.magerr || p.sigmapsf || 0.1;
-                const fid = p.fid || p.filter;
+                if (!jd || !mag) return;
 
-                if (jd && mag) {
-                    const pointObj = { x: jd, y: mag, err: magerr };
-                    if (fid === 1 || fid === '1' || fid === 'g' || fid === 'ZTF-g') {
-                        gData.push(pointObj);
-                    } else if (fid === 2 || fid === '2' || fid === 'r' || fid === 'ZTF-r') {
-                        rData.push(pointObj);
-                    } else {
-                        otherData.push(pointObj);
-                    }
+                const isForced = p.is_forced || p.forced || p.type === 'forced';
+                const filter = (p.filter || p.fid || '').toString().toLowerCase();
+                const pt = { x: jd, y: mag, err: p.magerr || p.sigmapsf || 0.1 };
+
+                if (filter.includes('g') || filter === '1' || filter === 'zg') {
+                    if (isForced) gForced.push(pt); else gReg.push(pt);
+                } else if (filter.includes('r') || filter === '2' || filter === 'zr') {
+                    if (isForced) rForced.push(pt); else rReg.push(pt);
+                } else if (filter.includes('i') || filter === '3' || filter === 'zi') {
+                    if (isForced) iForced.push(pt); else iReg.push(pt);
                 }
+            });
+
+            // 解析独立的强制测光点
+            forcedPoints.forEach(p => {
+                const jd = p.jd || p.mjd;
+                const mag = p.mag || p.magpsf;
+                if (!jd || !mag) return;
+
+                const filter = (p.filter || p.fid || '').toString().toLowerCase();
+                const pt = { x: jd, y: mag, err: p.magerr || p.sigmapsf || 0.1 };
+
+                if (filter.includes('g') || filter === '1' || filter === 'zg') gForced.push(pt);
+                else if (filter.includes('r') || filter === '2' || filter === 'zr') rForced.push(pt);
+                else if (filter.includes('i') || filter === '3' || filter === 'zi') iForced.push(pt);
             });
 
             const ctx = document.getElementById('lightcurveChart').getContext('2d');
@@ -227,17 +229,84 @@
                 type: 'scatter',
                 data: {
                     datasets: [
-                        { label: 'ZTF g band', data: gData, backgroundColor: 'rgba(40, 167, 69, 0.8)', borderColor: 'rgba(40, 167, 69, 1)', showLine: true, tension: 0.1 },
-                        { label: 'ZTF r band', data: rData, backgroundColor: 'rgba(220, 53, 69, 0.8)', borderColor: 'rgba(220, 53, 69, 1)', showLine: true, tension: 0.1 },
-                        { label: 'Other', data: otherData, backgroundColor: 'rgba(108, 117, 125, 0.8)', borderColor: 'rgba(108, 117, 125, 1)', showLine: true, tension: 0.1 }
+                        {
+                            label: 'zg (常规)',
+                            data: gReg,
+                            backgroundColor: 'rgba(40, 167, 69, 1)',
+                            pointStyle: 'circle',
+                            pointRadius: 5,
+                            showLine: false
+                        },
+                        {
+                            label: 'zr (常规)',
+                            data: rReg,
+                            backgroundColor: 'rgba(220, 53, 69, 1)',
+                            pointStyle: 'circle',
+                            pointRadius: 5,
+                            showLine: false
+                        },
+                        {
+                            label: 'zi (常规)',
+                            data: iReg,
+                            backgroundColor: 'rgba(255, 193, 7, 1)',
+                            pointStyle: 'circle',
+                            pointRadius: 5,
+                            showLine: false
+                        },
+                        {
+                            label: 'zg (强制)',
+                            data: gForced,
+                            backgroundColor: 'rgba(255, 255, 255, 1)',
+                            borderColor: 'rgba(40, 167, 69, 1)',
+                            borderWidth: 2,
+                            pointStyle: 'triangle',
+                            pointRadius: 6,
+                            showLine: false
+                        },
+                        {
+                            label: 'zr (强制)',
+                            data: rForced,
+                            backgroundColor: 'rgba(255, 255, 255, 1)',
+                            borderColor: 'rgba(220, 53, 69, 1)',
+                            borderWidth: 2,
+                            pointStyle: 'triangle',
+                            pointRadius: 6,
+                            showLine: false
+                        },
+                        {
+                            label: 'zi (强制)',
+                            data: iForced,
+                            backgroundColor: 'rgba(255, 255, 255, 1)',
+                            borderColor: 'rgba(255, 193, 7, 1)',
+                            borderWidth: 2,
+                            pointStyle: 'triangle',
+                            pointRadius: 6,
+                            showLine: false
+                        }
                     ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
-                        x: { type: 'linear', title: { display: true, text: 'JD / MJD' }, ticks: { callback: v => v.toFixed(1) } },
-                        y: { reverse: true, title: { display: true, text: 'Magnitude (星等)' } }
+                        x: {
+                            type: 'linear',
+                            title: { display: true, text: 'JD / MJD' },
+                            ticks: { callback: v => v.toFixed(1) }
+                        },
+                        y: {
+                            reverse: true,
+                            title: { display: true, text: 'Magnitude (星等)' }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label} | JD: ${context.parsed.x.toFixed(4)}, Mag: ${context.parsed.y.toFixed(2)}`;
+                                }
+                            }
+                        }
                     }
                 }
             });
