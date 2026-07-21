@@ -372,67 +372,97 @@
         function initStampsEpochSelector(item) {
             const selectElem = $('#epoch-select');
             selectElem.empty();
-            let epochs = [];
-            
-            if (item.stamps_by_epoch && Array.isArray(item.stamps_by_epoch)) {
-                epochs = item.stamps_by_epoch;
-            } else if (item.stamps_history && Array.isArray(item.stamps_history)) {
-                epochs = item.stamps_history;
-            } else if (item.history_map && Array.isArray(item.history_map)) {
-                epochs = item.history_map.filter(p => p.stamps || p.science || p.sci || p.stamp_sci);
-            } else if (item.history && Array.isArray(item.history)) {
-                epochs = item.history.filter(p => p.stamps || p.science || p.sci || p.stamp_sci);
+            let rawEpochs = item.stamps_by_epoch || item.stamps_history || item.stamps || item.latest_stamps || item.history_map || item.history;
+            let parsedEpochs = [];
+
+            // 智能转换：支持数组与对象字典
+            if (rawEpochs && typeof rawEpochs === 'object' && !Array.isArray(rawEpochs)) {
+                Object.keys(rawEpochs).forEach(key => {
+                    let val = rawEpochs[key];
+                    if (typeof val === 'object' && val !== null) {
+                        parsedEpochs.push({ epoch_key: key, ...val });
+                    } else if (typeof val === 'string' || Array.isArray(val)) {
+                        parsedEpochs.push({ epoch_key: key, files: val });
+                    }
+                });
+            } else if (Array.isArray(rawEpochs)) {
+                parsedEpochs = rawEpochs;
             }
 
-            if (epochs.length === 0 && item.latest_stamps) {
-                selectElem.append($('<option>', { value: 'latest', text: '最新观测历元 (Latest Epoch)' }));
-                setStampsImages(item.latest_stamps);
-                selectElem.prop('disabled', true);
-                return;
+            // 单个历元兜底匹配
+            if (parsedEpochs.length === 0 && (item.science || item.difference || item.sci || item.stamp_sci)) {
+                parsedEpochs.push(item);
             }
 
-            if (epochs.length === 0 && (item.science || item.sci || item.stamp_sci || item.cutoutScience)) {
-                selectElem.append($('<option>', { value: 'current', text: '当前目标历元 (Current Epoch)' }));
-                setStampsImages(item);
-                selectElem.prop('disabled', true);
-                return;
-            }
-
-            if (epochs.length === 0) {
+            if (parsedEpochs.length === 0) {
                 selectElem.append($('<option>', { value: '', text: '暂无可用图像切片' }));
                 selectElem.prop('disabled', true);
+                $('#stamp-sci, #stamp-tmpl, #stamp-diff').attr('src', '');
                 return;
             }
 
             selectElem.prop('disabled', false);
-            epochs.forEach((ep, index) => {
-                const timeLabel = ep.jd || ep.mjd || ep.date || ep.time || `Epoch ${index + 1}`;
+            parsedEpochs.forEach((ep, index) => {
+                const timeLabel = ep.epoch_key || ep.jd || ep.mjd || ep.date || ep.time || `历元 ${index + 1}`;
                 selectElem.append($('<option>', { value: index, text: `JD / 时间: ${timeLabel}` }));
             });
 
-            if (epochs.length > 0) {
-                setStampsImages(epochs[0]);
-            }
+            // 默认渲染第一个历元
+            setStampsImages(parsedEpochs[0]);
 
             selectElem.off('change').on('change', function() {
                 const idx = $(this).val();
-                if (idx === 'latest' && item.latest_stamps) {
-                    setStampsImages(item.latest_stamps);
-                } else if (epochs[idx]) {
-                    setStampsImages(epochs[idx]);
+                if (parsedEpochs[idx]) {
+                    setStampsImages(parsedEpochs[idx]);
                 }
             });
         }
 
+        // 智能路径处理助手：若为纯文件名，自动加上 static/stamps/
+        function formatImgPath(pathStr) {
+            if (!pathStr || typeof pathStr !== 'string') return '';
+            pathStr = pathStr.trim();
+            if (pathStr.startsWith('http://') || pathStr.startsWith('https://') || pathStr.startsWith('data:') || pathStr.startsWith('/') || pathStr.startsWith('static/')) {
+                return pathStr;
+            }
+            return `static/stamps/${pathStr}`;
+        }
+
         function setStampsImages(stampObj) {
             if (!stampObj) return;
-            const sci = stampObj.science || stampObj.sci || stampObj.stamp_sci || stampObj.science_path || stampObj.science_url || stampObj.img_sci || stampObj.cutoutScience || '';
-            const tmpl = stampObj.template || stampObj.tmpl || stampObj.stamp_tmpl || stampObj.template_path || stampObj.template_url || stampObj.img_tmpl || stampObj.cutoutTemplate || '';
-            const diff = stampObj.difference || stampObj.diff || stampObj.stamp_diff || stampObj.difference_path || stampObj.difference_url || stampObj.img_diff || stampObj.cutoutDifference || '';
-            
-            $('#stamp-sci').attr('src', sci);
-            $('#stamp-tmpl').attr('src', tmpl);
-            $('#stamp-diff').attr('src', diff);
+
+            let sci = '', tmpl = '', diff = '';
+
+            let fileArray = Array.isArray(stampObj) ? stampObj : (stampObj.files && Array.isArray(stampObj.files) ? stampObj.files : null);
+
+            if (fileArray) {
+                fileArray.forEach(file => {
+                    if (typeof file !== 'string') return;
+                    const lower = file.toLowerCase();
+                    if (lower.includes('science') || lower.includes('_sci')) sci = file;
+                    else if (lower.includes('template') || lower.includes('ref') || lower.includes('_tmpl')) tmpl = file;
+                    else if (lower.includes('difference') || lower.includes('_diff')) diff = file;
+                });
+            } else if (typeof stampObj === 'object') {
+                sci = stampObj.science || stampObj.sci || stampObj.stamp_sci || stampObj.science_path || stampObj.science_url || stampObj.img_sci || stampObj.cutoutScience || '';
+                tmpl = stampObj.template || stampObj.tmpl || stampObj.stamp_tmpl || stampObj.template_path || stampObj.template_url || stampObj.img_tmpl || stampObj.cutoutTemplate || '';
+                diff = stampObj.difference || stampObj.diff || stampObj.stamp_diff || stampObj.difference_path || stampObj.difference_url || stampObj.img_diff || stampObj.cutoutDifference || '';
+
+                if (!sci && !tmpl && !diff) {
+                    Object.values(stampObj).forEach(val => {
+                        if (typeof val === 'string') {
+                            const lower = val.toLowerCase();
+                            if (lower.includes('science') || lower.includes('_sci')) sci = val;
+                            else if (lower.includes('template') || lower.includes('ref') || lower.includes('_tmpl')) tmpl = val;
+                            else if (lower.includes('difference') || lower.includes('_diff')) diff = val;
+                        }
+                    });
+                }
+            }
+
+            $('#stamp-sci').attr('src', formatImgPath(sci));
+            $('#stamp-tmpl').attr('src', formatImgPath(tmpl));
+            $('#stamp-diff').attr('src', formatImgPath(diff));
         }
     </script>
 </body>
