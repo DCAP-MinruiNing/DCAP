@@ -14,7 +14,7 @@
         body { background-color: #f8f9fa; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         .card { box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: none; margin-bottom: 20px; }
         #aladin-lite-div { width: 100%; height: 400px; border-radius: 4px; }
-        .stamp-img { max-width: 100%; height: auto; border: 1px solid #dee2e6; border-radius: 4px; background: #000; }
+        .stamp-img { max-width: 100%; height: auto; border: 1px solid #dee2e6; border-radius: 4px; background: #000; min-height: 120px; object-fit: contain; }
         pre { background: #212529; color: #f8f9fa; padding: 15px; border-radius: 6px; max-height: 300px; overflow-y: auto; }
     </style>
 </head>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="row">
-            <!-- 左侧：基本参数、光变曲线与原始数据 -->
+            <!-- 左侧：基本参数、光变曲线、测光表格与原始数据 -->
             <div class="col-lg-6">
                 <!-- 基本参数卡片 -->
                 <div class="card p-4">
@@ -53,6 +53,27 @@
                     <h4 class="card-title text-secondary mb-3">📈 光变曲线 (Light Curve)</h4>
                     <div style="position: relative; height: 340px; width: 100%;">
                         <canvas id="lightcurveChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 完整测光数据表格卡片 -->
+                <div class="card p-4">
+                    <h4 class="card-title text-secondary mb-3">📋 完整测光数据明细表</h4>
+                    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                        <table class="table table-sm table-striped table-hover small" id="photometry-table">
+                            <thead>
+                                <tr>
+                                    <th>JD / MJD</th>
+                                    <th>滤镜</th>
+                                    <th>星等 (Mag)</th>
+                                    <th>误差 (Err)</th>
+                                    <th>类型</th>
+                                </tr>
+                            </thead>
+                            <tbody id="photometry-table-body">
+                                <tr><td colspan="5" class="text-center text-muted">加载中...</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -120,7 +141,6 @@
                 fov: 0.05,
                 target: "0 0"
             });
-            // 如果数据先于 Aladin 加载完成，在此处进行跳转
             if (currentRA !== null && currentDec !== null) {
                 aladin.gotoRaDec(currentRA, currentDec);
                 aladin.setFov(0.02);
@@ -177,6 +197,7 @@
                     }
 
                     renderLightCurve(item);
+                    renderPhotometryTable(item);
                     initStampsEpochSelector(item);
 
                 } else {
@@ -223,7 +244,6 @@
                     else if (isForced) iForcedValid.push(pt);
                     else iReg.push(pt);
                 } else {
-                    // 默认兜底归入 r 或常规
                     rReg.push(pt);
                 }
             }
@@ -279,15 +299,89 @@
             });
         }
 
+        function renderPhotometryTable(item) {
+            const history = item.history_map || item.history || [];
+            let points = Array.isArray(history) ? history : Object.values(history);
+            
+            const forcedPointsInput = item.forced_photometry || item.forced || [];
+            let forcedPoints = Array.isArray(forcedPointsInput) ? forcedPointsInput : Object.values(forcedPointsInput);
+
+            let allRows = [];
+
+            points.forEach(p => {
+                const jd = p.jd || p.mjd;
+                const mag = p.mag || p.magpsf || p.diffmaglim;
+                if (!jd) return;
+                const isForced = p.is_forced || p.forced || p.type === 'forced';
+                const isLimit = p.is_limit || p.limit || (p.diffmaglim !== undefined && !p.mag && !p.magpsf) || (p.magerr && p.magerr > 1.0);
+                const filter = (p.filter || p.fid || '-').toString();
+                
+                let typeStr = '常规 (Regular)';
+                if (isLimit) typeStr = '极限 (Limit)';
+                else if (isForced) typeStr = '强制 (Forced)';
+
+                allRows.push({
+                    jd: Number(jd),
+                    filter: filter,
+                    mag: mag !== undefined && mag !== null ? Number(mag).toFixed(3) : '-',
+                    err: (p.magerr || p.sigmapsf) ? Number(p.magerr || p.sigmapsf).toFixed(3) : '-',
+                    type: typeStr
+                });
+            });
+
+            forcedPoints.forEach(p => {
+                const jd = p.jd || p.mjd;
+                const mag = p.mag || p.magpsf || p.diffmaglim;
+                if (!jd) return;
+                const isLimit = p.is_limit || p.limit || p.diffmaglim || (!p.mag && !p.magpsf);
+                const filter = (p.filter || p.fid || '-').toString();
+
+                allRows.push({
+                    jd: Number(jd),
+                    filter: filter,
+                    mag: mag !== undefined && mag !== null ? Number(mag).toFixed(3) : '-',
+                    err: (p.magerr || p.sigmapsf) ? Number(p.magerr || p.sigmapsf).toFixed(3) : '-',
+                    type: isLimit ? '强制极限 (Limit)' : '强制有效 (Valid)'
+                });
+            });
+
+            // 按观测时间倒序排列
+            allRows.sort((a, b) => b.jd - a.jd);
+
+            const tbody = $('#photometry-table-body');
+            tbody.empty();
+
+            if (allRows.length === 0) {
+                tbody.append('<tr><td colspan="5" class="text-center text-muted">暂无测光数据</td></tr>');
+                return;
+            }
+
+            allRows.forEach(row => {
+                tbody.append(`
+                    <tr>
+                        <td>${row.jd.toFixed(4)}</td>
+                        <td>${row.filter}</td>
+                        <td>${row.mag}</td>
+                        <td>${row.err}</td>
+                        <td>${row.type}</td>
+                    </tr>
+                `);
+            });
+        }
+
         function initStampsEpochSelector(item) {
             const selectElem = $('#epoch-select');
             selectElem.empty();
             let epochs = [];
             
-            if (item.stamps_history && Array.isArray(item.stamps_history)) {
+            if (item.stamps_by_epoch && Array.isArray(item.stamps_by_epoch)) {
+                epochs = item.stamps_by_epoch;
+            } else if (item.stamps_history && Array.isArray(item.stamps_history)) {
                 epochs = item.stamps_history;
             } else if (item.history_map && Array.isArray(item.history_map)) {
-                epochs = item.history_map.filter(p => p.stamps || p.science);
+                epochs = item.history_map.filter(p => p.stamps || p.science || p.sci || p.stamp_sci);
+            } else if (item.history && Array.isArray(item.history)) {
+                epochs = item.history.filter(p => p.stamps || p.science || p.sci || p.stamp_sci);
             }
 
             if (epochs.length === 0 && item.latest_stamps) {
@@ -297,10 +391,23 @@
                 return;
             }
 
+            if (epochs.length === 0 && (item.science || item.sci || item.stamp_sci || item.cutoutScience)) {
+                selectElem.append($('<option>', { value: 'current', text: '当前目标历元 (Current Epoch)' }));
+                setStampsImages(item);
+                selectElem.prop('disabled', true);
+                return;
+            }
+
+            if (epochs.length === 0) {
+                selectElem.append($('<option>', { value: '', text: '暂无可用图像切片' }));
+                selectElem.prop('disabled', true);
+                return;
+            }
+
             selectElem.prop('disabled', false);
             epochs.forEach((ep, index) => {
-                const timeLabel = ep.jd || ep.mjd || ep.date || `Epoch ${index + 1}`;
-                selectElem.append($('<option>', { value: index, text: `JD: ${timeLabel}` }));
+                const timeLabel = ep.jd || ep.mjd || ep.date || ep.time || `Epoch ${index + 1}`;
+                selectElem.append($('<option>', { value: index, text: `JD / 时间: ${timeLabel}` }));
             });
 
             if (epochs.length > 0) {
@@ -318,9 +425,11 @@
         }
 
         function setStampsImages(stampObj) {
-            const sci = stampObj.science || stampObj.sci || stampObj.stamp_sci || '';
-            const tmpl = stampObj.template || stampObj.tmpl || stampObj.stamp_tmpl || '';
-            const diff = stampObj.difference || stampObj.diff || stampObj.stamp_diff || '';
+            if (!stampObj) return;
+            const sci = stampObj.science || stampObj.sci || stampObj.stamp_sci || stampObj.science_path || stampObj.science_url || stampObj.img_sci || stampObj.cutoutScience || '';
+            const tmpl = stampObj.template || stampObj.tmpl || stampObj.stamp_tmpl || stampObj.template_path || stampObj.template_url || stampObj.img_tmpl || stampObj.cutoutTemplate || '';
+            const diff = stampObj.difference || stampObj.diff || stampObj.stamp_diff || stampObj.difference_path || stampObj.difference_url || stampObj.img_diff || stampObj.cutoutDifference || '';
+            
             $('#stamp-sci').attr('src', sci);
             $('#stamp-tmpl').attr('src', tmpl);
             $('#stamp-diff').attr('src', diff);
