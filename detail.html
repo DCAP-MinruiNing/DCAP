@@ -1,4 +1,109 @@
-// 页面加载后直接读取 detail.json
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCAP - 目标候选体详情</title>
+    <!-- 引入 Bootstrap 样式美化页面 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入 Aladin Lite CSS -->
+    <link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v3/latest/aladin.css" />
+    <style>
+        body { background-color: #f8f9fa; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .card { box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: none; margin-bottom: 20px; }
+        #aladin-lite-div { width: 100%; height: 400px; border-radius: 4px; }
+        .stamp-img { max-width: 100%; height: auto; border: 1px solid #dee2e6; border-radius: 4px; background: #000; }
+        pre { background: #212529; color: #f8f9fa; padding: 15px; border-radius: 6px; max-height: 300px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+
+    <div class="container my-4">
+        <!-- 顶部导航与标题 -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <a href="index.html" class="btn btn-outline-secondary btn-sm mb-2">&larr; 返回主网站</a>
+                <h1 id="target-title" class="fw-bold text-dark">正在加载目标数据...</h1>
+            </div>
+            <div>
+                <span id="target-status" class="badge bg-primary fs-6">候选体</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- 左侧：基本参数、原始数据与光变表 -->
+            <div class="col-lg-6">
+                <!-- 基本参数卡片 -->
+                <div class="card p-4">
+                    <h4 class="card-title text-secondary mb-3">📍 天文测光参数</h4>
+                    <table class="table table-sm">
+                        <tr><td><strong>Object ID:</strong></td><td id="val-oid">-</td></tr>
+                        <tr><td><strong>赤经 (RA):</strong></td><td id="val-ra">-</td></tr>
+                        <tr><td><strong>赤纬 (Dec):</strong></td><td id="val-dec">-</td></tr>
+                        <tr><td><strong>当前星等 (Mag):</strong></td><td id="val-mag">-</td></tr>
+                        <tr><td><strong>测光误差 (Error):</strong></td><td id="val-magerr">-</td></tr>
+                    </table>
+                </div>
+
+                <!-- 原始数据折叠/展示区块 -->
+                <div class="card p-4">
+                    <h4 class="card-title text-secondary mb-3">📦 原始预警/测光数据</h4>
+                    <p class="text-muted small">对应 Avro 记录解析出的核心原始字典：</p>
+                    <pre><code id="raw-json-data">加载中...</code></pre>
+                </div>
+            </div>
+
+            <!-- 右侧：Aladin Lite 视场 (PS1 彩色底片) 与 ZTF 图像戳 -->
+            <div class="col-lg-6">
+                <!-- Aladin Lite 视场卡片 (接入 PS1 彩色图) -->
+                <div class="card p-4">
+                    <h4 class="card-title text-secondary mb-3">🌌 PS1 彩色光学视场 (Aladin)</h4>
+                    <p class="text-muted small">基于 Pan-STARRS DR1 巡天彩色底片，支持自由缩放与拖拽：</p>
+                    <div id="aladin-lite-div"></div>
+                </div>
+
+                <!-- ZTF 图像戳 (科学图/底片/差分图) -->
+                <div class="card p-4">
+                    <h4 class="card-title text-secondary mb-3">🔍 ZTF 图像切片 (Stamps)</h4>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <p class="small text-muted mb-1">科学原图 (Science)</p>
+                            <img id="stamp-sci" src="" class="stamp-img" alt="Science Stamp" />
+                        </div>
+                        <div class="col-4">
+                            <p class="small text-muted mb-1">参考底片 (Template)</p>
+                            <img id="stamp-tmpl" src="" class="stamp-img" alt="Template Stamp" />
+                        </div>
+                        <div class="col-4">
+                            <p class="small text-muted mb-1">差分图 (Difference)</p>
+                            <img id="stamp-diff" src="" class="stamp-img" alt="Difference Stamp" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入 jQuery 与 Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 引入 Aladin Lite JS v3 -->
+    <script type="text/javascript" src="https://aladin.u-strasbg.fr/AladinLite/api/v3/latest/aladin.js" charset="utf-8"></script>
+
+    <!-- 核心前端动态渲染逻辑 -->
+    <script>
+        let aladin = null;
+
+        // 初始化 Aladin Lite 视场
+        A.init.then(() => {
+            aladin = A.aladin('#aladin-lite-div', {
+                survey: "P/PanSTARRS/DR1/color", // 设定默认底片为 PS1 彩色巡天
+                fov: 0.05, // 视场大小（度）
+                target: "0 0" // 初始占位坐标
+            });
+        });
+
+        // 页面加载后解析 URL 参数
         $(document).ready(function() {
             const urlParams = new URLSearchParams(window.location.search);
             const targetId = urlParams.get('id'); // 例如 detail.html?id=ZTF26abhzfgq
@@ -11,12 +116,12 @@
             $('#target-title').text(`目标详情: ${targetId}`);
             $('#val-oid').text(targetId);
 
+            // 动态请求 targets 目录下对应 ZTF ID 的独立 JSON 文件
             loadTargetData(targetId);
         });
 
         function loadTargetData(targetId) {
-            // 直接请求根目录下的 detail.json
-            $.getJSON('detail.json', function(item) {
+            $.getJSON(`targets/${targetId}.json`, function(item) {
                 if (item) {
                     // 填充表格基本参数
                     $('#val-ra').text(item.RA !== null ? item.RA : '-');
@@ -46,9 +151,12 @@
                     }
 
                 } else {
-                    $('#raw-json-data').text("⚠️ detail.json 文件内容为空。");
+                    $('#raw-json-data').text("⚠️ 该目标的 JSON 文件内容为空。");
                 }
             }).fail(function() {
-                $('#raw-json-data').text("⚠️ 未能成功加载 detail.json，请检查文件是否已推送到 GitHub 根目录。");
+                $('#raw-json-data').text(`⚠️ 未能成功加载 targets/${targetId}.json，请检查该文件是否已推送到 GitHub 的 targets 文件夹下。`);
             });
         }
+    </script>
+</body>
+</html>
