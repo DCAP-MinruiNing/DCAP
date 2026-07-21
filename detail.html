@@ -51,7 +51,7 @@
                 <!-- 光变曲线卡片 -->
                 <div class="card p-4">
                     <h4 class="card-title text-secondary mb-3">📈 光变曲线 (Light Curve)</h4>
-                    <div style="position: relative; height: 320px; width: 100%;">
+                    <div style="position: relative; height: 340px; width: 100%;">
                         <canvas id="lightcurveChart"></canvas>
                     </div>
                 </div>
@@ -180,46 +180,59 @@
         function renderLightCurve(item) {
             const history = item.history_map || item.history || [];
             let points = Array.isArray(history) ? history : Object.values(history);
-
-            // 同时支持独立的强制测光数据字段（如 item.forced_photometry 或 item.forced）
+            
             const forcedPointsInput = item.forced_photometry || item.forced || [];
             let forcedPoints = Array.isArray(forcedPointsInput) ? forcedPointsInput : Object.values(forcedPointsInput);
 
-            // 定义 6 个分类数据集：常规与强制分别对应 g, r, i
+            // 分类容器：常规、强制有效、强制极限(Limit) 对应 g, r, i
             let gReg = [], rReg = [], iReg = [];
-            let gForced = [], rForced = [], iForced = [];
+            let gForcedValid = [], rForcedValid = [], iForcedValid = [];
+            let gLimit = [], rLimit = [], iLimit = [];
 
-            // 解析常规测光点
+            // 1. 处理常规历史测光点
             points.forEach(p => {
                 const jd = p.jd || p.mjd;
                 const mag = p.mag || p.magpsf;
                 if (!jd || !mag) return;
 
                 const isForced = p.is_forced || p.forced || p.type === 'forced';
+                const isLimit = p.is_limit || p.limit || (p.magerr && p.magerr > 1.0); // 误差过大或明确标记为limit
                 const filter = (p.filter || p.fid || '').toString().toLowerCase();
                 const pt = { x: jd, y: mag, err: p.magerr || p.sigmapsf || 0.1 };
 
                 if (filter.includes('g') || filter === '1' || filter === 'zg') {
-                    if (isForced) gForced.push(pt); else gReg.push(pt);
+                    if (isLimit) gLimit.push(pt);
+                    else if (isForced) gForcedValid.push(pt);
+                    else gReg.push(pt);
                 } else if (filter.includes('r') || filter === '2' || filter === 'zr') {
-                    if (isForced) rForced.push(pt); else rReg.push(pt);
+                    if (isLimit) rLimit.push(pt);
+                    else if (isForced) rForcedValid.push(pt);
+                    else rReg.push(pt);
                 } else if (filter.includes('i') || filter === '3' || filter === 'zi') {
-                    if (isForced) iForced.push(pt); else iReg.push(pt);
+                    if (isLimit) iLimit.push(pt);
+                    else if (isForced) iForcedValid.push(pt);
+                    else iReg.push(pt);
                 }
             });
 
-            // 解析独立的强制测光点
+            // 2. 处理独立的强制测光/极限数据
             forcedPoints.forEach(p => {
                 const jd = p.jd || p.mjd;
-                const mag = p.mag || p.magpsf;
+                // 强制测光有时用 diffmaglim 作为极限星等
+                const mag = p.mag || p.magpsf || p.diffmaglim;
                 if (!jd || !mag) return;
 
+                const isLimit = p.is_limit || p.limit || p.diffmaglim || (!p.mag && !p.magpsf);
                 const filter = (p.filter || p.fid || '').toString().toLowerCase();
                 const pt = { x: jd, y: mag, err: p.magerr || p.sigmapsf || 0.1 };
 
-                if (filter.includes('g') || filter === '1' || filter === 'zg') gForced.push(pt);
-                else if (filter.includes('r') || filter === '2' || filter === 'zr') rForced.push(pt);
-                else if (filter.includes('i') || filter === '3' || filter === 'zi') iForced.push(pt);
+                if (filter.includes('g') || filter === '1' || filter === 'zg') {
+                    if (isLimit) gLimit.push(pt); else gForcedValid.push(pt);
+                } else if (filter.includes('r') || filter === '2' || filter === 'zr') {
+                    if (isLimit) rLimit.push(pt); else rForcedValid.push(pt);
+                } else if (filter.includes('i') || filter === '3' || filter === 'zi') {
+                    if (isLimit) iLimit.push(pt); else iForcedValid.push(pt);
+                }
             });
 
             const ctx = document.getElementById('lightcurveChart').getContext('2d');
@@ -229,60 +242,18 @@
                 type: 'scatter',
                 data: {
                     datasets: [
-                        {
-                            label: 'zg (常规)',
-                            data: gReg,
-                            backgroundColor: 'rgba(40, 167, 69, 1)',
-                            pointStyle: 'circle',
-                            pointRadius: 5,
-                            showLine: false
-                        },
-                        {
-                            label: 'zr (常规)',
-                            data: rReg,
-                            backgroundColor: 'rgba(220, 53, 69, 1)',
-                            pointStyle: 'circle',
-                            pointRadius: 5,
-                            showLine: false
-                        },
-                        {
-                            label: 'zi (常规)',
-                            data: iReg,
-                            backgroundColor: 'rgba(255, 193, 7, 1)',
-                            pointStyle: 'circle',
-                            pointRadius: 5,
-                            showLine: false
-                        },
-                        {
-                            label: 'zg (强制)',
-                            data: gForced,
-                            backgroundColor: 'rgba(255, 255, 255, 1)',
-                            borderColor: 'rgba(40, 167, 69, 1)',
-                            borderWidth: 2,
-                            pointStyle: 'triangle',
-                            pointRadius: 6,
-                            showLine: false
-                        },
-                        {
-                            label: 'zr (强制)',
-                            data: rForced,
-                            backgroundColor: 'rgba(255, 255, 255, 1)',
-                            borderColor: 'rgba(220, 53, 69, 1)',
-                            borderWidth: 2,
-                            pointStyle: 'triangle',
-                            pointRadius: 6,
-                            showLine: false
-                        },
-                        {
-                            label: 'zi (强制)',
-                            data: iForced,
-                            backgroundColor: 'rgba(255, 255, 255, 1)',
-                            borderColor: 'rgba(255, 193, 7, 1)',
-                            borderWidth: 2,
-                            pointStyle: 'triangle',
-                            pointRadius: 6,
-                            showLine: false
-                        }
+                        // 常规测光 (实心圆)
+                        { label: 'zg (常规)', data: gReg, backgroundColor: '#28a745', pointStyle: 'circle', pointRadius: 5, showLine: false },
+                        { label: 'zr (常规)', data: rReg, backgroundColor: '#dc3545', pointStyle: 'circle', pointRadius: 5, showLine: false },
+                        { label: 'zi (常规)', data: iReg, backgroundColor: '#ffc107', pointStyle: 'circle', pointRadius: 5, showLine: false },
+                        // 强制有效测光 (实心三角)
+                        { label: 'zg (强制测光)', data: gForcedValid, backgroundColor: '#198754', pointStyle: 'triangle', pointRadius: 6, showLine: false },
+                        { label: 'zr (强制测光)', data: rForcedValid, backgroundColor: '#b02a37', pointStyle: 'triangle', pointRadius: 6, showLine: false },
+                        { label: 'zi (强制测光)', data: iForcedValid, backgroundColor: '#d39e00', pointStyle: 'triangle', pointRadius: 6, showLine: false },
+                        // 强制极限/非探测 (空心半透明/方块或倒三角)
+                        { label: 'zg (极限/Limit)', data: gLimit, backgroundColor: 'rgba(255,255,255,0.8)', borderColor: '#28a745', borderWidth: 1.5, pointStyle: 'rectRot', pointRadius: 4, showLine: false },
+                        { label: 'zr (极限/Limit)', data: rLimit, backgroundColor: 'rgba(255,255,255,0.8)', borderColor: '#dc3545', borderWidth: 1.5, pointStyle: 'rectRot', pointRadius: 4, showLine: false },
+                        { label: 'zi (极限/Limit)', data: iLimit, backgroundColor: 'rgba(255,255,255,0.8)', borderColor: '#ffc107', borderWidth: 1.5, pointStyle: 'rectRot', pointRadius: 4, showLine: false }
                     ]
                 },
                 options: {
@@ -300,6 +271,9 @@
                         }
                     },
                     plugins: {
+                        legend: {
+                            labels: { boxWidth: 12, font: { size: 11 } }
+                        },
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
