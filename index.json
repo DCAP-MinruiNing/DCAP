@@ -1,4 +1,14 @@
 {
+    "ZTF26abiqrbt": {
+        "RA": 265.06954,
+        "Dec": -15.265,
+        "latest_detection": {
+            "mag": 18.67,
+            "filter": "zr",
+            "mjd": 61242.3509
+        },
+        "detail_json": "targets/ZTF26abiqrbt.json"
+    },
     "ZTF19aamwseh": {
         "RA": 248.30687,
         "Dec": -12.75977,
