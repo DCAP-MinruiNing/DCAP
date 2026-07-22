@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DCAP - 目标候选体详情</title>
-    <!-- 引入 Bootstrap 样式美化页面 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 引入 Aladin Lite CSS -->
     <link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v3/latest/aladin.css" />
-    <!-- 引入 Chart.js 用于绘制光变曲线 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { background-color: #f8f9fa; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
@@ -77,7 +74,7 @@
                     </div>
                 </div>
 
-                <!-- 原始数据折叠/展示区块 -->
+                <!-- 原始数据 -->
                 <div class="card p-4">
                     <h4 class="card-title text-secondary mb-3">📦 原始预警/测光数据</h4>
                     <p class="text-muted small">对应 Avro 记录解析出的核心原始字典：</p>
@@ -87,18 +84,18 @@
 
             <!-- 右侧：Aladin Lite 视场与 带时间选择的 ZTF 图像戳 -->
             <div class="col-lg-6">
-                <!-- Aladin Lite 视场卡片 -->
+                <!-- Aladin Lite -->
                 <div class="card p-4">
                     <h4 class="card-title text-secondary mb-3">🌌 PS1 彩色光学视场 (Aladin)</h4>
                     <p class="text-muted small">基于 Pan-STARRS DR1 巡天彩色底片，支持自由缩放与拖拽：</p>
                     <div id="aladin-lite-div"></div>
                 </div>
 
-                <!-- ZTF 图像戳卡片（含时间/历元选择器） -->
+                <!-- ZTF 图像戳卡片 -->
                 <div class="card p-4">
                     <h4 class="card-title text-secondary mb-3">🔍 ZTF 图像切片 (Stamps)</h4>
                     <div class="mb-3">
-                        <label for="epoch-select" class="form-label small text-muted fw-bold">选择观测历元 / 时间点 (Epoch):</label>
+                        <label for="epoch-select" class="form-label small text-muted fw-bold">选择观测历元 (仅限有效探测 det):</label>
                         <select id="epoch-select" class="form-select form-select-sm">
                             <option value="">加载中...</option>
                         </select>
@@ -122,18 +119,27 @@
         </div>
     </div>
 
-    <!-- 引入 jQuery 与 Bootstrap JS -->
+    <!-- 脚本依赖 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- 引入 Aladin Lite JS v3 -->
     <script type="text/javascript" src="https://aladin.u-strasbg.fr/AladinLite/api/v3/latest/aladin.js" charset="utf-8"></script>
 
-    <!-- 核心前端动态渲染逻辑 -->
+    <!-- 核心前端逻辑 -->
     <script>
         let aladin = null;
         let lcChart = null;
         let currentRA = null;
         let currentDec = null;
+
+        // 全局核心判断函数：是否为纯粹的有效探测 (det)
+        // 规则：只要有标记为 limit 或 forced，或没有有效星等，一律不算 det
+        function isDetection(p) {
+            const hasMag = (p.mag !== undefined && p.mag !== null) || (p.magpsf !== undefined && p.magpsf !== null);
+            const isForced = p.is_forced || p.forced || p.type === 'forced';
+            const isLimitFlag = p.is_limit || p.limit || false;
+            
+            return hasMag && !isForced && !isLimitFlag;
+        }
 
         A.init.then(() => {
             aladin = A.aladin('#aladin-lite-div', {
@@ -198,8 +204,6 @@
 
                     renderLightCurve(item);
                     renderPhotometryTable(item);
-                    
-                    // 使用全新的纯前端逻辑初始化图像切片下拉列表
                     initStampsEpochSelector(item, targetId);
 
                 } else {
@@ -210,48 +214,36 @@
             });
         }
 
+        // 渲染光变曲线：去除了强制测光，只保留 det 和 limit
         function renderLightCurve(item) {
             const history = item.history_map || item.history || [];
             let points = Array.isArray(history) ? history : Object.values(history);
-            
-            const forcedPointsInput = item.forced_photometry || item.forced || [];
-            let forcedPoints = Array.isArray(forcedPointsInput) ? forcedPointsInput : Object.values(forcedPointsInput);
 
             let gReg = [], rReg = [], iReg = [];
-            let gForcedValid = [], rForcedValid = [], iForcedValid = [];
             let gLimit = [], rLimit = [], iLimit = [];
 
-            function parsePoint(p, isForcedDefault = false) {
+            points.forEach(p => {
                 const jd = p.jd || p.mjd;
                 if (!jd) return;
 
-                const mag = p.mag || p.magpsf || p.diffmaglim;
-                if (mag === undefined || mag === null) return;
+                const isDet = isDetection(p);
+                // 如果是 limit，优先使用探测极限(diffmaglim)，没有的话就用 magpsf 顶替
+                let plotMag = isDet ? (p.mag || p.magpsf) : (p.diffmaglim || p.mag || p.magpsf);
+                if (plotMag === undefined || plotMag === null) return;
 
-                const isForced = p.is_forced || p.forced || p.type === 'forced' || isForcedDefault;
-                const isLimit = p.is_limit || p.limit || (p.diffmaglim !== undefined && !p.mag && !p.magpsf) || (p.magerr && p.magerr > 1.0);
                 const filter = (p.filter || p.fid || '').toString().toLowerCase();
-                const pt = { x: jd, y: mag, err: p.magerr || p.sigmapsf || 0.1 };
+                const pt = { x: jd, y: plotMag, err: p.magerr || p.sigmapsf || 0 };
 
                 if (filter.includes('g') || filter === '1' || filter === 'zg') {
-                    if (isLimit) gLimit.push(pt);
-                    else if (isForced) gForcedValid.push(pt);
-                    else gReg.push(pt);
+                    if (isDet) gReg.push(pt); else gLimit.push(pt);
                 } else if (filter.includes('r') || filter === '2' || filter === 'zr') {
-                    if (isLimit) rLimit.push(pt);
-                    else if (isForced) rForcedValid.push(pt);
-                    else rReg.push(pt);
+                    if (isDet) rReg.push(pt); else rLimit.push(pt);
                 } else if (filter.includes('i') || filter === '3' || filter === 'zi') {
-                    if (isLimit) iLimit.push(pt);
-                    else if (isForced) iForcedValid.push(pt);
-                    else iReg.push(pt);
+                    if (isDet) iReg.push(pt); else iLimit.push(pt);
                 } else {
-                    rReg.push(pt);
+                    if (isDet) rReg.push(pt); else rLimit.push(pt);
                 }
-            }
-
-            points.forEach(p => parsePoint(p, false));
-            forcedPoints.forEach(p => parsePoint(p, true));
+            });
 
             const ctx = document.getElementById('lightcurveChart').getContext('2d');
             if (lcChart) lcChart.destroy();
@@ -260,94 +252,53 @@
                 type: 'scatter',
                 data: {
                     datasets: [
-                        { label: 'zg (常规)', data: gReg, backgroundColor: '#28a745', pointStyle: 'circle', pointRadius: 5, showLine: false },
-                        { label: 'zr (常规)', data: rReg, backgroundColor: '#dc3545', pointStyle: 'circle', pointRadius: 5, showLine: false },
-                        { label: 'zi (常规)', data: iReg, backgroundColor: '#ffc107', pointStyle: 'circle', pointRadius: 5, showLine: false },
-                        { label: 'zg (强制测光)', data: gForcedValid, backgroundColor: '#198754', pointStyle: 'triangle', pointRadius: 6, showLine: false },
-                        { label: 'zr (强制测光)', data: rForcedValid, backgroundColor: '#b02a37', pointStyle: 'triangle', pointRadius: 6, showLine: false },
-                        { label: 'zi (强制测光)', data: iForcedValid, backgroundColor: '#d39e00', pointStyle: 'triangle', pointRadius: 6, showLine: false },
-                        { label: 'zg (极限/Limit)', data: gLimit, backgroundColor: 'rgba(255,255,255,0.8)', borderColor: '#28a745', borderWidth: 1.5, pointStyle: 'rectRot', pointRadius: 4, showLine: false },
-                        { label: 'zr (极限/Limit)', data: rLimit, backgroundColor: 'rgba(255,255,255,0.8)', borderColor: '#dc3545', borderWidth: 1.5, pointStyle: 'rectRot', pointRadius: 4, showLine: false },
-                        { label: 'zi (极限/Limit)', data: iLimit, backgroundColor: 'rgba(255,255,255,0.8)', borderColor: '#ffc107', borderWidth: 1.5, pointStyle: 'rectRot', pointRadius: 4, showLine: false }
+                        { label: 'zg (det)', data: gReg, backgroundColor: '#28a745', pointStyle: 'circle', pointRadius: 5, showLine: false },
+                        { label: 'zr (det)', data: rReg, backgroundColor: '#dc3545', pointStyle: 'circle', pointRadius: 5, showLine: false },
+                        { label: 'zi (det)', data: iReg, backgroundColor: '#ffc107', pointStyle: 'circle', pointRadius: 5, showLine: false },
+                        { label: 'zg (limit)', data: gLimit, backgroundColor: 'rgba(255,255,255,0.8)', borderColor: '#28a745', borderWidth: 1.5, pointStyle: 'rectRot', pointRadius: 4, showLine: false },
+                        { label: 'zr (limit)', data: rLimit, backgroundColor: 'rgba(255,255,255,0.8)', borderColor: '#dc3545', borderWidth: 1.5, pointStyle: 'rectRot', pointRadius: 4, showLine: false },
+                        { label: 'zi (limit)', data: iLimit, backgroundColor: 'rgba(255,255,255,0.8)', borderColor: '#ffc107', borderWidth: 1.5, pointStyle: 'rectRot', pointRadius: 4, showLine: false }
                     ]
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
+                    responsive: true, maintainAspectRatio: false,
                     scales: {
-                        x: {
-                            type: 'linear',
-                            title: { display: true, text: 'JD / MJD' },
-                            ticks: { callback: v => v.toFixed(1) }
-                        },
-                        y: {
-                            reverse: true,
-                            title: { display: true, text: 'Magnitude (星等)' }
-                        }
+                        x: { type: 'linear', title: { display: true, text: 'JD / MJD' }, ticks: { callback: v => v.toFixed(1) } },
+                        y: { reverse: true, title: { display: true, text: 'Magnitude (星等)' } }
                     },
                     plugins: {
-                        legend: {
-                            labels: { boxWidth: 12, font: { size: 11 } }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `${context.dataset.label} | JD: ${context.parsed.x.toFixed(4)}, Mag: ${context.parsed.y.toFixed(2)}`;
-                                }
-                            }
-                        }
+                        legend: { labels: { boxWidth: 12, font: { size: 11 } } },
+                        tooltip: { callbacks: { label: function(context) { return `${context.dataset.label} | JD: ${context.parsed.x.toFixed(4)}, Mag: ${context.parsed.y.toFixed(2)}`; } } }
                     }
                 }
             });
         }
 
+        // 渲染表格：去除了强制测光逻辑，类型严格非黑即白
         function renderPhotometryTable(item) {
             const history = item.history_map || item.history || [];
             let points = Array.isArray(history) ? history : Object.values(history);
             
-            const forcedPointsInput = item.forced_photometry || item.forced || [];
-            let forcedPoints = Array.isArray(forcedPointsInput) ? forcedPointsInput : Object.values(forcedPointsInput);
-
             let allRows = [];
 
             points.forEach(p => {
                 const jd = p.jd || p.mjd;
-                const mag = p.mag || p.magpsf || p.diffmaglim;
                 if (!jd) return;
-                const isForced = p.is_forced || p.forced || p.type === 'forced';
-                const isLimit = p.is_limit || p.limit || (p.diffmaglim !== undefined && !p.mag && !p.magpsf) || (p.magerr && p.magerr > 1.0);
-                const filter = (p.filter || p.fid || '-').toString();
                 
-                let typeStr = '常规 (Regular)';
-                if (isLimit) typeStr = '极限 (Limit)';
-                else if (isForced) typeStr = '强制 (Forced)';
-
-                allRows.push({
-                    jd: Number(jd),
-                    filter: filter,
-                    mag: mag !== undefined && mag !== null ? Number(mag).toFixed(3) : '-',
-                    err: (p.magerr || p.sigmapsf) ? Number(p.magerr || p.sigmapsf).toFixed(3) : '-',
-                    type: typeStr
-                });
-            });
-
-            forcedPoints.forEach(p => {
-                const jd = p.jd || p.mjd;
-                const mag = p.mag || p.magpsf || p.diffmaglim;
-                if (!jd) return;
-                const isLimit = p.is_limit || p.limit || p.diffmaglim || (!p.mag && !p.magpsf);
+                const isDet = isDetection(p);
                 const filter = (p.filter || p.fid || '-').toString();
-
+                // 同样，如果是 limit 显示 diffmaglim（如果存在的话）
+                let mag = isDet ? (p.mag || p.magpsf) : (p.diffmaglim || p.mag || p.magpsf);
+                
                 allRows.push({
                     jd: Number(jd),
                     filter: filter,
                     mag: mag !== undefined && mag !== null ? Number(mag).toFixed(3) : '-',
-                    err: (p.magerr || p.sigmapsf) ? Number(p.magerr || p.sigmapsf).toFixed(3) : '-',
-                    type: isLimit ? '强制极限 (Limit)' : '强制有效 (Valid)'
+                    err: (isDet && (p.magerr || p.sigmapsf)) ? Number(p.magerr || p.sigmapsf).toFixed(3) : '-',
+                    type: isDet ? '常规 (det)' : '极限 (limit)'
                 });
             });
 
-            // 按观测时间倒序排列
             allRows.sort((a, b) => b.jd - a.jd);
 
             const tbody = $('#photometry-table-body');
@@ -372,13 +323,10 @@
         }
 
         // ==========================================
-        // 新版图像切片加载逻辑：前端解耦，直接计算日期
+        // 图像切片加载：严格过滤，只用 det 的日期
         // ==========================================
-
-        // 将 JD 儒略日转换为 YYYY-MM-DD 格式的函数
         function jdToDateString(jd) {
             if (!jd) return null;
-            // JD 2440587.5 对应 UTC 时间 1970-01-01T00:00:00Z
             let ms = (jd - 2440587.5) * 86400000;
             let d = new Date(ms);
             let yyyy = d.getUTCFullYear();
@@ -391,58 +339,49 @@
             const selectElem = $('#epoch-select');
             selectElem.empty();
             
-            // 提取所有的历史测光点
             const history = item.history_map || item.history || [];
             let points = Array.isArray(history) ? history : Object.values(history);
             
             let uniqueDates = new Set();
 
-            // 遍历测光点，将 JD 转换为本地日期字符串去重
             points.forEach(p => {
                 const jd = p.jd || p.mjd;
-                if (jd) {
+                // 【核心修改】只有当该点是真正的探测 (det) 时，才提取该历元用于图片请求
+                if (jd && isDetection(p)) {
                     let dateStr = jdToDateString(jd);
-                    if (dateStr) {
-                        uniqueDates.add(dateStr);
-                    }
+                    if (dateStr) uniqueDates.add(dateStr);
                 }
             });
             
-            // 将去重后的日期集合转换回数组，并降序排列（最新日期在最前）
             let parsedDates = Array.from(uniqueDates).sort().reverse();
 
-            // 如果该目标完全没有提取到日期
             if (parsedDates.length === 0) {
-                selectElem.append($('<option>', { value: '', text: '暂无可用图像切片' }));
+                selectElem.append($('<option>', { value: '', text: '暂无有效探测 (det) 历元图像' }));
                 selectElem.prop('disabled', true);
                 $('#stamp-sci, #stamp-tmpl, #stamp-diff').attr('src', '');
                 return;
             }
 
             selectElem.prop('disabled', false);
-            // 填充下拉菜单
             parsedDates.forEach(dateStr => {
-                selectElem.append($('<option>', { value: dateStr, text: `JD / 时间: ${dateStr}` }));
+                selectElem.append($('<option>', { value: dateStr, text: `JD / 时间: ${dateStr} (det)` }));
             });
 
-            // 默认展示第一天的图像
             setStampsImages(parsedDates[0], targetId);
 
-            // 监听下拉菜单切换事件
             selectElem.off('change').on('change', function() {
                 const selectedDate = $(this).val();
                 setStampsImages(selectedDate, targetId);
             });
         }
 
-        // 简化路径拼接，直接使用 static/static/stamps/ 目录结构
         function setStampsImages(dateStr, targetId) {
             if (!dateStr || !targetId) return;
 
-            // 这里彻底解决了 404 和“目录套娃”的问题
-            let sci = `static/static/stamps/${targetId}_${dateStr}_science.png`;
-            let tmpl = `static/static/stamps/${targetId}_${dateStr}_template.png`;
-            let diff = `static/static/stamps/${targetId}_${dateStr}_difference.png`;
+            // 已修改回正确的单层 static/stamps/ 目录
+            let sci = `static/stamps/${targetId}_${dateStr}_science.png`;
+            let tmpl = `static/stamps/${targetId}_${dateStr}_template.png`;
+            let diff = `static/stamps/${targetId}_${dateStr}_difference.png`;
 
             $('#stamp-sci').attr('src', sci);
             $('#stamp-tmpl').attr('src', tmpl);
