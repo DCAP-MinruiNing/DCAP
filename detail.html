@@ -198,6 +198,8 @@
 
                     renderLightCurve(item);
                     renderPhotometryTable(item);
+                    
+                    // 使用全新的纯前端逻辑初始化图像切片下拉列表
                     initStampsEpochSelector(item, targetId);
 
                 } else {
@@ -369,31 +371,48 @@
             });
         }
 
+        // ==========================================
+        // 新版图像切片加载逻辑：前端解耦，直接计算日期
+        // ==========================================
+
+        // 将 JD 儒略日转换为 YYYY-MM-DD 格式的函数
+        function jdToDateString(jd) {
+            if (!jd) return null;
+            // JD 2440587.5 对应 UTC 时间 1970-01-01T00:00:00Z
+            let ms = (jd - 2440587.5) * 86400000;
+            let d = new Date(ms);
+            let yyyy = d.getUTCFullYear();
+            let mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+            let dd = String(d.getUTCDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
         function initStampsEpochSelector(item, targetId) {
             const selectElem = $('#epoch-select');
             selectElem.empty();
-            let rawEpochs = item.stamps_by_epoch || item.stamps_history || item.stamps || item.latest_stamps || item.history_map || item.history;
-            let parsedEpochs = [];
+            
+            // 提取所有的历史测光点
+            const history = item.history_map || item.history || [];
+            let points = Array.isArray(history) ? history : Object.values(history);
+            
+            let uniqueDates = new Set();
 
-            // 支持字典与数组结构解析
-            if (rawEpochs && typeof rawEpochs === 'object' && !Array.isArray(rawEpochs)) {
-                Object.keys(rawEpochs).forEach(key => {
-                    let val = rawEpochs[key];
-                    if (typeof val === 'object' && val !== null) {
-                        parsedEpochs.push({ date: key, epoch_key: key, ...val });
-                    } else {
-                        parsedEpochs.push({ date: key, epoch_key: key, val: val });
+            // 遍历测光点，将 JD 转换为本地日期字符串去重
+            points.forEach(p => {
+                const jd = p.jd || p.mjd;
+                if (jd) {
+                    let dateStr = jdToDateString(jd);
+                    if (dateStr) {
+                        uniqueDates.add(dateStr);
                     }
-                });
-            } else if (Array.isArray(rawEpochs)) {
-                parsedEpochs = rawEpochs;
-            }
+                }
+            });
+            
+            // 将去重后的日期集合转换回数组，并降序排列（最新日期在最前）
+            let parsedDates = Array.from(uniqueDates).sort().reverse();
 
-            if (parsedEpochs.length === 0 && (item.science || item.difference || item.sci || item.stamp_sci)) {
-                parsedEpochs.push(item);
-            }
-
-            if (parsedEpochs.length === 0) {
+            // 如果该目标完全没有提取到日期
+            if (parsedDates.length === 0) {
                 selectElem.append($('<option>', { value: '', text: '暂无可用图像切片' }));
                 selectElem.prop('disabled', true);
                 $('#stamp-sci, #stamp-tmpl, #stamp-diff').attr('src', '');
@@ -401,61 +420,33 @@
             }
 
             selectElem.prop('disabled', false);
-            parsedEpochs.forEach((ep, index) => {
-                const timeLabel = ep.date || ep.epoch_key || ep.jd || ep.mjd || ep.time || `历元 ${index + 1}`;
-                selectElem.append($('<option>', { value: index, text: `JD / 时间: ${timeLabel}` }));
+            // 填充下拉菜单
+            parsedDates.forEach(dateStr => {
+                selectElem.append($('<option>', { value: dateStr, text: `JD / 时间: ${dateStr}` }));
             });
 
-            // 默认展示第一个历元
-            setStampsImages(parsedEpochs[0], targetId);
+            // 默认展示第一天的图像
+            setStampsImages(parsedDates[0], targetId);
 
+            // 监听下拉菜单切换事件
             selectElem.off('change').on('change', function() {
-                const idx = $(this).val();
-                if (parsedEpochs[idx]) {
-                    setStampsImages(parsedEpochs[idx], targetId);
-                }
+                const selectedDate = $(this).val();
+                setStampsImages(selectedDate, targetId);
             });
         }
 
-        function formatImgPath(pathStr) {
-            if (!pathStr || typeof pathStr !== 'string') return '';
-            pathStr = pathStr.trim();
-            if (pathStr.startsWith('http://') || pathStr.startsWith('https://') || pathStr.startsWith('data:') || pathStr.startsWith('/') || pathStr.startsWith('static/')) {
-                return pathStr;
-            }
-            return `static/stamps/${pathStr}`;
-        }
+        // 简化路径拼接，直接使用 static/static/stamps/ 目录结构
+        function setStampsImages(dateStr, targetId) {
+            if (!dateStr || !targetId) return;
 
-        function setStampsImages(stampObj, targetId) {
-            if (!stampObj) return;
+            // 这里彻底解决了 404 和“目录套娃”的问题
+            let sci = `static/static/stamps/${targetId}_${dateStr}_science.png`;
+            let tmpl = `static/static/stamps/${targetId}_${dateStr}_template.png`;
+            let diff = `static/static/stamps/${targetId}_${dateStr}_difference.png`;
 
-            let sci = '', tmpl = '', diff = '';
-
-            // 尝试直接提取 JSON 中可能写死的路径
-            if (typeof stampObj === 'object' && stampObj !== null) {
-                sci = stampObj.science || stampObj.sci || stampObj.stamp_sci || stampObj.science_path || '';
-                tmpl = stampObj.template || stampObj.tmpl || stampObj.stamp_tmpl || stampObj.template_path || '';
-                diff = stampObj.difference || stampObj.diff || stampObj.stamp_diff || stampObj.difference_path || '';
-            }
-
-            // 获取当前历元的日期标识 (例如 2026-07-20)
-            let dateStr = '';
-            if (typeof stampObj === 'string') {
-                dateStr = stampObj;
-            } else if (typeof stampObj === 'object' && stampObj !== null) {
-                dateStr = stampObj.date || stampObj.epoch_key || stampObj.time || stampObj.jd || '';
-            }
-
-            // 如果 JSON 里没有明确给出文件名，则按规则组合: static/stamps/目标ID_日期_类型.png
-            if (dateStr && targetId) {
-                if (!sci) sci = `static/stamps/${targetId}_${dateStr}_science.png`;
-                if (!tmpl) tmpl = `static/stamps/${targetId}_${dateStr}_template.png`;
-                if (!diff) diff = `static/stamps/${targetId}_${dateStr}_difference.png`;
-            }
-
-            $('#stamp-sci').attr('src', formatImgPath(sci));
-            $('#stamp-tmpl').attr('src', formatImgPath(tmpl));
-            $('#stamp-diff').attr('src', formatImgPath(diff));
+            $('#stamp-sci').attr('src', sci);
+            $('#stamp-tmpl').attr('src', tmpl);
+            $('#stamp-diff').attr('src', diff);
         }
     </script>
 </body>
