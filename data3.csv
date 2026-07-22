@@ -1,4 +1,5 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP299,ZTF26abiqigq,Cataclysmic variable candidate,2026/7/22 15:02:45,17.33zi Known target UG ASASSN-17lv
 DCAP298,ZTF26abiqrbt,Cataclysmic variable candidate,2026/7/22 9:20:16,18.66 zr
 DCAP297,ZTF19aamwseh,Cataclysmic variable candidate,2026/7/21 12:02:27,16.69 zg Known target UG ASASSN-14bi ATel #7418
 DCAP296,ZTF26abhzfgq,Cataclysmic variable candidate,2026/7/20 9:47:36,2026-07-19 zg=20.28 2026-07-20 zg=17.54 Dwarf novae characterization using SDSS colors (Kato+2012) 2026-07-20 10:22:05 GOTO team reported it to TNS as AT 2026vdv.
