@@ -1,4 +1,6 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP301,ZTF26abiwcvm,Cataclysmic variable candidate,2026/7/23 13:31:55,19.16 zi
+DCAP300,ZTF26abivnre,Cataclysmic variable candidate,2026/7/23 13:18:38,19.64 zg
 DCAP299,ZTF26abiqigq,Cataclysmic variable candidate,2026/7/22 15:02:45,17.33zi Known target UG ASASSN-17lv
 DCAP298,ZTF26abiqrbt,Cataclysmic variable candidate,2026/7/22 9:20:16,18.66 zr
 DCAP297,ZTF19aamwseh,Cataclysmic variable candidate,2026/7/21 12:02:27,16.69 zg Known target UG ASASSN-14bi ATel #7418
