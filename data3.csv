@@ -1,4 +1,9 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP311,ZTF26abjpkon,SN candidate,2026/7/25 11:14:40,20.47 zr
+DCAP310,ZTF26abjmlfs,SN candidate,2026/7/25 11:06:54,20.35 zg
+DCAP309,ZTF26abjqico,SN candidate,2026/7/25 10:50:10,20.22 zr LEDA 1361644
+DCAP308,ZTF26abjlumy,Cataclysmic variable candidate,2026/7/25 10:47:21,19.62 zg
+DCAP307,ZTF26abjtexk,Cataclysmic variable candidate,2026/7/25 10:28:07,17.77 zg possible known target ASASSN-14cw
 DCAP306,ZTF26abjlpcn,SN candidate,2026/7/24 9:29:23,20.28 zr
 DCAP305,ZTF26abixmel,SN candidate,2026/7/24 9:27:26,19.86 zg LEDA 187868 Z=0.064237
 DCAP304,ZTF26abjcerp,Cataclysmic variable candidate,2026/7/24 9:23:26,17.92 zr
