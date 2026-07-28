@@ -1,4 +1,24 @@
 {
+    "ZTF26abkklws": {
+        "RA": 0,
+        "Dec": 0,
+        "latest_detection": {
+            "mag": null,
+            "filter": null,
+            "mjd": null
+        },
+        "detail_json": "targets/ZTF26abkklws.json"
+    },
+    "ZTF26abkjbgk": {
+        "RA": 27.13709,
+        "Dec": 10.57368,
+        "latest_detection": {
+            "mag": 20.11,
+            "filter": "zg",
+            "mjd": 61248.4756
+        },
+        "detail_json": "targets/ZTF26abkjbgk.json"
+    },
     "ZTF26abkbfml": {
         "RA": 248.82917,
         "Dec": 11.34184,

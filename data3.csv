@@ -1,4 +1,6 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP318,ZTF26abkklws,Cataclysmic variable candidate,2026/7/28 11:27:16,17.37 zr Known target UG AT 2019axb=Gaia19aoq
+DCAP317,ZTF26abkjbgk,SN candidate,2026/7/28 11:23:50,19.77 zg MCG+02-05-035
 DCAP316,ZTF26abkbfml,SN candidate,2026/7/27 12:55:53,19.87 zg DESI J163518.81+112029.4
 DCAP315,ZTF26abjzqcg,SN candidate,2026/7/27 12:53:22,19.62 zr
 DCAP314,ZTF26abjekzx,Cataclysmic variable candidate,2026/7/27 12:47:51,19.62 zg
