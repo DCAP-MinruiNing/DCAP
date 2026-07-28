@@ -131,8 +131,8 @@
         let currentRA = null;
         let currentDec = null;
 
-        // 全局核心判断函数：是否为纯粹的有效探测 (det)
-        // 规则：只要有标记为 limit 或 forced，或没有有效星等，一律不算 det
+        // note: 全局核心判断函数：是否为纯粹的有效探测 (det)
+        // note: 规则：只要有标记为 limit 或 forced，或没有有效星等，一律不算 det
         function isDetection(p) {
             const hasMag = (p.mag !== undefined && p.mag !== null) || (p.magpsf !== undefined && p.magpsf !== null);
             const isForced = p.is_forced || p.forced || p.type === 'forced';
@@ -214,7 +214,7 @@
             });
         }
 
-        // 渲染光变曲线：去除了强制测光，只保留 det 和 limit
+        // note: 渲染光变曲线：去除了强制测光，只保留 det 和 limit
         function renderLightCurve(item) {
             const history = item.history_map || item.history || [];
             let points = Array.isArray(history) ? history : Object.values(history);
@@ -227,7 +227,7 @@
                 if (!jd) return;
 
                 const isDet = isDetection(p);
-                // 如果是 limit，优先使用探测极限(diffmaglim)，没有的话就用 magpsf 顶替
+                // note: 如果是 limit，优先使用探测极限(diffmaglim)，没有的话就用 magpsf 顶替
                 let plotMag = isDet ? (p.mag || p.magpsf) : (p.diffmaglim || p.mag || p.magpsf);
                 if (plotMag === undefined || plotMag === null) return;
 
@@ -274,7 +274,7 @@
             });
         }
 
-        // 渲染表格：去除了强制测光逻辑，类型严格非黑即白
+        // note: 渲染表格：去除了强制测光逻辑，类型严格非黑即白
         function renderPhotometryTable(item) {
             const history = item.history_map || item.history || [];
             let points = Array.isArray(history) ? history : Object.values(history);
@@ -287,7 +287,7 @@
                 
                 const isDet = isDetection(p);
                 const filter = (p.filter || p.fid || '-').toString();
-                // 同样，如果是 limit 显示 diffmaglim（如果存在的话）
+                // note: 同样，如果是 limit 显示 diffmaglim（如果存在的话）
                 let mag = isDet ? (p.mag || p.magpsf) : (p.diffmaglim || p.mag || p.magpsf);
                 
                 allRows.push({
@@ -323,7 +323,7 @@
         }
 
         // ==========================================
-        // 图像切片加载：严格过滤，只用 det 的日期
+        // note: 图像切片加载：严格过滤，只用 det 的日期，并精确到时分秒
         // ==========================================
         function jdToDateString(jd) {
             if (!jd) return null;
@@ -332,7 +332,15 @@
             let yyyy = d.getUTCFullYear();
             let mm = String(d.getUTCMonth() + 1).padStart(2, '0');
             let dd = String(d.getUTCDate()).padStart(2, '0');
-            return `${yyyy}-${mm}-${dd}`;
+            let hh = String(d.getUTCHours()).padStart(2, '0');
+            let min = String(d.getUTCMinutes()).padStart(2, '0');
+            let ss = String(d.getUTCSeconds()).padStart(2, '0');
+            
+            // note: 返回一个对象，包含两种格式
+            return {
+                fileStr: `${yyyy}-${mm}-${dd}_${hh}${min}${ss}`, // note: 用于拼接文件名的格式
+                displayStr: `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}` // note: 用于下拉菜单显示的格式
+            };
         }
 
         function initStampsEpochSelector(item, targetId) {
@@ -342,18 +350,22 @@
             const history = item.history_map || item.history || [];
             let points = Array.isArray(history) ? history : Object.values(history);
             
-            let uniqueDates = new Set();
+            // note: 使用 Map 来存储，避免同一天的不同时间点被错误去重
+            let uniqueDates = new Map();
 
             points.forEach(p => {
                 const jd = p.jd || p.mjd;
-                // 【核心修改】只有当该点是真正的探测 (det) 时，才提取该历元用于图片请求
+                // note: 只有当该点是真正的探测 (det) 时，才提取该历元用于图片请求
                 if (jd && isDetection(p)) {
-                    let dateStr = jdToDateString(jd);
-                    if (dateStr) uniqueDates.add(dateStr);
+                    let dateObj = jdToDateString(jd);
+                    if (dateObj) {
+                        uniqueDates.set(dateObj.fileStr, dateObj.displayStr);
+                    }
                 }
             });
             
-            let parsedDates = Array.from(uniqueDates).sort().reverse();
+            // note: 将 Map 转换为数组，并按时间降序排列（最新的在最上面）
+            let parsedDates = Array.from(uniqueDates.entries()).sort().reverse();
 
             if (parsedDates.length === 0) {
                 selectElem.append($('<option>', { value: '', text: '暂无有效探测 (det) 历元图像' }));
@@ -363,11 +375,13 @@
             }
 
             selectElem.prop('disabled', false);
-            parsedDates.forEach(dateStr => {
-                selectElem.append($('<option>', { value: dateStr, text: `JD / 时间: ${dateStr} (det)` }));
+            // note: 填充下拉菜单
+            parsedDates.forEach(([fileStr, displayStr]) => {
+                selectElem.append($('<option>', { value: fileStr, text: `时间: ${displayStr} (det)` }));
             });
 
-            setStampsImages(parsedDates[0], targetId);
+            // note: 默认展示最新一条观测记录的图像
+            setStampsImages(parsedDates[0][0], targetId);
 
             selectElem.off('change').on('change', function() {
                 const selectedDate = $(this).val();
@@ -378,7 +392,7 @@
         function setStampsImages(dateStr, targetId) {
             if (!dateStr || !targetId) return;
 
-            // 已修改回正确的单层 static/stamps/ 目录
+            // note: 拼接基于具体时分秒文件名的图片路径
             let sci = `static/stamps/${targetId}_${dateStr}_science.png`;
             let tmpl = `static/stamps/${targetId}_${dateStr}_template.png`;
             let diff = `static/stamps/${targetId}_${dateStr}_difference.png`;

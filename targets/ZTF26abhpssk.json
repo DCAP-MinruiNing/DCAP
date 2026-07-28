@@ -1,657 +1,27 @@
 {
-    "history_map": {
-        "2461247.733588": {
-            "jd": 2461247.733588,
-            "mjd": 61247.2336,
-            "date": "2026-07-26",
-            "mag": 19.8,
-            "magerr": 0.188,
-            "filter": "zr",
-            "is_limit": false
-        },
-        "2461217.7880208": {
-            "jd": 2461217.7880208,
-            "mjd": 61217.288,
-            "date": "2026-06-26",
-            "mag": 19.99,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461217.8219097": {
-            "jd": 2461217.8219097,
-            "mjd": 61217.3219,
-            "date": "2026-06-26",
-            "mag": 19.54,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461217.8716435": {
-            "jd": 2461217.8716435,
-            "mjd": 61217.3716,
-            "date": "2026-06-26",
-            "mag": 19.69,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461218.774537": {
-            "jd": 2461218.774537,
-            "mjd": 61218.2745,
-            "date": "2026-06-27",
-            "mag": 19.54,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461218.8310069": {
-            "jd": 2461218.8310069,
-            "mjd": 61218.331,
-            "date": "2026-06-27",
-            "mag": 19.63,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461218.8690741": {
-            "jd": 2461218.8690741,
-            "mjd": 61218.3691,
-            "date": "2026-06-27",
-            "mag": 19.4,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461219.7068287": {
-            "jd": 2461219.7068287,
-            "mjd": 61219.2068,
-            "date": "2026-06-28",
-            "mag": 19.29,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461219.7475926": {
-            "jd": 2461219.7475926,
-            "mjd": 61219.2476,
-            "date": "2026-06-28",
-            "mag": 19.38,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461219.7825347": {
-            "jd": 2461219.7825347,
-            "mjd": 61219.2825,
-            "date": "2026-06-28",
-            "mag": 19.46,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461221.7783912": {
-            "jd": 2461221.7783912,
-            "mjd": 61221.2784,
-            "date": "2026-06-30",
-            "mag": 19.69,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461221.8638079": {
-            "jd": 2461221.8638079,
-            "mjd": 61221.3638,
-            "date": "2026-06-30",
-            "mag": 19.15,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461221.8805671": {
-            "jd": 2461221.8805671,
-            "mjd": 61221.3806,
-            "date": "2026-06-30",
-            "mag": 19.03,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461222.9320023": {
-            "jd": 2461222.9320023,
-            "mjd": 61222.432,
-            "date": "2026-07-01",
-            "mag": 18.5,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461223.7445486": {
-            "jd": 2461223.7445486,
-            "mjd": 61223.2445,
-            "date": "2026-07-02",
-            "mag": 19.65,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461223.7909375": {
-            "jd": 2461223.7909375,
-            "mjd": 61223.2909,
-            "date": "2026-07-02",
-            "mag": 20.04,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461224.7278472": {
-            "jd": 2461224.7278472,
-            "mjd": 61224.2278,
-            "date": "2026-07-03",
-            "mag": 20.1,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461224.7941898": {
-            "jd": 2461224.7941898,
-            "mjd": 61224.2942,
-            "date": "2026-07-03",
-            "mag": 20.18,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461224.8628704": {
-            "jd": 2461224.8628704,
-            "mjd": 61224.3629,
-            "date": "2026-07-03",
-            "mag": 19.63,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461225.7273495": {
-            "jd": 2461225.7273495,
-            "mjd": 61225.2273,
-            "date": "2026-07-04",
-            "mag": 20.45,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461225.7764005": {
-            "jd": 2461225.7764005,
-            "mjd": 61225.2764,
-            "date": "2026-07-04",
-            "mag": 19.96,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461225.8261921": {
-            "jd": 2461225.8261921,
-            "mjd": 61225.3262,
-            "date": "2026-07-04",
-            "mag": 19.72,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461226.7053819": {
-            "jd": 2461226.7053819,
-            "mjd": 61226.2054,
-            "date": "2026-07-05",
-            "mag": 19.57,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461226.7282176": {
-            "jd": 2461226.7282176,
-            "mjd": 61226.2282,
-            "date": "2026-07-05",
-            "mag": 20.22,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461226.8949884": {
-            "jd": 2461226.8949884,
-            "mjd": 61226.395,
-            "date": "2026-07-05",
-            "mag": 19.98,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461227.6981134": {
-            "jd": 2461227.6981134,
-            "mjd": 61227.1981,
-            "date": "2026-07-06",
-            "mag": 19.53,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461227.7312153": {
-            "jd": 2461227.7312153,
-            "mjd": 61227.2312,
-            "date": "2026-07-06",
-            "mag": 20.4,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461227.8275694": {
-            "jd": 2461227.8275694,
-            "mjd": 61227.3276,
-            "date": "2026-07-06",
-            "mag": 20.27,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461228.7331944": {
-            "jd": 2461228.7331944,
-            "mjd": 61228.2332,
-            "date": "2026-07-07",
-            "mag": 20.6,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461228.7809954": {
-            "jd": 2461228.7809954,
-            "mjd": 61228.281,
-            "date": "2026-07-07",
-            "mag": 20.13,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461228.8876157": {
-            "jd": 2461228.8876157,
-            "mjd": 61228.3876,
-            "date": "2026-07-07",
-            "mag": 20.1,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461229.69625": {
-            "jd": 2461229.69625,
-            "mjd": 61229.1963,
-            "date": "2026-07-08",
-            "mag": 19.68,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461229.7659722": {
-            "jd": 2461229.7659722,
-            "mjd": 61229.266,
-            "date": "2026-07-08",
-            "mag": 20.47,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461229.817662": {
-            "jd": 2461229.817662,
-            "mjd": 61229.3177,
-            "date": "2026-07-08",
-            "mag": 20.46,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461230.8011458": {
-            "jd": 2461230.8011458,
-            "mjd": 61230.3011,
-            "date": "2026-07-09",
-            "mag": 20.01,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461231.7369097": {
-            "jd": 2461231.7369097,
-            "mjd": 61231.2369,
-            "date": "2026-07-10",
-            "mag": 20.58,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461231.7831481": {
-            "jd": 2461231.7831481,
-            "mjd": 61231.2831,
-            "date": "2026-07-10",
-            "mag": 20.02,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461231.7959722": {
-            "jd": 2461231.7959722,
-            "mjd": 61231.296,
-            "date": "2026-07-10",
-            "mag": 20.56,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461232.7362731": {
-            "jd": 2461232.7362731,
-            "mjd": 61232.2363,
-            "date": "2026-07-11",
-            "mag": 20.23,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461232.7596875": {
-            "jd": 2461232.7596875,
-            "mjd": 61232.2597,
-            "date": "2026-07-11",
-            "mag": 19.99,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461232.7751042": {
-            "jd": 2461232.7751042,
-            "mjd": 61232.2751,
-            "date": "2026-07-11",
-            "mag": 20.62,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461233.7122801": {
-            "jd": 2461233.7122801,
-            "mjd": 61233.2123,
-            "date": "2026-07-12",
-            "mag": 20.33,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461233.7559954": {
-            "jd": 2461233.7559954,
-            "mjd": 61233.256,
-            "date": "2026-07-12",
-            "mag": 20.35,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461233.8002083": {
-            "jd": 2461233.8002083,
-            "mjd": 61233.3002,
-            "date": "2026-07-12",
-            "mag": 19.79,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461235.7343287": {
-            "jd": 2461235.7343287,
-            "mjd": 61235.2343,
-            "date": "2026-07-14",
-            "mag": 20.54,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461235.7559606": {
-            "jd": 2461235.7559606,
-            "mjd": 61235.256,
-            "date": "2026-07-14",
-            "mag": 19.98,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461235.7740278": {
-            "jd": 2461235.7740278,
-            "mjd": 61235.274,
-            "date": "2026-07-14",
-            "mag": 20.62,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461236.6861111": {
-            "jd": 2461236.6861111,
-            "mjd": 61236.1861,
-            "date": "2026-07-15",
-            "mag": 19.86,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461236.7753704": {
-            "jd": 2461236.7753704,
-            "mjd": 61236.2754,
-            "date": "2026-07-15",
-            "mag": 20.49,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461236.8462616": {
-            "jd": 2461236.8462616,
-            "mjd": 61236.3463,
-            "date": "2026-07-15",
-            "mag": 20.24,
-            "magerr": null,
-            "filter": "zg",
-            "is_limit": true
-        },
-        "2461237.7121065": {
-            "jd": 2461237.7121065,
-            "mjd": 61237.2121,
-            "date": "2026-07-16",
-            "mag": 20.54,
-            "magerr": 0.251,
-            "filter": "zg",
-            "is_limit": false
-        },
-        "2461237.7434606": {
-            "jd": 2461237.7434606,
-            "mjd": 61237.2435,
-            "date": "2026-07-16",
-            "mag": 19.88,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461237.7894907": {
-            "jd": 2461237.7894907,
-            "mjd": 61237.2895,
-            "date": "2026-07-16",
-            "mag": 20.46,
-            "magerr": null,
-            "filter": "zr",
-            "is_limit": true
-        },
-        "2461238.7144676": {
-            "jd": 2461238.7144676,
-            "mjd": 61238.2145,
-            "date": "2026-07-17",
-            "mag": 20.34,
-            "magerr": 0.18,
-            "filter": "zg",
-            "is_limit": false
-        },
-        "2461238.7669097": {
-            "jd": 2461238.7669097,
-            "mjd": 61238.2669,
-            "date": "2026-07-17",
-            "mag": 20.23,
-            "magerr": 0.209,
-            "filter": "zr",
-            "is_limit": false
-        },
-        "2461238.8415509": {
-            "jd": 2461238.8415509,
-            "mjd": 61238.3416,
-            "date": "2026-07-17",
-            "mag": 19.79,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461240.7057292": {
-            "jd": 2461240.7057292,
-            "mjd": 61240.2057,
-            "date": "2026-07-19",
-            "mag": 19.88,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461240.7981944": {
-            "jd": 2461240.7981944,
-            "mjd": 61240.2982,
-            "date": "2026-07-19",
-            "mag": 20.12,
-            "magerr": 0.244,
-            "filter": "zr",
-            "is_limit": false
-        },
-        "2461242.7107755": {
-            "jd": 2461242.7107755,
-            "mjd": 61242.2108,
-            "date": "2026-07-21",
-            "mag": 19.98,
-            "magerr": 0.168,
-            "filter": "zr",
-            "is_limit": false
-        },
-        "2461243.6804514": {
-            "jd": 2461243.6804514,
-            "mjd": 61243.1805,
-            "date": "2026-07-22",
-            "mag": 19.95,
-            "magerr": 0.234,
-            "filter": "zg",
-            "is_limit": false
-        },
-        "2461243.7101736": {
-            "jd": 2461243.7101736,
-            "mjd": 61243.2102,
-            "date": "2026-07-22",
-            "mag": 19.97,
-            "magerr": 0.207,
-            "filter": "zr",
-            "is_limit": false
-        },
-        "2461243.7781481": {
-            "jd": 2461243.7781481,
-            "mjd": 61243.2781,
-            "date": "2026-07-22",
-            "mag": 20.0,
-            "magerr": 0.315,
-            "filter": "zi",
-            "is_limit": false
-        },
-        "2461244.6960301": {
-            "jd": 2461244.6960301,
-            "mjd": 61244.196,
-            "date": "2026-07-23",
-            "mag": 20.13,
-            "magerr": 0.3,
-            "filter": "zi",
-            "is_limit": false
-        },
-        "2461244.7616667": {
-            "jd": 2461244.7616667,
-            "mjd": 61244.2617,
-            "date": "2026-07-23",
-            "mag": 19.79,
-            "magerr": 0.212,
-            "filter": "zg",
-            "is_limit": false
-        },
-        "2461244.7913657": {
-            "jd": 2461244.7913657,
-            "mjd": 61244.2914,
-            "date": "2026-07-23",
-            "mag": 19.89,
-            "magerr": 0.21,
-            "filter": "zr",
-            "is_limit": false
-        },
-        "2461245.6860648": {
-            "jd": 2461245.6860648,
-            "mjd": 61245.1861,
-            "date": "2026-07-24",
-            "mag": 19.84,
-            "magerr": 0.249,
-            "filter": "zi",
-            "is_limit": false
-        },
-        "2461245.7889815": {
-            "jd": 2461245.7889815,
-            "mjd": 61245.289,
-            "date": "2026-07-24",
-            "mag": 19.84,
-            "magerr": 0.19,
-            "filter": "zr",
-            "is_limit": false
-        },
-        "2461245.8159722": {
-            "jd": 2461245.8159722,
-            "mjd": 61245.316,
-            "date": "2026-07-24",
-            "mag": 19.98,
-            "magerr": 0.227,
-            "filter": "zg",
-            "is_limit": false
-        },
-        "2461246.6972569": {
-            "jd": 2461246.6972569,
-            "mjd": 61246.1973,
-            "date": "2026-07-25",
-            "mag": 19.06,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        },
-        "2461246.7584954": {
-            "jd": 2461246.7584954,
-            "mjd": 61246.2585,
-            "date": "2026-07-25",
-            "mag": 19.89,
-            "magerr": 0.262,
-            "filter": "zr",
-            "is_limit": false
-        },
-        "2461246.8267361": {
-            "jd": 2461246.8267361,
-            "mjd": 61246.3267,
-            "date": "2026-07-25",
-            "mag": 19.75,
-            "magerr": 0.247,
-            "filter": "zg",
-            "is_limit": false
-        },
-        "2461247.6950579": {
-            "jd": 2461247.6950579,
-            "mjd": 61247.1951,
-            "date": "2026-07-26",
-            "mag": 19.47,
-            "magerr": null,
-            "filter": "zi",
-            "is_limit": true
-        }
-    },
     "RA": 255.8727814,
     "Dec": 1.9681203,
     "stamps_by_epoch": {
+        "2026-07-21": {
+            "science": "static/stamps/ZTF26abhpssk_2026-07-21_science.png",
+            "template": "static/stamps/ZTF26abhpssk_2026-07-21_template.png",
+            "difference": "static/stamps/ZTF26abhpssk_2026-07-21_difference.png"
+        },
+        "2026-07-22": {
+            "science": "static/stamps/ZTF26abhpssk_2026-07-22_science.png",
+            "template": "static/stamps/ZTF26abhpssk_2026-07-22_template.png",
+            "difference": "static/stamps/ZTF26abhpssk_2026-07-22_difference.png"
+        },
+        "2026-07-23": {
+            "science": "static/stamps/ZTF26abhpssk_2026-07-23_science.png",
+            "template": "static/stamps/ZTF26abhpssk_2026-07-23_template.png",
+            "difference": "static/stamps/ZTF26abhpssk_2026-07-23_difference.png"
+        },
+        "2026-07-24": {
+            "science": "static/stamps/ZTF26abhpssk_2026-07-24_science.png",
+            "template": "static/stamps/ZTF26abhpssk_2026-07-24_template.png",
+            "difference": "static/stamps/ZTF26abhpssk_2026-07-24_difference.png"
+        },
         "2026-07-26": {
             "science": "static/stamps/ZTF26abhpssk_2026-07-26_science.png",
             "template": "static/stamps/ZTF26abhpssk_2026-07-26_template.png",
@@ -4957,6 +4327,114 @@
         ]
     },
     "history": [
+        {
+            "jd": 2461212.7169907,
+            "mjd": 61212.217,
+            "date": "2026-06-21",
+            "mag": 20.12,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        {
+            "jd": 2461212.7891782,
+            "mjd": 61212.2892,
+            "date": "2026-06-21",
+            "mag": 20.38,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        {
+            "jd": 2461212.8038773,
+            "mjd": 61212.3039,
+            "date": "2026-06-21",
+            "mag": 19.9,
+            "magerr": null,
+            "filter": "zi",
+            "is_limit": true
+        },
+        {
+            "jd": 2461213.7124537,
+            "mjd": 61213.2125,
+            "date": "2026-06-22",
+            "mag": 20.17,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        {
+            "jd": 2461213.7950579,
+            "mjd": 61213.2951,
+            "date": "2026-06-22",
+            "mag": 20.25,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        {
+            "jd": 2461213.8611458,
+            "mjd": 61213.3611,
+            "date": "2026-06-22",
+            "mag": 19.94,
+            "magerr": null,
+            "filter": "zi",
+            "is_limit": true
+        },
+        {
+            "jd": 2461214.7124074,
+            "mjd": 61214.2124,
+            "date": "2026-06-23",
+            "mag": 19.94,
+            "magerr": null,
+            "filter": "zi",
+            "is_limit": true
+        },
+        {
+            "jd": 2461214.7733218,
+            "mjd": 61214.2733,
+            "date": "2026-06-23",
+            "mag": 20.15,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
+        {
+            "jd": 2461214.806412,
+            "mjd": 61214.3064,
+            "date": "2026-06-23",
+            "mag": 20.28,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        {
+            "jd": 2461216.7641551,
+            "mjd": 61216.2642,
+            "date": "2026-06-25",
+            "mag": 20.22,
+            "magerr": null,
+            "filter": "zr",
+            "is_limit": true
+        },
+        {
+            "jd": 2461216.7998264,
+            "mjd": 61216.2998,
+            "date": "2026-06-25",
+            "mag": 19.78,
+            "magerr": null,
+            "filter": "zi",
+            "is_limit": true
+        },
+        {
+            "jd": 2461216.8405208,
+            "mjd": 61216.3405,
+            "date": "2026-06-25",
+            "mag": 20.07,
+            "magerr": null,
+            "filter": "zg",
+            "is_limit": true
+        },
         {
             "jd": 2461217.7880208,
             "mjd": 61217.288,
