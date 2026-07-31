@@ -1,4 +1,6 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP322,ZTF26abkurzs,Cataclysmic variable candidate,2026/7/30 12:15:06,17.74 zg
+DCAP321,ZTF26abkkvvf,Cataclysmic variable candidate,2026/7/30 12:09:04,17.57 zr variable star or Microlensing event candidate Gaia DR3 4122723301951804672
 DCAP320,ZTF26abkpopi,Cataclysmic variable candidate,2026/7/29 12:31:35,16.83 zr possible UV variable star. we did not detect the target 300s x3.
 DCAP319,ZTF26abkouly,Cataclysmic variable candidate,2026/7/29 12:28:59,14.55 zg
 DCAP318,ZTF26abkklws,Cataclysmic variable candidate,2026/7/28 11:27:16,17.37 zr Known target UG AT 2019axb=Gaia19aoq
