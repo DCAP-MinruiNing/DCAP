@@ -1,4 +1,11 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP329,ZTF26abledjc,SN candidate,2026/8/2 13:28:57,19.02 zg PS J153315.93-141928.9
+DCAP328,ZTF26ablfjzk,SN candidate,2026/8/2 12:12:57,19.07 zr WISEA J200255.51-203851.0
+DCAP327,ZTF26ablengy,Cataclysmic variable candidate,2026/8/2 12:11:25,18.80 zi
+DCAP326,ZTF26abkvbxq,Cataclysmic variable candidate,2026/8/2 11:59:22,19.68 zr
+DCAP325,ZTF26ablehhm,SN candidate,2026/8/2 9:52:16,19.16 zg WISEA J155104.91-121709.2
+DCAP324,ZTF26ablduxl,Cataclysmic variable candidate,2026/8/2 9:15:11,17.28 zr
+DCAP323,ZTF26ablevah,Cataclysmic variable candidate,2026/8/2 9:14:05,18.29 zg ZTF team reported it to TNS as AT 2026wpe.
 DCAP322,ZTF26abkurzs,Cataclysmic variable candidate,2026/7/30 12:15:06,17.74 zg
 DCAP321,ZTF26abkkvvf,Cataclysmic variable candidate,2026/7/30 12:09:04,17.57 zr variable star or Microlensing event candidate Gaia DR3 4122723301951804672
 DCAP320,ZTF26abkpopi,Cataclysmic variable candidate,2026/7/29 12:31:35,16.83 zr possible UV variable star. we did not detect the target 300s x3.
