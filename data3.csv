@@ -1,4 +1,16 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP348,ZTF26abloxwl,Cataclysmic variable candidate,2026/8/5 13:35:09,18.31 zg
+DCAP347,ZTF26ablphjb,Cataclysmic variable candidate,2026/8/5 13:32:54,18.23 zg
+DCAP346,ZTF26abloywu,Cataclysmic variable candidate,2026/8/5 13:28:06,15.80 zi
+DCAP345,ZTF26abloylx,Cataclysmic variable candidate,2026/8/5 13:24:58,19.19 zg
+DCAP344,ZTF26ablozec,Cataclysmic variable candidate,2026/8/5 13:22:35,18.66 zg
+DCAP343,ZTF26ablvayc,SN candidate,2026/8/5 13:17:57,19.77 zr
+DCAP342,ZTF26abljrow,Cataclysmic variable candidate,2026/8/5 13:12:29,18.94 zg
+DCAP341,ZTF26ablxqyx,SN candidate,2026/8/5 13:11:09,19.45 zr
+DCAP340,ZTF26ablotpo,SN candidate,2026/8/5 13:08:53,19.92 zg
+DCAP339,ZTF26ablowdt,SN candidate,2026/8/4 12:01:04,19.96 zg SDSS J144525.06+112624.0
+DCAP338,ZTF26ablkwfo,Cataclysmic variable candidate,2026/8/4 11:59:46,18.02 zi
+DCAP337,ZTF26ablpikm,Cataclysmic variable candidate,2026/8/4 11:58:01,17.68 zr
 DCAP336,ZTF26abljqps,Cataclysmic variable candidate,2026/8/3 13:04:02,17.77 zr
 DCAP335,ZTF26ablmaru,SN candidate,2026/8/3 12:53:42,19.74 zg GSC J201306.50-153555.8
 DCAP334,ZTF26ablgmdz,SN candidate,2026/8/3 12:51:12,19.82 zg DESI J205332.76-045925.2
