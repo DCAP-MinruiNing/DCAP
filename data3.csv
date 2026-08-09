@@ -1,4 +1,10 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP355,ZTF26abmjyoe,SN candidate,2026/8/9 3:23:57,19.47 zr PS J015457.42+264903.6
+DCAP354,ZTF26abmqhlr,SN candidate,2026/8/9 3:20:20,20.43 zr WISE J000429.55-015429.8
+DCAP353,ZTF26abmkbva,Cataclysmic variable candidate,2026/8/9 3:19:34,17.37 zr
+DCAP352,ZTF26abmmfzu,Cataclysmic variable candidate,2026/8/9 3:16:51,18.80 zi
+DCAP351,ZTF26ablvkjj,Cataclysmic variable candidate,2026/8/9 3:12:47,19.07 zg Microlensing event candidate
+DCAP350,ZTF26abmdhkq,Cataclysmic variable candidate,2026/8/8 11:44:31,18.35 zg
 DCAP349,ZTF26abmcgea,Cataclysmic variable candidate,2026/8/7 8:02:08,17.14 zi Known target CRTS J155122.3-042550  UG tpye
 DCAP348,ZTF26abloxwl,Cataclysmic variable candidate,2026/8/5 13:35:09,18.31 zg
 DCAP347,ZTF26ablphjb,Cataclysmic variable candidate,2026/8/5 13:32:54,18.23 zg
