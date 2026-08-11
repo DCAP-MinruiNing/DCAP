@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ZTF Asteroid &amp; PM Star Rejection Pipeline</title>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6L9RQZCTDV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6L9RQZCTDV');
+</script>
+
+<style>
+body {
+    background-color: #2b2b2b;
+    color: #c8c8c8;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    max-width: 880px;
+    margin: 32px auto;
+    padding: 16px 28px;
+}
+h1, h2, h3 {
+    color: #ffffff;
+    font-weight: 550;
+}
+h1 { font-size: 1.75em; margin-bottom: 0.2em; border-bottom: 1px solid #444; padding-bottom: 6px; }
+h2 { font-size: 1.35em; margin-top: 2em; border-bottom: 1px solid #3a3a3a; padding-bottom: 4px; }
+h3 { font-size: 1.1em; margin-top: 1.6em; }
+a { color: #89b4fa; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code {
+    background: #1e1e1e;
+    color: #e6db74;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.92em;
+}
+pre {
+    background: #1e1e1e;
+    color: #c8c8c8;
+    padding: 12px 16px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 0.93em;
+    line-height: 1.45;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+}
+th, td {
+    border: 1px solid #444;
+    padding: 7px 10px;
+    text-align: left;
+}
+th { background: #363636; color: #ddd; font-weight: 520; }
+td { background: #242424; }
+ul, ol { margin: 0.5em 0 0.5em 1.5em; }
+li { margin: 0.3em 0; }
+.badge {
+    display: inline-block;
+    background: #3a3a3a;
+    color: #eee;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 0.85em;
+    font-weight: 510;
+    margin-right: 4px;
+}
+.badge-l1 { background: #5a7744; color: #fff; }
+.badge-l2 { background: #446688; color: #fff; }
+.badge-l3 { background: #885544; color: #fff; }
+.badge-l4 { background: #665588; color: #fff; }
+.badge-l5 { background: #777744; color: #fff; }
+hr { border: none; border-top: 1px solid #3a3a3a; margin: 22px 0; }
+</style>
+</head>
+<body>
+
+<h1>ZTF Asteroid &amp; PM Star Rejection Pipeline</h1>
+<p style="color:#aaa; font-size:0.95em;">Technical documentation — version 4 (no JPL)</p>
+
+<!-- ============================================================ -->
+<h2>Overview</h2>
+<p>
+This program takes a ZTF <code>objectId</code> (e.g., <code>ZTF26abmusfv</code>) and automatically <strong>rejects</strong>
+known solar‑system objects (asteroids) and high proper‑motion stars (HPM stars).
+It does so by consulting multiple independent data sources in a <em>degrading hierarchy</em>:
+fastest, most‑certain checks run first; only when they fail do slower, less‑certain checks execute.
+The goal is to <strong>filter out</strong> these two dominant classes of false positives,
+leaving behind candidates that may be genuine transients (supernovae, variable stars, etc.).
+</p>
+
+<!-- ============================================================ -->
+<h2>How It Works — Five‑Layer Degrading Hierarchy</h2>
+<p>
+Each layer attempts to reject the source. If a layer succeeds, the process stops immediately
+and the source is classified as “known asteroid” or “high proper‑motion star”.
+If all layers fail, the source remains unclassified and is flagged for manual review.
+</p>
+
+<div style="background:#222; border-left:4px solid #555; padding:10px 16px; margin:14px 0;">
+<pre style="margin:0; background:none; padding:0; font-size:0.98em;">
+<span class="badge badge-l1">L1</span>  ALeRCE avro interface → check <code>ssnamenr</code>   (∼200 ms)
+         │
+         ▼  (ssnamenr empty)
+<span class="badge badge-l2">L2</span>  Heidelberg Gaia DR3 → search for high‑PM stars          (∼2–10 s)
+         │
+         ▼  (no HPM candidate)
+<span class="badge badge-l3">L3</span>  VizieR (Gaia DR3 / UCAC5 / URAT1 / TICv8.2)            (∼3–15 s)
+         │
+         ▼  (no HPM candidate)
+<span class="badge badge-l4">L4</span>  Simbad stellar database                                 (∼1–5 s)
+         │
+         ▼  (no HPM candidate)
+<span class="badge badge-l5">L5</span>  RANSAC linear fit on own detections                     (∼0.1 s)
+</pre>
+</div>
+
+<!-- ============================================================ -->
+<h2>Layer Details</h2>
+
+<h3><span class="badge badge-l1">L1</span> ALeRCE avro interface — <code>ssnamenr</code></h3>
+<p>
+ZTF’s real‑time pipeline cross‑matches every alert against the Minor Planet Center (MPC) orbit catalogue.
+If a known asteroid lies within 30″ of the detection, the field <code>ssnamenr</code> is populated
+with its MPC number (e.g., <code>35891</code>). The program retrieves the original Avro alert via
+<code>https://avro.alerce.online/get_avro_info</code> and inspects this field.
+If non‑empty, the source is immediately <strong>rejected as a known asteroid</strong>.
+</p>
+<ul>
+<li><strong>Data source:</strong> ALeRCE Avro archive (HTTP REST API)</li>
+<li><strong>Response time:</strong> ∼200 ms</li>
+<li><strong>Reliability:</strong> Very high — this is the same flag used by the ZTF pipeline itself.</li>
+</ul>
+
+<h3><span class="badge badge-l2">L2</span> Heidelberg Gaia DR3</h3>
+<p>
+Queries the Gaia DR3 catalogue hosted at the University of Heidelberg (ARI) via TAP.
+Searches for sources within increasing radii (120″ → 300″ → 600″ → 1200″) that have
+proper motion > 200, 150, 100, 50 mas/yr, low RUWE (<1.4), and a valid parallax.
+The best candidate is selected by scoring alignment between the observed position and
+the position predicted by extrapolating the catalogue epoch to the observation epoch.
+If a good match is found, the source is <strong>rejected as a high proper‑motion star</strong>.
+</p>
+<ul>
+<li><strong>Data source:</strong> Gaia DR3 @ ARI Heidelberg (TAP)</li>
+<li><strong>Epoch extrapolation:</strong> see formula below.</li>
+</ul>
+
+<h3><span class="badge badge-l3">L3</span> VizieR — Multi‑catalogue lookup</h3>
+<p>
+Sequentially queries four catalogues through the CDS VizieR service:
+Gaia DR3, UCAC5, URAT1, and TICv8.2.
+For each catalogue, it searches within 120″, 300″, 600″ and requires proper motion > 10 mas/yr.
+Candidate positions are propagated from the catalogue epoch to the mean observation MJD.
+If the propagated position falls within a tolerance (5× expected displacement), the source is
+<strong>rejected as a high proper‑motion star</strong>.
+</p>
+<table>
+<tr><th>Catalogue</th><th>Reference epoch (MJD)</th><th>Typical PM precision</th></tr>
+<tr><td>Gaia DR3</td><td>57388.5</td><td>∼0.02 mas/yr</td></tr>
+<tr><td>UCAC5</td><td>55200.0</td><td>∼1 mas/yr</td></tr>
+<tr><td>URAT1</td><td>56700.0</td><td>∼2 mas/yr</td></tr>
+<tr><td>TICv8.2</td><td>58119.0</td><td>∼1 mas/yr</td></tr>
+</table>
+
+<h3><span class="badge badge-l4">L4</span> Simbad stellar database</h3>
+<p>
+Uses the CDS Simbad service to search for known stellar objects within 120″, 300″, 600″.
+Requires proper motion > 10 mas/yr. The same epoch‑extrapolation logic is applied.
+If a match is found, the source is <strong>rejected as a known star</strong>.
+</p>
+
+<h3><span class="badge badge-l5">L5</span> RANSAC linear fit on own detections</h3>
+<p>
+When no external catalogue match exists, the program fits a straight line to the
+source’s own ZTF detection points (RA vs. time, Dec vs. time) using
+<strong>RANSAC</strong> (Random Sample Consensus) regression.
+Only detections from the same <code>objectId</code> are used.
+The fitted slope gives the angular velocity in arcsec/hr.
+From the velocity, an approximate proper motion in mas/yr is derived.
+The source is then labelled based on the following criteria:
+</p>
+<table>
+<tr><th>Condition</th><th>Label</th><th>Interpretation</th></tr>
+<tr><td>v &lt; 0.5″/hr, RMS &lt; 0.5″, R² &gt; 0.80, span &gt; 1 h</td><td>high_proper_motion_star</td><td>Reject as HPM star</td></tr>
+<tr><td>v &gt; 2″/hr, RMS &lt; 0.5″, R² &gt; 0.90</td><td>sso_candidate</td><td>Possible solar‑system object (but no MPC match)</td></tr>
+<tr><td>0.5 ≤ v ≤ 2″/hr, RMS &lt; 0.5″, R² &gt; 0.70</td><td>gray_zone</td><td>Ambiguous – manual review recommended</td></tr>
+<tr><td>Otherwise</td><td>unknown / unreliable</td><td>Likely stationary or insufficient data</td></tr>
+</table>
+<p>If the fit is reliable (R² ≥ 0.5, inlier fraction ≥ 50%), the label is reported;
+otherwise the source remains <strong>unclassified</strong>.</p>
+
+<!-- ============================================================ -->
+<h2>Required Libraries</h2>
+<p>Install all dependencies with:</p>
+<pre>pip install requests alerce astroquery astropy scikit-learn pandas numpy</pre>
+
+<table>
+<tr><th>Library</th><th>Version tested</th><th>Purpose in this pipeline</th></tr>
+<tr><td><code>requests</code></td><td>≥2.31</td><td>HTTP calls to ALeRCE Avro API (L1)</td></tr>
+<tr><td><code>alerce</code></td><td>≥3.0</td><td>Official ALeRCE Python client – fetches ZTF detections</td></tr>
+<tr><td><code>astroquery</code></td><td>≥0.4.7</td><td>TAP queries (Heidelberg Gaia DR3), VizieR catalogue access, Simbad queries</td></tr>
+<tr><td><code>astropy</code></td><td>≥5.3</td><td>SkyCoord, Time conversions, coordinate transformations</td></tr>
+<tr><td><code>scikit-learn</code></td><td>≥1.3</td><td>RANSACRegressor for linear fitting (L5)</td></tr>
+<tr><td><code>pandas</code></td><td>≥2.0</td><td>DataFrame handling for detection tables</td></tr>
+<tr><td><code>numpy</code></td><td>≥1.24</td><td>Numerical operations (trigonometry, statistics)</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>Data Sources</h2>
+<table>
+<tr><th>Layer</th><th>Service / Endpoint</th><th>Protocol</th></tr>
+<tr><td>L1</td><td><code>https://avro.alerce.online/get_avro_info</code></td><td>REST (JSON)</td></tr>
+<tr><td>L2</td><td><code>https://gaia.ari.uni-heidelberg.de/tap</code></td><td>TAP (ADQL)</td></tr>
+<tr><td>L3</td><td>CDS VizieR (<code>http://vizier.cds.unistra.fr/viz-bin/VizieR</code>)</td><td>VizieR protocol</td></tr>
+<tr><td>L4</td><td>CDS Simbad (<code>http://simbad.u-strasbg.fr/simbad</code>)</td><td>VOTable</td></tr>
+<tr><td>L5</td><td>Own ZTF detections (via ALeRCE <code>query_detections</code>)</td><td>Internal</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>Input &amp; Output</h2>
+<h3>Input</h3>
+<p>A single ZTF <code>objectId</code> string (e.g., <code>ZTF26abmusfv</code>).</p>
+
+<h3>Output (example — known asteroid)</h3>
+<pre>Target: ZTF26abmusfv
+ZTF coords: RA=263.431011  Dec=-13.696609  Mean MJD=61261.2
+
+========== L1: ALeRCE avro interface checking ssnamenr ==========
+  Requesting avro: oid=ZTF26abmusfv, candid=3507168715315015016
+  ✅ Found known asteroid: ssnamenr=35891
+      Distance: 9.0″
+      Predicted magnitude: 18.0
+
+⏭️  L1 confirmed as known asteroid, skipping remaining layers.
+
+📋 Final report — ZTF26abmusfv
+✅ Conclusion: Known asteroid (avro ssnamenr=35891)
+   Offset: 9.00″
+   V magnitude: 18.0</pre>
+
+<h3>Output (example — high proper‑motion star)</h3>
+<pre>========================================
+ZTF Source Classifier v4 — No JPL
+========================================
+Enter ZTF object ID: ZTF26abegooo
+
+Querying ZTF26abegooo ...
+Target: ZTF26abegooo
+ZTF coords: RA=349.785140  Dec=-6.225504  Mean MJD=61233.4
+
+========== L1: ALeRCE avro interface checking ssnamenr ==========
+  Requesting avro: oid=ZTF26abegooo, candid=3438462660215015014
+  [info] ssnamenr empty or missing, proceeding to next layers
+
+========== L2: Gaia DR3 @ Heidelberg ==========
+INFO: Query finished. [astroquery.utils.tap.core]
+  [Heidelberg] r=  120″ pm>  200 ... INFO: Query finished. [astroquery.utils.tap.core]
+✅ 1 cand
+
+========== L3: VizieR (Gaia DR3/UCAC5/URAT1/TICv8.2) ==========
+  [VizieR:Gaia DR3] r=120″ ... ✅ 17 row(s)
+    ❌ Rejected: Gaia DR3 2631967160264218752 pm=30.8 mas/yr sep=108.0″ > disp=0.3″
+    ❌ Rejected: Gaia DR3 2631967263342966400 pm=14.5 mas/yr sep=55.1″ > disp=0.2″
+    ❌ Rejected: Gaia DR3 2631967332062443776 pm=16.2 mas/yr sep=36.5″ > disp=0.2″
+    ✅ Accepted: Gaia DR3 2631967439437024384 pm=1701.5 mas/yr sep=0.3″
+
+========== L4: Simbad (stellar verification) ==========
+  [simbad] r=120″ ...
+  [simbad] 7 raw
+  ✅ Accepted: EGGR 555 pm=1701.5 mas/yr
+
+========== L5: RANSAC (self-detection points only) ==========
+  ✅ high_proper_motion_star: v=0.000232″/hr PM≈2035 mas/yr RMS=0.085″ R²=0.8949 span=1654h inliers=161/163 (reliable)
+
+============================================================
+📋 Full Report — ZTF26abegooo
+    ZTF: RA=349.785140° Dec=-6.225504°  Mean MJD=61233.4
+============================================================
+  L1 ❌ avro ssnamenr: avro request failed or no candid
+  L2 ✅ Heidelberg Gaia DR3: Gaia DR3 2631967439437024384 pm=1701.5 mas/yr pred=(349.78517,-6.22559) sep=0.3″
+  L3 ✅ VizieR: Gaia DR3 2631967439437024384 pm=1701.5 mas/yr pred=(349.78517,-6.22559) sep=0.3″
+  L4 ✅ Simbad: EGGR 555 pm=1701.5 mas/yr pred=(349.78517,-6.22559) sep=0.3″
+  L5 ✅ RANSAC: high_proper_motion_star v=0.000232″/hr PM≈2035 mas/yr R²=0.8949 inliers=161/163
+
+------------------------------------------------------------
+✅ Conclusion: High proper-motion star confirmed (L2)
+   Source: Gaia DR3 2631967439437024384
+   Proper motion: 1701.5 mas/yr
+   Predicted position: RA=349.785168° Dec=-6.225594°
+   Offset: 0.34″</pre>
+
+<!-- ============================================================ -->
+<h2>Appendix: Catalogue Epochs</h2>
+<table>
+<tr><th>Catalogue</th><th>Reference MJD</th><th>Approximate date</th></tr>
+<tr><td>Gaia DR3</td><td>57388.5</td><td>2016‑01‑01 (J2016.0)</td></tr>
+<tr><td>UCAC5</td><td>55200.0</td><td>2000‑01‑01 (J2000.0)</td></tr>
+<tr><td>URAT1</td><td>56700.0</td><td>2014‑01‑01</td></tr>
+<tr><td>TICv8.2</td><td>58119.0</td><td>2018‑01‑01</td></tr>
+<tr><td>Simbad (mixed)</td><td>51544.5</td><td>2000‑01‑01 (J2000.0, assumed)</td></tr>
+</table>
+
+<h3>Epoch extrapolation formula</h3>
+<pre>Δt = (observation_MJD − catalogue_MJD) / 365.25   [years]
+predicted_RA  = catalogue_RA  + (pmRA  × Δt) / (1e3 × 3600 × cos(catalogue_Dec))
+predicted_Dec = catalogue_Dec + (pmDec × Δt) / (1e3 × 3600)
+expected_displacement = sqrt(pmRA² + pmDec²) × |Δt| / 1000   [arcsec]</pre>
+<p>The source is accepted if the separation between predicted position and observed position
+is less than <code>max(expected_displacement × 5, 10″)</code>.</p>
+
+<!-- ============================================================ -->
+<h2>Intended Use</h2>
+<p>
+This tool is intended for use only after classification and before reporting to TNS.
+Its design purpose is to add an extra filter for ZTF automated reporting,
+removing false high‑proper‑motion stars and asteroids in the final step before submission,
+thereby reducing erroneous automated reports from ZTF.
+</p>
+<p>
+Please note that this is a test version only and has not been integrated into any automated pipeline.
+You are free to modify the code and adapt it for other applications as needed.
+</p>
+<p>
+<strong>Note on L1 reliability:</strong>
+Even though the avro interface returns a non‑empty <code>ssnamenr</code>, this does not guarantee with absolute certainty that the source is a known asteroid.
+However, the probability of a false positive is very low. Moreover, using this single‑alert check is significantly more efficient than requesting a large list of known asteroids from the MPC for the same field, since the MPC imposes strict access limits on bulk queries.
+Thus, we consider L1 as a practical and efficient rejection criterion.
+If you have suggestions for improvement, please contact me at <a href="mailto:nq605717588@gmail.com">nq605717588@gmail.com</a>.
+</p>
+<p>
+The source code for this pipeline is available at:
+<a href="https://github.com/DCAP-MinruiNing/DCAP">https://github.com/DCAP-MinruiNing/DCAP</a>.
+</p>
+
+<hr>
+<p style="font-size:0.87em; color:#888;">
+Documentation generated for internal use. Last updated: August 2026.
+</p>
+
+</body>
+</html>
