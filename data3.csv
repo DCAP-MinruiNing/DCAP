@@ -1,13 +1,13 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
 DCAP360,ZTF26abngxfo,SN candidate,2026/8/12 4:37:03,17.54 zr
 DCAP359,ZTF26abnhuvz,SN candidate,2026/8/12 4:31:04,19.94 zg
-DCAP358,ZTF26abngywk,Cataclysmic variable candidate,2026/8/12 4:18:27,13.23 zr |b|=2.2128бу Known target DDE 196 (UG) Outburst on 2013
+DCAP358,ZTF26abngywk,Cataclysmic variable candidate,2026/8/12 4:18:27,13.23 zr |b|=2.2128 Known target DDE 196 (UG) Outburst on 2013
 DCAP357,ZTF26abnllhn,SN candidate,2026/8/12 3:46:07,20.22 zg LEDA 975205
 DCAP356,ZTF19aarybds,Cataclysmic variable candidate,2026/8/11 7:11:59,18.30 zg
 DCAP355,ZTF26abmjyoe,SN candidate,2026/8/9 3:23:57,19.47 zr PS J015457.42+264903.6
 DCAP354,ZTF26abmqhlr,SN candidate,2026/8/9 3:20:20,20.43 zr WISE J000429.55-015429.8
 DCAP353,ZTF26abmkbva,Cataclysmic variable candidate,2026/8/9 3:19:34,17.37 zr
-DCAP352,ZTF26abmmfzu,Cataclysmic variable candidate,2026/8/9 3:16:51,18.80 zi |b|=5.4884бу
+DCAP352,ZTF26abmmfzu,Cataclysmic variable candidate,2026/8/9 3:16:51,18.80 zi |b|=5.4884
 DCAP351,ZTF26ablvkjj,Microlensing event candidate,2026/8/9 3:12:47,19.07 zg Microlensing event candidate
 DCAP350,ZTF26abmdhkq,Cataclysmic variable candidate,2026/8/8 11:44:31,18.35 zg
 DCAP349,ZTF26abmcgea,Cataclysmic variable candidate,2026/8/7 8:02:08,17.14 zi Known target CRTS J155122.3-042550  UG tpye
