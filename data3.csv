@@ -1,276 +1,276 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
-DCAP360,ZTF26abngxfo,SN candidate,2026/8/12 4:37:03,17.54 zr
-DCAP359,ZTF26abnhuvz,SN candidate,2026/8/12 4:31:04,19.94 zg
-DCAP358,ZTF26abngywk,Cataclysmic variable candidate,2026/8/12 4:18:27,13.23 zr |b|=2.2128 Known target DDE 196 (UG) Outburst on 2013
-DCAP357,ZTF26abnllhn,SN candidate,2026/8/12 3:46:07,20.22 zg LEDA 975205
-DCAP356,ZTF19aarybds,Cataclysmic variable candidate,2026/8/11 7:11:59,18.30 zg
-DCAP355,ZTF26abmjyoe,SN candidate,2026/8/9 3:23:57,19.47 zr PS J015457.42+264903.6
-DCAP354,ZTF26abmqhlr,SN candidate,2026/8/9 3:20:20,20.43 zr WISE J000429.55-015429.8
-DCAP353,ZTF26abmkbva,Cataclysmic variable candidate,2026/8/9 3:19:34,17.37 zr
-DCAP352,ZTF26abmmfzu,Cataclysmic variable candidate,2026/8/9 3:16:51,18.80 zi |b|=5.4884
-DCAP351,ZTF26ablvkjj,Microlensing event candidate,2026/8/9 3:12:47,19.07 zg Microlensing event candidate
-DCAP350,ZTF26abmdhkq,Cataclysmic variable candidate,2026/8/8 11:44:31,18.35 zg
-DCAP349,ZTF26abmcgea,Cataclysmic variable candidate,2026/8/7 8:02:08,17.14 zi Known target CRTS J155122.3-042550  UG tpye
-DCAP348,ZTF26abloxwl,Cataclysmic variable candidate,2026/8/5 13:35:09,18.31 zg
-DCAP347,ZTF26ablphjb,Cataclysmic variable candidate,2026/8/5 13:32:54,18.23 zg
-DCAP346,ZTF26abloywu,Cataclysmic variable candidate,2026/8/5 13:28:06,15.80 zi
-DCAP345,ZTF26abloylx,Cataclysmic variable candidate,2026/8/5 13:24:58,19.19 zg
-DCAP344,ZTF26ablozec,Cataclysmic variable candidate,2026/8/5 13:22:35,18.66 zg
-DCAP343,ZTF26ablvayc,SN candidate,2026/8/5 13:17:57,19.77 zr
-DCAP342,ZTF26abljrow,Cataclysmic variable candidate,2026/8/5 13:12:29,18.94 zg
-DCAP341,ZTF26ablxqyx,SN candidate,2026/8/5 13:11:09,19.45 zr
-DCAP340,ZTF26ablotpo,SN candidate,2026/8/5 13:08:53,19.92 zg
-DCAP339,ZTF26ablowdt,SN candidate,2026/8/4 12:01:04,19.96 zg SDSS J144525.06+112624.0
-DCAP338,ZTF26ablkwfo,Cataclysmic variable candidate,2026/8/4 11:59:46,18.02 zi
-DCAP337,ZTF26ablpikm,Cataclysmic variable candidate,2026/8/4 11:58:01,17.68 zr
-DCAP336,ZTF26abljqps,Cataclysmic variable candidate,2026/8/3 13:04:02,17.77 zr
-DCAP335,ZTF26ablmaru,SN candidate,2026/8/3 12:53:42,19.74 zg GSC J201306.50-153555.8
-DCAP334,ZTF26ablgmdz,SN candidate,2026/8/3 12:51:12,19.82 zg DESI J205332.76-045925.2
-DCAP333,ZTF26ablenru,Cataclysmic variable candidate,2026/8/3 6:41:06,17.07 zr
-DCAP332,ZTF26abksijd,SN candidate,2026/8/3 6:34:53,17.77 zr UG or SN
-DCAP331,ZTF26ablevyf,SN candidate,2026/8/3 6:32:42,19.32 zg
-DCAP330,ZTF26ableajr,SN candidate,2026/8/3 6:30:51,20.10 zg
-DCAP329,ZTF26abledjc,SN candidate,2026/8/2 13:28:57,19.02 zg PS J153315.93-141928.9
-DCAP328,ZTF26ablfjzk,SN candidate,2026/8/2 12:12:57,19.07 zr WISEA J200255.51-203851.0
-DCAP327,ZTF26ablengy,Cataclysmic variable candidate,2026/8/2 12:11:25,18.80 zi
-DCAP326,ZTF26abkvbxq,Cataclysmic variable candidate,2026/8/2 11:59:22,19.68 zr
-DCAP325,ZTF26ablehhm,SN candidate,2026/8/2 9:52:16,19.16 zg WISEA J155104.91-121709.2
-DCAP324,ZTF26ablduxl,Cataclysmic variable candidate,2026/8/2 9:15:11,17.28 zr
-DCAP323,ZTF26ablevah,Cataclysmic variable candidate,2026/8/2 9:14:05,18.29 zg ZTF team reported it to TNS as AT 2026wpe.
-DCAP322,ZTF26abkurzs,Cataclysmic variable candidate,2026/7/30 12:15:06,17.74 zg
-DCAP321,ZTF26abkkvvf,Microlensing event candidate,2026/7/30 12:09:04,17.57 zr variable star or Microlensing event candidate Gaia DR3 4122723301951804672
-DCAP320,ZTF26abkpopi,Cataclysmic variable candidate,2026/7/29 12:31:35,16.83 zr possible UV variable star. we did not detect the target 300s x3.
-DCAP319,ZTF26abkouly,Cataclysmic variable candidate,2026/7/29 12:28:59,14.55 zg
-DCAP318,ZTF26abkklws,Cataclysmic variable candidate,2026/7/28 11:27:16,17.37 zr Known target UG AT 2019axb=Gaia19aoq
-DCAP317,ZTF26abkjbgk,SN candidate,2026/7/28 11:23:50,19.77 zg MCG+02-05-035
-DCAP316,ZTF26abkbfml,SN candidate,2026/7/27 12:55:53,19.87 zg DESI J163518.81+112029.4
-DCAP315,ZTF26abjzqcg,SN candidate,2026/7/27 12:53:22,19.62 zr
-DCAP314,ZTF26abjekzx,Cataclysmic variable candidate,2026/7/27 12:47:51,19.62 zg
-DCAP313,ZTF26abkbfhh,Cataclysmic variable candidate,2026/7/27 12:22:58,2026-07-26 zi=18.98 2026-07-27 zg=16.42
-DCAP312,ZTF26abjyhdm,SN candidate,2026/7/26 9:20:05,19.84 zg SDSS J014101.47-083519.0
-DCAP311,ZTF26abjpkon,SN candidate,2026/7/25 11:14:40,20.47 zr
-DCAP310,ZTF26abjmlfs,SN candidate,2026/7/25 11:06:54,20.35 zg
-DCAP309,ZTF26abjqico,SN candidate,2026/7/25 10:50:10,20.22 zr LEDA 1361644
-DCAP308,ZTF26abjlumy,Cataclysmic variable candidate,2026/7/25 10:47:21,19.62 zg
-DCAP307,ZTF26abjtexk,Cataclysmic variable candidate,2026/7/25 10:28:07,17.77 zg possible known target ASASSN-14cw
-DCAP306,ZTF26abjlpcn,SN candidate,2026/7/24 9:29:23,20.28 zr
-DCAP305,ZTF26abixmel,SN candidate,2026/7/24 9:27:26,19.86 zg LEDA 187868 z=0.064237
-DCAP304,ZTF26abjcerp,Cataclysmic variable candidate,2026/7/24 9:23:26,17.92 zr
-DCAP303,ZTF26abizoqy,SN candidate,2026/7/24 9:20:14,20.63 zg
-DCAP302,ZTF26abjadbs,SN candidate,2026/7/24 9:18:12,20.55 zg
-DCAP301,ZTF26abiwcvm,Cataclysmic variable candidate,2026/7/23 13:31:55,19.16 zi
-DCAP300,ZTF26abivnre,Cataclysmic variable candidate,2026/7/23 13:18:38,19.64 zg
-DCAP299,ZTF26abiqigq,Cataclysmic variable candidate,2026/7/22 15:02:45,17.33zi Known target UG ASASSN-17lv
-DCAP298,ZTF26abiqrbt,Cataclysmic variable candidate,2026/7/22 9:20:16,18.66 zr
-DCAP297,ZTF19aamwseh,Cataclysmic variable candidate,2026/7/21 12:02:27,16.69 zg Known target UG ASASSN-14bi ATel #7418
-DCAP296,ZTF26abhzfgq,Cataclysmic variable candidate,2026/7/20 9:47:36,2026-07-19 zg=20.28 2026-07-20 zg=17.54 Dwarf novae characterization using SDSS colors (Kato+2012) 2026-07-20 10:22:05 GOTO team reported it to TNS as AT 2026vdv.
-DCAP295,ZTF26abhwvpe,Cataclysmic variable candidate,2026/7/19 13:47:38,16.38 zi Known target (Gaia19ejz=AT2019ryd) 2026-07-20 we used ASAS-SN and ATLAS data for confirmation; it is a real outburst.
-DCAP294,ZTF26abhxpzs,SN candidate,2026/7/19 13:37:58,19.65 zg DESI J160907.40+005407.6
-DCAP293,ZTF26abhsgch,Cataclysmic variable candidate,2026/7/19 13:36:48,19.63 zr
-DCAP292,ZTF26abhlybf,SN candidate,2026/7/17 12:49:07,19.89 zr DESI J221637.20+071635.5
-DCAP291,ZTF26abhtvzs,SN candidate,2026/7/17 12:42:58,19.40 zg forced phot
-DCAP290,ZTF26abhpssk,SN candidate,2026/7/17 12:39:53,20.23 zr WISEA J170329.61+015806.7
-DCAP289,ZTF26abgztiu,Cataclysmic variable candidate,2026/7/17 12:32:28,18.75 zg
-DCAP288,ZTF26abhkypw,SN candidate,2026/7/17 12:30:36,20.04 zr
-DCAP287,ZTF26abgtouy,SN candidate,2026/7/17 12:27:44,19.11 zr WISE J160454.90+034807.7
-DCAP286,ZTF26abhinpe,Cataclysmic variable candidate,2026/7/17 12:25:08,19.38 zg
-DCAP285,ZTF19abgprjx,Cataclysmic variable candidate,2026/7/16 12:45:45,18.88 zg Pan-STARRS DR1 rmag=21.0848
-DCAP284,ZTF26abhlaue,SN candidate,2026/7/16 12:16:14,19.41 zg LEDA 1113897
-DCAP283,ZTF26abgzodv,Cataclysmic variable candidate,2026/7/16 12:09:18,19.34 zr
-DCAP282,ZTF26abhaglb,Cataclysmic variable candidate,2026/7/16 12:05:44,19.11 zg
-DCAP281,ZTF26abgrwnu,SN candidate,2026/7/16 12:03:09,19.68 zr  DESI J004022.24+220002.9
-DCAP280,ZTF26abgzcur,SN candidate,2026/7/15 11:17:35,19.09 zg WISEA J141437.30+112551.6
-DCAP279,ZTF19aalwioe,Cataclysmic variable candidate,2026/7/15 2:00:22,The target was reported SN candidate by ATLAS on 2019-03-04 at 17.597 mag (orange-ATLAS)  This target is very close to WISEA J031736.42+491727.2 and ZTF data recorded multiple outbursts afterwards so it should not be a supernova. zr=17.65(2026-07-14)
-DCAP278,ZTF26abfymgo,SN candidate,2026/7/15 1:43:34,19.70 zg WISEA J152234.68-053747.4
-DCAP277,ZTF26abgkoej,Cataclysmic variable candidate,2026/7/12 13:24:27,16.91 zg
-DCAP276,ZTF26abglqca,Cataclysmic variable candidate,2026/7/12 13:21:36,18.26 zg
-DCAP275,ZTF26abfaduz,Cataclysmic variable candidate,2026/7/10 10:58:13,18.43 zg
-DCAP274,ZTF26abgbfxf,SN candidate,2026/7/10 10:47:06,19.91 zg
-DCAP273,ZTF26abfqjst,SN candidate,2026/7/10 10:44:39,19.57 zg
-DCAP272,ZTF26abfqhnp,SN candidate,2026/7/10 10:40:01,19.80 zg
-DCAP271,ZTF26abfpuvz,SN candidate,2026/7/10 10:36:39,20.18 zg WISEA J205819.02+065104.6 z=0.11084
-DCAP270,ZTF26abfztef,Cataclysmic variable candidate,2026/7/10 10:28:22,18.05 zg There is a variable star at 2 asec ZTF J174524.08-133518.6
-DCAP269,ZTF26abfokua,Cataclysmic variable candidate,2026/7/8 11:54:52,15.06 zr
-DCAP268,ZTF26abfigop,Cataclysmic variable candidate,2026/7/8 11:54:34,19.54 zg
-DCAP267,ZTF26abewkky,SN candidate,2026/7/8 6:00:45,19.18 zi
-DCAP266,ZTF26abfaipn,Cataclysmic variable candidate,2026/7/8 5:44:25,20.08 zg
-DCAP265,ZTF26abflqjy,SN candidate,2026/7/8 5:42:58,20.32 zr WISEA J215453.53-121618.2
-DCAP264,ZTF26abfcfkc,SN candidate,2026/7/8 5:39:05,19.81 zr WISEA J022059.89+365237.9
-DCAP263,ZTF26abfgkat,SN candidate,2026/7/7 12:09:30,19.26 zr LEDA 772426
-DCAP262,ZTF24aaozzkb,Cataclysmic variable candidate,2026/7/7 12:05:13,15.87 zr UV variable star
-DCAP261,ZTF26abfjrvy,Cataclysmic variable candidate,2026/7/7 12:02:39,18.86 zg
-DCAP260,ZTF26abfdwcv,Cataclysmic variable candidate,2026/7/7 11:53:42,18.53 zr
-DCAP259,ZTF26abeytov,SN candidate,2026/7/7 11:52:08,19.18 zr WISEA J155231.72+082624.9
-DCAP258,ZTF26abfezve,SN candidate,2026/7/7 11:50:13,20.07 zg
-DCAP257,ZTF26abfanrs,Cataclysmic variable candidate,2026/7/6 13:38:44,18.53 zg
-DCAP256,ZTF26abeyoqo,Cataclysmic variable candidate,2026/7/6 13:28:27,19.14 zr
-DCAP255,ZTF26abfasab,Cataclysmic variable candidate,2026/7/5 12:40:24,17.36 zg UV variable star
-DCAP254,ZTF26abeziup,Cataclysmic variable candidate,2026/7/5 12:35:19,16.56 zg good candidate
-DCAP253,ZTF26abevkfn,SN candidate,2026/7/5 12:29:34,18.78 zr
-DCAP252,ZTF26abevhqd,SN candidate,2026/7/5 12:28:22,19.92 zr
-DCAP251,ZTF26abevkex,SN candidate,2026/7/5 12:20:47,19.09 zi
-DCAP250,ZTF26aazvwlo,Microlensing event candidate,2026/7/5 5:48:31,Microlensing event candidate 2026-06-05 17.68 zg 2026-07-04 16.59 zg
-DCAP249,ZTF26abdgtui,Microlensing event candidate,2026/7/5 5:36:02,18.36 zr Microlensing event candidate
-DCAP248,ZTF20aaxdget,Cataclysmic variable candidate,2026/7/5 5:18:52,19.31 zg
-DCAP247,ZTF18aayvgin,Cataclysmic variable candidate,2026/7/5 5:17:20,18.63 zr
-DCAP246,ZTF26abewfqf,Cataclysmic variable candidate,2026/7/5 5:09:28,18.79 zi UV variable star
-DCAP245,ZTF26abeupwu,Cataclysmic variable candidate,2026/7/4 12:03:15,19.08 zg
-DCAP244,ZTF26abevbjo,SN candidate,2026/7/4 11:52:52,19.73 zr DESI J154958.97-132034.3
-DCAP243,ZTF26abevupv,Cataclysmic variable candidate,2026/7/4 11:50:20,19.14 zr
-DCAP242,ZTF26abesufs,Cataclysmic variable candidate,2026/7/3 12:14:22,17.96 zg UV variable star
-DCAP241,ZTF26abeosca,Cataclysmic variable candidate,2026/7/3 12:07:54,18.06 zr
-DCAP240,ZTF18abwvrak,Cataclysmic variable candidate,2026/7/3 2:13:17,19.12 zr
-DCAP239,ZTF18abnpjzn,Cataclysmic variable candidate,2026/7/3 2:10:08,19.02 zi
-DCAP238,ZTF26abemjfk,Cataclysmic variable candidate,2026/7/1 14:17:06,12.53 zr nova?
-DCAP237,ZTF26abeiasz,Cataclysmic variable candidate,2026/7/1 9:51:25,18.14 zr =DCAP234
-DCAP236,ZTF26abdwwxf,SN candidate,2026/7/1 6:54:39,20.45 zr
-DCAP235,ZTF18abivrfu,Cataclysmic variable candidate,2026/6/30 14:02:43,16.68 zg
-DCAP234,ZTF26abeiasz,Cataclysmic variable candidate,2026/6/29 12:59:18,18.14 zr
-DCAP233,ZTF26abeigru,Cataclysmic variable candidate,2026/6/29 12:41:40,18.96 zr
-DCAP232,ZTF26abcvoab,SN candidate,2026/6/29 7:03:01,20.07 zg KiDS DR5 J150810.8-000446.9
-DCAP231,ZTF26abecjxu,Cataclysmic variable candidate,2026/6/28 7:54:46,17.01 zr
-DCAP230,ZTF26abecqfo,SN candidate,2026/6/28 7:44:58,19.67 zi
-DCAP229,ZTF26abckjvu,Microlensing event candidate,2026/6/28 2:28:54,18.35 zr Microlensing event candidate
-DCAP228,ZTF26abebhvt,Cataclysmic variable candidate,2026/6/27 12:35:21,14.85 zg
-DCAP227,ZTF26abeboii,Cataclysmic variable candidate,2026/6/27 6:58:51,15.60 zg
-DCAP226,ZTF20abyleux,Cataclysmic variable candidate,2026/6/27 6:58:27,19.58 zr
-DCAP225,ZTF26abdvyey,SN candidate,2026/6/27 6:42:48,20.32 zr CatWISE J213837.24+042601.1
-DCAP224,ZTF26abdtjxx,SN candidate,2026/6/27 6:39:53,20.00 zg DESI J223003.73-020445.0
-DCAP223,ZTF26abdvnkt,Cataclysmic variable candidate,2026/6/26 10:46:54,17.44 zg
-DCAP222,ZTF26abdssvr,Cataclysmic variable candidate,2026/6/26 10:46:37,18.19 zr
-DCAP221,ZTF20acindpu,Cataclysmic variable candidate,2026/6/26 3:21:25,18.52 zi
-DCAP220,ZTF26abdfxkb,SN candidate,2026/6/24 9:52:22,Known target MLS 180614:165918-010719 19.71 zr
-DCAP219,ZTF26abdpfno,Cataclysmic variable candidate,2026/6/24 9:45:00,18.47 zr We used a RASA 11 telescope with a total exposure time of 600 seconds but did not detect the target. The Galactic reddening at this position is E(B-V) S&F= 0.6064 (mag)  AvS&F= 1.8798 (mag)
-DCAP218,ZTF26abdbwty,Cataclysmic variable candidate,2026/6/24 9:43:01,18.77 zr
-DCAP217,ZTF26abdiqon,SN candidate,2026/6/24 9:40:05,19.83 zr
-DCAP216,ZTF26abdhmyz,SN candidate,2026/6/24 7:17:02,20.10 zr
-DCAP215,170560681681093108,SN candidate,2026/6/24 6:48:30,21.99 r LSST WISEA J162452.13-124347.3 Selected from ALeRCE
-DCAP214,ZTF21acgozbz,SN candidate,2026/6/24 6:40:18,19.77 zr Detected at 19.82 mag in the LSST r-band 170560739818864648. LEDA 899309
-DCAP213,170560681520660667,SN candidate,2026/6/24 6:34:09,22.41 r LSST WISEA J161051.45-121646.8 Selected from ALeRCE
-DCAP212,ZTF26abdgzsu,Cataclysmic variable candidate,2026/6/23 11:35:14,17.32 zr
-DCAP211,ZTF26abcujyq,SN candidate,2026/6/23 11:28:43,Known target AT 2026ppy 18.33 zr WISEA J024117.42+504654.5
-DCAP210,ZTF26abcxnxn,Cataclysmic variable candidate,2026/6/23 11:27:07,19.64 zg
-DCAP209,ZTF18abnbxvj,Cataclysmic variable candidate,2026/6/23 8:40:00,19.04 zg
-DCAP208,ZTF19aalbzxf,Cataclysmic variable candidate,2026/6/23 8:36:41,19.08 zr
-DCAP207,ZTF21aasxfkt,Cataclysmic variable candidate,2026/6/23 5:27:51,18.12 zr
-DCAP206,ZTF26abbtsgz,Cataclysmic variable candidate,2026/6/23 5:27:25,19.55 zr
-DCAP205,ZTF26abdheun,SN candidate,2026/6/22 13:34:21,20.17 zg
-DCAP204,ZTF26abdhoat,SN candidate,2026/6/22 13:32:34,20.04 zr
-DCAP203,ZTF19aaqjvcn,Cataclysmic variable candidate,2026/6/21 12:58:06,19.16 zg
-DCAP202,ZTF26abcswjr,Cataclysmic variable candidate,2026/6/21 12:53:22,19.06 zg
-DCAP201,ZTF26abclsez,SN candidate,2026/6/21 12:44:11,19.14 zr DESI J010755.00+195607.9
-DCAP200,ZTF26abcvnwn,SN candidate,2026/6/21 12:39:26,19.71 zg
-DCAP199,ZTF26abclufj,SN candidate,2026/6/21 12:33:07,20.35 zr
-DCAP198,ZTF26abaohie,Microlensing event candidate,2026/6/19 13:21:28,Microlensing event candidate 16.57 zr
-DCAP197,ZTF18adkayks,Cataclysmic variable candidate,2026/6/19 12:08:02,19.85 zr
-DCAP196,ZTF26abcqfbj,SN candidate,2026/6/19 11:42:28,20.66 zr
-DCAP195,ZTF26abcfszf,Cataclysmic variable candidate,2026/6/19 11:32:21,18.65 zi
-DCAP194,ZTF26abcntyi,Cataclysmic variable candidate,2026/6/19 11:28:37,18.10 zi
-DCAP193,ZTF18abrztzy,Cataclysmic variable candidate,2026/6/18 11:26:48,19.06 zr
-DCAP192,ZTF18acugatn,Cataclysmic variable candidate,2026/6/18 11:24:41,18.71 zr
-DCAP191,ZTF26abcjrgy,Cataclysmic variable candidate,2026/6/18 11:01:18,19.66 zr
-DCAP190,ZTF26abcjjbe,SN candidate,2026/6/17 12:29:51,19.25 zg
-DCAP189,ZTF26abckell,SN candidate,2026/6/17 12:28:04,20.25 zr
-DCAP188,ZTF26abbpzpt,SN candidate,2026/6/17 7:05:27,19.88 zg
-DCAP187,ZTF26abbnfzg,Cataclysmic variable candidate,2026/6/17 6:34:12,17.64 zg
-DCAP186,ZTF26aazuuhy,Microlensing event candidate,2026/6/17 6:22:59,Microlensing event candidate 17.50 zr
-DCAP185,ZTF26abbztdb,Cataclysmic variable candidate,2026/6/16 11:32:05,17.43 zr
-DCAP184,ZTF26abcfeco,SN candidate,2026/6/16 11:29:13,20.27 zg
-DCAP183,ZTF18acesprs,Cataclysmic variable candidate,2026/6/15 12:19:24,17.85 zr
-DCAP182,ZTF26abbgihv,Cataclysmic variable candidate,2026/6/15 11:51:39,19.57 zr
-DCAP181,ZTF26abbuvtb,SN candidate,2026/6/15 11:50:24,19.83 zr
-DCAP180,ZTF26abbhawe,SN candidate,2026/6/15 11:49:05,20.35 zg
-DCAP179,ZTF26abbwovz,SN candidate,2026/6/15 11:40:53,20.25 zg
-DCAP178,ZTF26abbroci,SN candidate,2026/6/15 11:40:43,20.16 zr
-DCAP177,ZTF21acdwkwt,Cataclysmic variable candidate,2026/6/15 11:25:24,19.42 zi
-DCAP176,ZTF26abbmcve,Cataclysmic variable candidate,2026/6/15 11:24:51,18.98 zg
-DCAP175,ZTF26abbzdgn,SN candidate,2026/6/15 11:24:43,19.33 zr WISEA J163800.90-203740.9
-DCAP174,ZTF26abaztcb,SN candidate,2026/6/12 12:00:25,19.96 zr
-DCAP173,ZTF26abbgkea,Cataclysmic variable candidate,2026/6/12 11:55:22,19.68 zr
-DCAP172,ZTF26abbjayz,Cataclysmic variable candidate,2026/6/12 11:45:01,18.14 zg
-DCAP171,ZTF26abbbfzc,Cataclysmic variable candidate,2026/6/12 11:45:00,18.11 zi
-DCAP170,ZTF26abbhelu,SN candidate,2026/6/12 2:58:01,19.55 zr SDSS J220700.43-091352.4
-DCAP169,ZTF26abbdkef,SN candidate,2026/6/11 12:27:25,20.20 zg WISEA J164647.42-040223.2
-DCAP168,ZTF26abbbvgs,SN candidate,2026/6/11 12:26:17,20.28 zg SDSS J133935.45-002553.3
-DCAP167,ZTF26abbgmvs,SN candidate,2026/6/11 12:24:14,19.97 zg
-DCAP166,ZTF26abarwgj,Cataclysmic variable candidate,2026/6/11 12:21:30,19.73 zr
-DCAP165,ZTF26abaxzbc,Cataclysmic variable candidate,2026/6/11 12:17:11,18.90 zg
-DCAP164,ZTF26abatjrk,SN candidate,2026/6/11 12:13:25,17.62 zr LEDA 3092883
-DCAP163,ZTF26abaqpii,SN candidate,2026/6/11 12:13:16,19.93 zr WISEA J151519.28-054224.5
-DCAP162,ZTF26abaodln,SN candidate,2026/6/10 11:39:18,19.47 zr LEDA 1241446
-DCAP161,ZTF19adiqzyf,Cataclysmic variable candidate,2026/6/10 11:29:48,Known target V0510 Aqr (AM Herculis-type variables)
-DCAP160,ZTF26abasrob,SN candidate,2026/6/10 11:25:30,19.07 zr GALEXASC J201430.36+050548.9
-DCAP159,ZTF26abacplh,SN candidate,2026/6/9 14:45:53,19.36 zr WISEA J002814.13+321605.6
-DCAP158,ZTF26abasqzj,SN candidate,2026/6/9 14:43:01,19.12 zr WISEA J201809.99+060443.2
-DCAP157,ZTF26abahemy,Cataclysmic variable candidate,2026/6/9 14:32:53,18.13 zg
-DCAP156,ZTF26abamsxi,Cataclysmic variable candidate,2026/6/9 14:30:57,18.94 zi
-DCAP155,ZTF26ababocy,Cataclysmic variable candidate,2026/6/9 14:30:48,18.33 zg
-DCAP154,ZTF26abaqxpw,SN candidate,2026/6/9 14:30:32,20.01 zr
-DCAP153,ZTF26abajjog,SN candidate,2026/6/8 9:19:32,19.96 zr
-DCAP152,ZTF26aazuijf,SN candidate,2026/6/8 9:19:32,20.05 zr WISEA J163012.04-091350.0
-DCAP151,ZTF26aazvryh,Cataclysmic variable candidate,2026/6/8 9:19:32,18.88 zr
-DCAP150,ZTF26abammrg,SN candidate,2026/6/8 9:19:32,20.65 zg WISEA J164814.62+094352.3
-DCAP149,ZTF26abafiyw,SN candidate,2026/6/8 9:19:32,20.26 zr
-DCAP148,ZTF26abacref,SN candidate,2026/6/7 1:39:57,17.40 zr WISEA J024147.29+420000.4
-DCAP147,ZTF20aaspsai,Cataclysmic variable candidate,2026/6/5 13:21:12,19.23 zr
-DCAP146,ZTF18aayvfyr,Cataclysmic variable candidate,2026/6/5 13:16:44,19.12 zg
-DCAP145,ZTF20abirttl,Cataclysmic variable candidate,2026/6/5 13:13:34,19.16 zi
-DCAP144,ZTF19acgekne,Cataclysmic variable candidate,2026/6/5 13:10:55,19.27 zi
-DCAP143,ZTF26aazewqv,SN candidate,2026/6/4 8:51:30,19.90 zg 2MASX J15435258+1114107
-DCAP142,ZTF26aazperz,Cataclysmic variable candidate,2026/6/4 8:49:43,19.05 zg
-DCAP141,ZTF26aazenpt,SN candidate,2026/6/4 8:44:53,18.94 zr DESI J125532.60+074718.1
-DCAP140,ZTF26aaxaiao,SN candidate,2026/6/4 8:36:15,19.96 zr DESI J122048.43+035044.6
-DCAP139,ZTF26aazjyhl,Cataclysmic variable candidate,2026/6/4 8:28:55,19.39 zg
-DCAP138,ZTF20abcsyir,Cataclysmic variable candidate,2026/6/3 13:33:43,18.36 zr
-DCAP137,ZTF20aaxckws,Cataclysmic variable candidate,2026/6/3 13:33:40,18.52 zr
-DCAP136,ZTF26aaygdjj,Microlensing event candidate,2026/6/3 13:21:34,Microlensing event candidate 18.74 zr GaiaDR3 4188154452944540288
-DCAP135,ZTF26aazetpp,SN candidate,2026/6/3 9:31:30,19.77 zr 2MASS 12590366-0414160
-DCAP134,ZTF18abxxhuz,Cataclysmic variable candidate,2026/6/2 12:38:36,18.93 zr
-DCAP133,ZTF20aauhqxu,Cataclysmic variable candidate,2026/6/2 12:38:17,18.59 zr
-DCAP132,ZTF26aaytums,Cataclysmic variable candidate,2026/6/1 12:11:48,19.32 zr
-DCAP131,ZTF26aayysyv,Cataclysmic variable candidate,2026/6/1 12:11:48,18.28 zr
-DCAP130,ZTF19acfavin,Cataclysmic variable candidate,2026/5/25 12:30:39,19.47 zg
-DCAP129,ZTF20aclwcbz,Cataclysmic variable candidate,2026/5/25 12:28:47,19.43 zr
-DCAP128,ZTF26aayfits,Cataclysmic variable candidate,2026/5/25 12:23:31,19.03 zg
-DCAP127,ZTF26aayfrll,Cataclysmic variable candidate,2026/5/25 12:18:13,18.07 zr
-DCAP126,ZTF20aavzsvf,Cataclysmic variable candidate,2026/5/24 12:58:05,19.47 zr
-DCAP125,ZTF26aayhaae,SN candidate,2026/5/24 12:45:18,20.27 zr DESI J232253.20+155740.4
-DCAP124,ZTF26aaygpei,Cataclysmic variable candidate,2026/5/24 12:42:39,19.59 zr
-DCAP123,ZTF26aaxtugs,Cataclysmic variable candidate,2026/5/24 12:39:53,18.30 zr
-DCAP122,ZTF26aaxuzjv,SN candidate,2026/5/24 12:34:05,WISEA J145335.61+010250.1
-DCAP121,ZTF26aawczty,SN candidate,2026/5/24 9:06:29,WISEA J173747.95+034434.6
-DCAP120,ZTF22ablxihq,Cataclysmic variable candidate,2026/5/23 12:49:33,Known target XOSS-AT2022xiv VSX class UGSU 17.44 zr
-DCAP119,ZTF26aaydnyb,SN candidate,2026/5/23 12:49:33,19.92 zg WISEA J151304.03+005017.4
-DCAP118,ZTF26aayfxgb,SN candidate,2026/5/23 12:49:33,20.20 zr WISEA J205720.55-120733.6
-DCAP117,ZTF26aaxscup,SN candidate,2026/5/23 12:49:33,19.50 zr NOMAD 0975-0382267
-DCAP116,ZTF26aaxvuxv,Cataclysmic variable candidate,2026/5/23 13:12:39,19.62 zg
-DCAP115,ZTF18abecnrd,Cataclysmic variable candidate,2026/5/23 13:09:44,19.55 zr
-DCAP114,ZTF19aaxrszi,Cataclysmic variable candidate,2026/5/23 13:00:43,17.81 zi
-DCAP113,ZTF19abitnux,Cataclysmic variable candidate,2026/5/23 12:49:33,19.27 zg
-DCAP112,ZTF26aaxofdc,Cataclysmic variable candidate,2026/5/22 12:57:42,Known target XOSS-AT2026nhw-M31 nova candidate
-DCAP111,ZTF19abfsvbs,Cataclysmic variable candidate,2026/5/22 12:57:27,19.40 zg
-DCAP110,ZTF26aaxttuf,Cataclysmic variable candidate,2026/5/22 12:54:06,18.10 zi
-DCAP109,ZTF26aaxzenj,SN candidate,2026/5/22 12:53:26,19.19 zr WISE J202949.10+012048.9
-DCAP108,ZTF26aaxrewv,Cataclysmic variable candidate,2026/5/22 12:52:51,18.98 zr
-DCAP107,ZTF26aaxtpkn,Cataclysmic variable candidate,2026/5/22 12:52:07,18.70 zr
-DCAP106,ZTF18abnuemk,Cataclysmic variable candidate,2026/5/21 13:14:42,
-DCAP105,ZTF19aboknme,Cataclysmic variable candidate,2026/5/21 13:13:31,
-DCAP104,ZTF23aakmwyq,Cataclysmic variable candidate,2026/5/21 13:07:59,
-DCAP103,ZTF19aatvvvj,Cataclysmic variable candidate,2026/5/21 13:06:19,
-DCAP102,ZTF22absxtza,Cataclysmic variable candidate,2026/5/21 13:02:52,
-DCAP101,ZTF26aaxnkkb,SN candidate,2026/5/21 12:59:22,
-DCAP100,ZTF26aaxmxkc,Cataclysmic variable candidate,2026/5/21 12:58:49,
-DCAP99,ZTF26aaxhvtq,SN candidate,2026/5/21 12:58:08,
-DCAP98,ZTF26aaxbigr,SN candidate,2026/5/20 13:28:20,
-DCAP97,ZTF26aawxapq,SN candidate,2026/5/20 13:27:52,
-DCAP96,ZTF26aawxayq,SN candidate,2026/5/20 13:27:19,
-DCAP95,ZTF26aaxifeu,SN candidate,2026/5/20 13:26:32,
-DCAP94,ZTF26aawnlrb,SN candidate,2026/5/19 13:00:42,
-DCAP93,ZTF26aaxchoq,SN candidate,2026/5/19 12:59:17,
-DCAP92,ZTF26aawsizn,Cataclysmic variable candidate,2026/5/19 12:57:58,
-DCAP91,ZTF18abznkyr,Cataclysmic variable candidate,2026/5/16 13:41:45,
-DCAP90,ZTF26aawzpcp,SN candidate,2026/5/16 13:40:37,
-DCAP89,ZTF26aawlagq,Cataclysmic variable candidate,2026/5/16 13:39:15,
-DCAP88,ZTF26aawdrhu,Cataclysmic variable candidate,2026/5/16 13:33:05,
-DCAP87,ZTF26aawvsjv,SN candidate,2026/5/16 13:32:14,
-DCAP86,ZTF26aawkdqa,Cataclysmic variable candidate,2026/5/16 13:29:28,
+DCAP360,ZTF26abngxfo,SN candidate,2026/8/12 4:37,17.54 zr
+DCAP359,ZTF26abnhuvz,SN candidate,2026/8/12 4:31,19.94 zg
+DCAP358,ZTF26abngywk,Cataclysmic variable candidate,2026/8/12 4:18,13.23 zr |b|=2.2128 Known target DDE 196 (UG) Outburst on 2013
+DCAP357,ZTF26abnllhn,SN candidate,2026/8/12 3:46,20.22 zg LEDA 975205
+DCAP356,ZTF19aarybds,Cataclysmic variable candidate,2026/8/11 7:11,18.30 zg
+DCAP355,ZTF26abmjyoe,SN candidate,2026/8/9 3:23,19.47 zr PS J015457.42+264903.6
+DCAP354,ZTF26abmqhlr,SN candidate,2026/8/9 3:20,20.43 zr WISE J000429.55-015429.8
+DCAP353,ZTF26abmkbva,Cataclysmic variable candidate,2026/8/9 3:19,17.37 zr
+DCAP352,ZTF26abmmfzu,Cataclysmic variable candidate,2026/8/9 3:16,18.80 zi |b|=5.4884
+DCAP351,ZTF26ablvkjj,Microlensing event candidate,2026/8/9 3:12,19.07 zg Microlensing event candidate
+DCAP350,ZTF26abmdhkq,Cataclysmic variable candidate,2026/8/8 11:44,18.35 zg
+DCAP349,ZTF26abmcgea,Cataclysmic variable candidate,2026/8/7 8:02,17.14 zi Known target CRTS J155122.3-042550  UG tpye
+DCAP348,ZTF26abloxwl,Cataclysmic variable candidate,2026/8/5 13:35,18.31 zg
+DCAP347,ZTF26ablphjb,Cataclysmic variable candidate,2026/8/5 13:32,18.23 zg
+DCAP346,ZTF26abloywu,Cataclysmic variable candidate,2026/8/5 13:28,15.80 zi
+DCAP345,ZTF26abloylx,Cataclysmic variable candidate,2026/8/5 13:24,19.19 zg
+DCAP344,ZTF26ablozec,Cataclysmic variable candidate,2026/8/5 13:22,18.66 zg
+DCAP343,ZTF26ablvayc,SN candidate,2026/8/5 13:17,19.77 zr
+DCAP342,ZTF26abljrow,Cataclysmic variable candidate,2026/8/5 13:12,18.94 zg
+DCAP341,ZTF26ablxqyx,SN candidate,2026/8/5 13:11,19.45 zr
+DCAP340,ZTF26ablotpo,SN candidate,2026/8/5 13:08,19.92 zg
+DCAP339,ZTF26ablowdt,SN candidate,2026/8/4 12:01,19.96 zg SDSS J144525.06+112624.0
+DCAP338,ZTF26ablkwfo,Cataclysmic variable candidate,2026/8/4 11:59,18.02 zi
+DCAP337,ZTF26ablpikm,Cataclysmic variable candidate,2026/8/4 11:58,17.68 zr
+DCAP336,ZTF26abljqps,Cataclysmic variable candidate,2026/8/3 13:04,17.77 zr
+DCAP335,ZTF26ablmaru,SN candidate,2026/8/3 12:53,19.74 zg GSC J201306.50-153555.8
+DCAP334,ZTF26ablgmdz,SN candidate,2026/8/3 12:51,19.82 zg DESI J205332.76-045925.2
+DCAP333,ZTF26ablenru,Cataclysmic variable candidate,2026/8/3 6:41,17.07 zr
+DCAP332,ZTF26abksijd,SN candidate,2026/8/3 6:34,17.77 zr UG or SN
+DCAP331,ZTF26ablevyf,SN candidate,2026/8/3 6:32,19.32 zg
+DCAP330,ZTF26ableajr,SN candidate,2026/8/3 6:30,20.10 zg
+DCAP329,ZTF26abledjc,SN candidate,2026/8/2 13:28,19.02 zg PS J153315.93-141928.9
+DCAP328,ZTF26ablfjzk,SN candidate,2026/8/2 12:12,19.07 zr WISEA J200255.51-203851.0
+DCAP327,ZTF26ablengy,Cataclysmic variable candidate,2026/8/2 12:11,18.80 zi
+DCAP326,ZTF26abkvbxq,Cataclysmic variable candidate,2026/8/2 11:59,19.68 zr
+DCAP325,ZTF26ablehhm,SN candidate,2026/8/2 9:52,19.16 zg WISEA J155104.91-121709.2
+DCAP324,ZTF26ablduxl,Cataclysmic variable candidate,2026/8/2 9:15,17.28 zr
+DCAP323,ZTF26ablevah,Cataclysmic variable candidate,2026/8/2 9:14,18.29 zg ZTF team reported it to TNS as AT 2026wpe.
+DCAP322,ZTF26abkurzs,Cataclysmic variable candidate,2026/7/30 12:15,17.74 zg
+DCAP321,ZTF26abkkvvf,Microlensing event candidate,2026/7/30 12:09,17.57 zr variable star or Microlensing event candidate Gaia DR3 4122723301951804672
+DCAP320,ZTF26abkpopi,Cataclysmic variable candidate,2026/7/29 12:31,16.83 zr possible UV variable star. we did not detect the target 300s x3.
+DCAP319,ZTF26abkouly,Cataclysmic variable candidate,2026/7/29 12:28,14.55 zg
+DCAP318,ZTF26abkklws,Cataclysmic variable candidate,2026/7/28 11:27,17.37 zr Known target UG AT 2019axb=Gaia19aoq
+DCAP317,ZTF26abkjbgk,SN candidate,2026/7/28 11:23,19.77 zg MCG+02-05-035
+DCAP316,ZTF26abkbfml,SN candidate,2026/7/27 12:55,19.87 zg DESI J163518.81+112029.4
+DCAP315,ZTF26abjzqcg,SN candidate,2026/7/27 12:53,19.62 zr
+DCAP314,ZTF26abjekzx,Cataclysmic variable candidate,2026/7/27 12:47,19.62 zg
+DCAP313,ZTF26abkbfhh,Cataclysmic variable candidate,2026/7/27 12:22,2026-07-26 zi=18.98 2026-07-27 zg=16.42
+DCAP312,ZTF26abjyhdm,SN candidate,2026/7/26 9:20,19.84 zg SDSS J014101.47-083519.0
+DCAP311,ZTF26abjpkon,SN candidate,2026/7/25 11:14,20.47 zr
+DCAP310,ZTF26abjmlfs,SN candidate,2026/7/25 11:06,20.35 zg
+DCAP309,ZTF26abjqico,SN candidate,2026/7/25 10:50,20.22 zr LEDA 1361644
+DCAP308,ZTF26abjlumy,Cataclysmic variable candidate,2026/7/25 10:47,19.62 zg
+DCAP307,ZTF26abjtexk,Cataclysmic variable candidate,2026/7/25 10:28,17.77 zg possible known target ASASSN-14cw
+DCAP306,ZTF26abjlpcn,SN candidate,2026/7/24 9:29,20.28 zr
+DCAP305,ZTF26abixmel,SN candidate,2026/7/24 9:27,19.86 zg LEDA 187868 z=0.064237
+DCAP304,ZTF26abjcerp,Cataclysmic variable candidate,2026/7/24 9:23,17.92 zr
+DCAP303,ZTF26abizoqy,SN candidate,2026/7/24 9:20,20.63 zg
+DCAP302,ZTF26abjadbs,SN candidate,2026/7/24 9:18,20.55 zg
+DCAP301,ZTF26abiwcvm,Cataclysmic variable candidate,2026/7/23 13:31,19.16 zi
+DCAP300,ZTF26abivnre,Cataclysmic variable candidate,2026/7/23 13:18,19.64 zg
+DCAP299,ZTF26abiqigq,Cataclysmic variable candidate,2026/7/22 15:02,17.33zi Known target UG ASASSN-17lv
+DCAP298,ZTF26abiqrbt,Cataclysmic variable candidate,2026/7/22 9:20,18.66 zr
+DCAP297,ZTF19aamwseh,Cataclysmic variable candidate,2026/7/21 12:02,16.69 zg Known target UG ASASSN-14bi ATel #7418
+DCAP296,ZTF26abhzfgq,Cataclysmic variable candidate,2026/7/20 9:47,2026-07-19 zg=20.28 2026-07-20 zg=17.54 Dwarf novae characterization using SDSS colors (Kato+2012) 2026-07-20 10:22:05 GOTO team reported it to TNS as AT 2026vdv.
+DCAP295,ZTF26abhwvpe,Cataclysmic variable candidate,2026/7/19 13:47,16.38 zi Known target (Gaia19ejz=AT2019ryd) 2026-07-20 we used ASAS-SN and ATLAS data for confirmation; it is a real outburst.
+DCAP294,ZTF26abhxpzs,SN candidate,2026/7/19 13:37,19.65 zg DESI J160907.40+005407.6
+DCAP293,ZTF26abhsgch,Cataclysmic variable candidate,2026/7/19 13:36,19.63 zr
+DCAP292,ZTF26abhlybf,SN candidate,2026/7/17 12:49,19.89 zr DESI J221637.20+071635.5
+DCAP291,ZTF26abhtvzs,SN candidate,2026/7/17 12:42,19.40 zg forced phot
+DCAP290,ZTF26abhpssk,SN candidate,2026/7/17 12:39,20.23 zr WISEA J170329.61+015806.7
+DCAP289,ZTF26abgztiu,Cataclysmic variable candidate,2026/7/17 12:32,18.75 zg
+DCAP288,ZTF26abhkypw,SN candidate,2026/7/17 12:30,20.04 zr
+DCAP287,ZTF26abgtouy,SN candidate,2026/7/17 12:27,19.11 zr WISE J160454.90+034807.7
+DCAP286,ZTF26abhinpe,Cataclysmic variable candidate,2026/7/17 12:25,19.38 zg
+DCAP285,ZTF19abgprjx,Cataclysmic variable candidate,2026/7/16 12:45,18.88 zg Pan-STARRS DR1 rmag=21.0848
+DCAP284,ZTF26abhlaue,SN candidate,2026/7/16 12:16,19.41 zg LEDA 1113897
+DCAP283,ZTF26abgzodv,Cataclysmic variable candidate,2026/7/16 12:09,19.34 zr
+DCAP282,ZTF26abhaglb,Cataclysmic variable candidate,2026/7/16 12:05,19.11 zg
+DCAP281,ZTF26abgrwnu,SN candidate,2026/7/16 12:03,19.68 zr  DESI J004022.24+220002.9
+DCAP280,ZTF26abgzcur,SN candidate,2026/7/15 11:17,19.09 zg WISEA J141437.30+112551.6
+DCAP279,ZTF19aalwioe,Cataclysmic variable candidate,2026/7/15 2:00,The target was reported SN candidate by ATLAS on 2019-03-04 at 17.597 mag (orange-ATLAS)  This target is very close to WISEA J031736.42+491727.2 and ZTF data recorded multiple outbursts afterwards so it should not be a supernova. zr=17.65(2026-07-14)
+DCAP278,ZTF26abfymgo,SN candidate,2026/7/15 1:43,19.70 zg WISEA J152234.68-053747.4
+DCAP277,ZTF26abgkoej,Cataclysmic variable candidate,2026/7/12 13:24,16.91 zg
+DCAP276,ZTF26abglqca,Cataclysmic variable candidate,2026/7/12 13:21,18.26 zg
+DCAP275,ZTF26abfaduz,Cataclysmic variable candidate,2026/7/10 10:58,18.43 zg
+DCAP274,ZTF26abgbfxf,SN candidate,2026/7/10 10:47,19.91 zg
+DCAP273,ZTF26abfqjst,SN candidate,2026/7/10 10:44,19.57 zg
+DCAP272,ZTF26abfqhnp,SN candidate,2026/7/10 10:40,19.80 zg
+DCAP271,ZTF26abfpuvz,SN candidate,2026/7/10 10:36,20.18 zg WISEA J205819.02+065104.6 z=0.11084
+DCAP270,ZTF26abfztef,Cataclysmic variable candidate,2026/7/10 10:28,18.05 zg There is a variable star at 2 asec ZTF J174524.08-133518.6
+DCAP269,ZTF26abfokua,Cataclysmic variable candidate,2026/7/8 11:54,15.06 zr
+DCAP268,ZTF26abfigop,Cataclysmic variable candidate,2026/7/8 11:54,19.54 zg
+DCAP267,ZTF26abewkky,SN candidate,2026/7/8 6:00,19.18 zi
+DCAP266,ZTF26abfaipn,Cataclysmic variable candidate,2026/7/8 5:44,20.08 zg
+DCAP265,ZTF26abflqjy,SN candidate,2026/7/8 5:42,20.32 zr WISEA J215453.53-121618.2
+DCAP264,ZTF26abfcfkc,SN candidate,2026/7/8 5:39,19.81 zr WISEA J022059.89+365237.9
+DCAP263,ZTF26abfgkat,SN candidate,2026/7/7 12:09,19.26 zr LEDA 772426
+DCAP262,ZTF24aaozzkb,Cataclysmic variable candidate,2026/7/7 12:05,15.87 zr UV variable star
+DCAP261,ZTF26abfjrvy,Cataclysmic variable candidate,2026/7/7 12:02,18.86 zg
+DCAP260,ZTF26abfdwcv,Cataclysmic variable candidate,2026/7/7 11:53,18.53 zr
+DCAP259,ZTF26abeytov,SN candidate,2026/7/7 11:52,19.18 zr WISEA J155231.72+082624.9
+DCAP258,ZTF26abfezve,SN candidate,2026/7/7 11:50,20.07 zg
+DCAP257,ZTF26abfanrs,Cataclysmic variable candidate,2026/7/6 13:38,18.53 zg
+DCAP256,ZTF26abeyoqo,Cataclysmic variable candidate,2026/7/6 13:28,19.14 zr
+DCAP255,ZTF26abfasab,Cataclysmic variable candidate,2026/7/5 12:40,17.36 zg UV variable star
+DCAP254,ZTF26abeziup,Cataclysmic variable candidate,2026/7/5 12:35,16.56 zg good candidate
+DCAP253,ZTF26abevkfn,SN candidate,2026/7/5 12:29,18.78 zr
+DCAP252,ZTF26abevhqd,SN candidate,2026/7/5 12:28,19.92 zr
+DCAP251,ZTF26abevkex,SN candidate,2026/7/5 12:20,19.09 zi
+DCAP250,ZTF26aazvwlo,Microlensing event candidate,2026/7/5 5:48,Microlensing event candidate 2026-06-05 17.68 zg 2026-07-04 16.59 zg
+DCAP249,ZTF26abdgtui,Microlensing event candidate,2026/7/5 5:36,18.36 zr Microlensing event candidate
+DCAP248,ZTF20aaxdget,Cataclysmic variable candidate,2026/7/5 5:18,19.31 zg
+DCAP247,ZTF18aayvgin,Cataclysmic variable candidate,2026/7/5 5:17,18.63 zr
+DCAP246,ZTF26abewfqf,Cataclysmic variable candidate,2026/7/5 5:09,18.79 zi UV variable star
+DCAP245,ZTF26abeupwu,Cataclysmic variable candidate,2026/7/4 12:03,19.08 zg
+DCAP244,ZTF26abevbjo,SN candidate,2026/7/4 11:52,19.73 zr DESI J154958.97-132034.3
+DCAP243,ZTF26abevupv,Cataclysmic variable candidate,2026/7/4 11:50,19.14 zr
+DCAP242,ZTF26abesufs,Cataclysmic variable candidate,2026/7/3 12:14,17.96 zg UV variable star
+DCAP241,ZTF26abeosca,Cataclysmic variable candidate,2026/7/3 12:07,18.06 zr
+DCAP240,ZTF18abwvrak,Cataclysmic variable candidate,2026/7/3 2:13,19.12 zr
+DCAP239,ZTF18abnpjzn,Cataclysmic variable candidate,2026/7/3 2:10,19.02 zi
+DCAP238,ZTF26abemjfk,Cataclysmic variable candidate,2026/7/1 14:17,12.53 zr nova?
+DCAP237,ZTF26abeiasz,Cataclysmic variable candidate,2026/7/1 9:51,18.14 zr =DCAP234
+DCAP236,ZTF26abdwwxf,SN candidate,2026/7/1 6:54,20.45 zr
+DCAP235,ZTF18abivrfu,Cataclysmic variable candidate,2026/6/30 14:02,16.68 zg
+DCAP234,ZTF26abeiasz,Cataclysmic variable candidate,2026/6/29 12:59,18.14 zr
+DCAP233,ZTF26abeigru,Cataclysmic variable candidate,2026/6/29 12:41,18.96 zr
+DCAP232,ZTF26abcvoab,SN candidate,2026/6/29 7:03,20.07 zg KiDS DR5 J150810.8-000446.9
+DCAP231,ZTF26abecjxu,Cataclysmic variable candidate,2026/6/28 7:54,17.01 zr
+DCAP230,ZTF26abecqfo,SN candidate,2026/6/28 7:44,19.67 zi
+DCAP229,ZTF26abckjvu,Microlensing event candidate,2026/6/28 2:28,18.35 zr Microlensing event candidate
+DCAP228,ZTF26abebhvt,Cataclysmic variable candidate,2026/6/27 12:35,14.85 zg
+DCAP227,ZTF26abeboii,Cataclysmic variable candidate,2026/6/27 6:58,15.60 zg
+DCAP226,ZTF20abyleux,Cataclysmic variable candidate,2026/6/27 6:58,19.58 zr
+DCAP225,ZTF26abdvyey,SN candidate,2026/6/27 6:42,20.32 zr CatWISE J213837.24+042601.1
+DCAP224,ZTF26abdtjxx,SN candidate,2026/6/27 6:39,20.00 zg DESI J223003.73-020445.0
+DCAP223,ZTF26abdvnkt,Cataclysmic variable candidate,2026/6/26 10:46,17.44 zg
+DCAP222,ZTF26abdssvr,Cataclysmic variable candidate,2026/6/26 10:46,18.19 zr
+DCAP221,ZTF20acindpu,Cataclysmic variable candidate,2026/6/26 3:21,18.52 zi
+DCAP220,ZTF26abdfxkb,SN candidate,2026/6/24 9:52,Known target MLS 180614:165918-010719 19.71 zr
+DCAP219,ZTF26abdpfno,Cataclysmic variable candidate,2026/6/24 9:45,18.47 zr We used a RASA 11 telescope with a total exposure time of 600 seconds but did not detect the target. The Galactic reddening at this position is E(B-V) S&F= 0.6064 (mag)  AvS&F= 1.8798 (mag)
+DCAP218,ZTF26abdbwty,Cataclysmic variable candidate,2026/6/24 9:43,18.77 zr
+DCAP217,ZTF26abdiqon,SN candidate,2026/6/24 9:40,19.83 zr
+DCAP216,ZTF26abdhmyz,SN candidate,2026/6/24 7:17,20.10 zr
+DCAP215,170560681681093108,SN candidate,2026/6/24 6:48,21.99 r LSST WISEA J162452.13-124347.3 Selected from ALeRCE
+DCAP214,ZTF21acgozbz,SN candidate,2026/6/24 6:40,19.77 zr Detected at 19.82 mag in the LSST r-band 170560739818864648. LEDA 899309
+DCAP213,170560681520660667,SN candidate,2026/6/24 6:34,22.41 r LSST WISEA J161051.45-121646.8 Selected from ALeRCE
+DCAP212,ZTF26abdgzsu,Cataclysmic variable candidate,2026/6/23 11:35,17.32 zr
+DCAP211,ZTF26abcujyq,SN candidate,2026/6/23 11:28,Known target AT 2026ppy 18.33 zr WISEA J024117.42+504654.5
+DCAP210,ZTF26abcxnxn,Cataclysmic variable candidate,2026/6/23 11:27,19.64 zg
+DCAP209,ZTF18abnbxvj,Cataclysmic variable candidate,2026/6/23 8:40,19.04 zg
+DCAP208,ZTF19aalbzxf,Cataclysmic variable candidate,2026/6/23 8:36,19.08 zr
+DCAP207,ZTF21aasxfkt,Cataclysmic variable candidate,2026/6/23 5:27,18.12 zr
+DCAP206,ZTF26abbtsgz,Cataclysmic variable candidate,2026/6/23 5:27,19.55 zr
+DCAP205,ZTF26abdheun,SN candidate,2026/6/22 13:34,20.17 zg
+DCAP204,ZTF26abdhoat,SN candidate,2026/6/22 13:32,20.04 zr
+DCAP203,ZTF19aaqjvcn,Cataclysmic variable candidate,2026/6/21 12:58,19.16 zg
+DCAP202,ZTF26abcswjr,Cataclysmic variable candidate,2026/6/21 12:53,19.06 zg
+DCAP201,ZTF26abclsez,SN candidate,2026/6/21 12:44,19.14 zr DESI J010755.00+195607.9
+DCAP200,ZTF26abcvnwn,SN candidate,2026/6/21 12:39,19.71 zg
+DCAP199,ZTF26abclufj,SN candidate,2026/6/21 12:33,20.35 zr
+DCAP198,ZTF26abaohie,Microlensing event candidate,2026/6/19 13:21,Microlensing event candidate 16.57 zr
+DCAP197,ZTF18adkayks,Cataclysmic variable candidate,2026/6/19 12:08,19.85 zr
+DCAP196,ZTF26abcqfbj,SN candidate,2026/6/19 11:42,20.66 zr
+DCAP195,ZTF26abcfszf,Cataclysmic variable candidate,2026/6/19 11:32,18.65 zi
+DCAP194,ZTF26abcntyi,Cataclysmic variable candidate,2026/6/19 11:28,18.10 zi
+DCAP193,ZTF18abrztzy,Cataclysmic variable candidate,2026/6/18 11:26,19.06 zr
+DCAP192,ZTF18acugatn,Cataclysmic variable candidate,2026/6/18 11:24,18.71 zr
+DCAP191,ZTF26abcjrgy,Cataclysmic variable candidate,2026/6/18 11:01,19.66 zr
+DCAP190,ZTF26abcjjbe,SN candidate,2026/6/17 12:29,19.25 zg
+DCAP189,ZTF26abckell,SN candidate,2026/6/17 12:28,20.25 zr
+DCAP188,ZTF26abbpzpt,SN candidate,2026/6/17 7:05,19.88 zg
+DCAP187,ZTF26abbnfzg,Cataclysmic variable candidate,2026/6/17 6:34,17.64 zg
+DCAP186,ZTF26aazuuhy,Microlensing event candidate,2026/6/17 6:22,Microlensing event candidate 17.50 zr
+DCAP185,ZTF26abbztdb,Cataclysmic variable candidate,2026/6/16 11:32,17.43 zr
+DCAP184,ZTF26abcfeco,SN candidate,2026/6/16 11:29,20.27 zg
+DCAP183,ZTF18acesprs,Cataclysmic variable candidate,2026/6/15 12:19,17.85 zr
+DCAP182,ZTF26abbgihv,Cataclysmic variable candidate,2026/6/15 11:51,19.57 zr
+DCAP181,ZTF26abbuvtb,SN candidate,2026/6/15 11:50,19.83 zr
+DCAP180,ZTF26abbhawe,SN candidate,2026/6/15 11:49,20.35 zg
+DCAP179,ZTF26abbwovz,SN candidate,2026/6/15 11:40,20.25 zg
+DCAP178,ZTF26abbroci,SN candidate,2026/6/15 11:40,20.16 zr
+DCAP177,ZTF21acdwkwt,Cataclysmic variable candidate,2026/6/15 11:25,19.42 zi
+DCAP176,ZTF26abbmcve,Cataclysmic variable candidate,2026/6/15 11:24,18.98 zg
+DCAP175,ZTF26abbzdgn,SN candidate,2026/6/15 11:24,19.33 zr WISEA J163800.90-203740.9
+DCAP174,ZTF26abaztcb,SN candidate,2026/6/12 12:00,19.96 zr
+DCAP173,ZTF26abbgkea,Cataclysmic variable candidate,2026/6/12 11:55,19.68 zr
+DCAP172,ZTF26abbjayz,Cataclysmic variable candidate,2026/6/12 11:45,18.14 zg
+DCAP171,ZTF26abbbfzc,Cataclysmic variable candidate,2026/6/12 11:45,18.11 zi
+DCAP170,ZTF26abbhelu,SN candidate,2026/6/12 2:58,19.55 zr SDSS J220700.43-091352.4
+DCAP169,ZTF26abbdkef,SN candidate,2026/6/11 12:27,20.20 zg WISEA J164647.42-040223.2
+DCAP168,ZTF26abbbvgs,SN candidate,2026/6/11 12:26,20.28 zg SDSS J133935.45-002553.3
+DCAP167,ZTF26abbgmvs,SN candidate,2026/6/11 12:24,19.97 zg
+DCAP166,ZTF26abarwgj,Cataclysmic variable candidate,2026/6/11 12:21,19.73 zr
+DCAP165,ZTF26abaxzbc,Cataclysmic variable candidate,2026/6/11 12:17,18.90 zg
+DCAP164,ZTF26abatjrk,SN candidate,2026/6/11 12:13,17.62 zr LEDA 3092883
+DCAP163,ZTF26abaqpii,SN candidate,2026/6/11 12:13,19.93 zr WISEA J151519.28-054224.5
+DCAP162,ZTF26abaodln,SN candidate,2026/6/10 11:39,19.47 zr LEDA 1241446
+DCAP161,ZTF19adiqzyf,Cataclysmic variable candidate,2026/6/10 11:29,Known target V0510 Aqr (AM Herculis-type variables)
+DCAP160,ZTF26abasrob,SN candidate,2026/6/10 11:25,19.07 zr GALEXASC J201430.36+050548.9
+DCAP159,ZTF26abacplh,SN candidate,2026/6/9 14:45,19.36 zr WISEA J002814.13+321605.6
+DCAP158,ZTF26abasqzj,SN candidate,2026/6/9 14:43,19.12 zr WISEA J201809.99+060443.2
+DCAP157,ZTF26abahemy,Cataclysmic variable candidate,2026/6/9 14:32,18.13 zg
+DCAP156,ZTF26abamsxi,Cataclysmic variable candidate,2026/6/9 14:30,18.94 zi
+DCAP155,ZTF26ababocy,Cataclysmic variable candidate,2026/6/9 14:30,18.33 zg
+DCAP154,ZTF26abaqxpw,SN candidate,2026/6/9 14:30,20.01 zr
+DCAP153,ZTF26abajjog,SN candidate,2026/6/8 9:19,19.96 zr
+DCAP152,ZTF26aazuijf,SN candidate,2026/6/8 9:19,20.05 zr WISEA J163012.04-091350.0
+DCAP151,ZTF26aazvryh,Cataclysmic variable candidate,2026/6/8 9:19,18.88 zr
+DCAP150,ZTF26abammrg,SN candidate,2026/6/8 9:19,20.65 zg WISEA J164814.62+094352.3
+DCAP149,ZTF26abafiyw,SN candidate,2026/6/8 9:19,20.26 zr
+DCAP148,ZTF26abacref,SN candidate,2026/6/7 1:39,17.40 zr WISEA J024147.29+420000.4
+DCAP147,ZTF20aaspsai,Cataclysmic variable candidate,2026/6/5 13:21,19.23 zr
+DCAP146,ZTF18aayvfyr,Cataclysmic variable candidate,2026/6/5 13:16,19.12 zg
+DCAP145,ZTF20abirttl,Cataclysmic variable candidate,2026/6/5 13:13,19.16 zi
+DCAP144,ZTF19acgekne,Cataclysmic variable candidate,2026/6/5 13:10,19.27 zi
+DCAP143,ZTF26aazewqv,SN candidate,2026/6/4 8:51,19.90 zg 2MASX J15435258+1114107
+DCAP142,ZTF26aazperz,Cataclysmic variable candidate,2026/6/4 8:49,19.05 zg
+DCAP141,ZTF26aazenpt,SN candidate,2026/6/4 8:44,18.94 zr DESI J125532.60+074718.1
+DCAP140,ZTF26aaxaiao,SN candidate,2026/6/4 8:36,19.96 zr DESI J122048.43+035044.6
+DCAP139,ZTF26aazjyhl,Cataclysmic variable candidate,2026/6/4 8:28,19.39 zg
+DCAP138,ZTF20abcsyir,Cataclysmic variable candidate,2026/6/3 13:33,18.36 zr
+DCAP137,ZTF20aaxckws,Cataclysmic variable candidate,2026/6/3 13:33,18.52 zr
+DCAP136,ZTF26aaygdjj,Microlensing event candidate,2026/6/3 13:21,Microlensing event candidate 18.74 zr GaiaDR3 4188154452944540288
+DCAP135,ZTF26aazetpp,SN candidate,2026/6/3 9:31,19.77 zr 2MASS 12590366-0414160
+DCAP134,ZTF18abxxhuz,Cataclysmic variable candidate,2026/6/2 12:38,18.93 zr
+DCAP133,ZTF20aauhqxu,Cataclysmic variable candidate,2026/6/2 12:38,18.59 zr
+DCAP132,ZTF26aaytums,Cataclysmic variable candidate,2026/6/1 12:11,19.32 zr
+DCAP131,ZTF26aayysyv,Cataclysmic variable candidate,2026/6/1 12:11,18.28 zr
+DCAP130,ZTF19acfavin,Cataclysmic variable candidate,2026/5/25 12:30,19.47 zg
+DCAP129,ZTF20aclwcbz,Cataclysmic variable candidate,2026/5/25 12:28,19.43 zr
+DCAP128,ZTF26aayfits,Cataclysmic variable candidate,2026/5/25 12:23,19.03 zg
+DCAP127,ZTF26aayfrll,Cataclysmic variable candidate,2026/5/25 12:18,18.07 zr
+DCAP126,ZTF20aavzsvf,Cataclysmic variable candidate,2026/5/24 12:58,19.47 zr
+DCAP125,ZTF26aayhaae,SN candidate,2026/5/24 12:45,20.27 zr DESI J232253.20+155740.4
+DCAP124,ZTF26aaygpei,Cataclysmic variable candidate,2026/5/24 12:42,19.59 zr
+DCAP123,ZTF26aaxtugs,Cataclysmic variable candidate,2026/5/24 12:39,18.30 zr
+DCAP122,ZTF26aaxuzjv,SN candidate,2026/5/24 12:34,WISEA J145335.61+010250.1
+DCAP121,ZTF26aawczty,SN candidate,2026/5/24 9:06,WISEA J173747.95+034434.6
+DCAP120,ZTF22ablxihq,Cataclysmic variable candidate,2026/5/23 12:49,Known target XOSS-AT2022xiv VSX class UGSU 17.44 zr
+DCAP119,ZTF26aaydnyb,SN candidate,2026/5/23 12:49,19.92 zg WISEA J151304.03+005017.4
+DCAP118,ZTF26aayfxgb,SN candidate,2026/5/23 12:49,20.20 zr WISEA J205720.55-120733.6
+DCAP117,ZTF26aaxscup,SN candidate,2026/5/23 12:49,19.50 zr NOMAD 0975-0382267
+DCAP116,ZTF26aaxvuxv,Cataclysmic variable candidate,2026/5/23 13:12,19.62 zg
+DCAP115,ZTF18abecnrd,Cataclysmic variable candidate,2026/5/23 13:09,19.55 zr
+DCAP114,ZTF19aaxrszi,Cataclysmic variable candidate,2026/5/23 13:00,17.81 zi
+DCAP113,ZTF19abitnux,Cataclysmic variable candidate,2026/5/23 12:49,19.27 zg
+DCAP112,ZTF26aaxofdc,Cataclysmic variable candidate,2026/5/22 12:57,Known target XOSS-AT2026nhw-M31 nova candidate
+DCAP111,ZTF19abfsvbs,Cataclysmic variable candidate,2026/5/22 12:57,19.40 zg
+DCAP110,ZTF26aaxttuf,Cataclysmic variable candidate,2026/5/22 12:54,18.10 zi
+DCAP109,ZTF26aaxzenj,SN candidate,2026/5/22 12:53,19.19 zr WISE J202949.10+012048.9
+DCAP108,ZTF26aaxrewv,Cataclysmic variable candidate,2026/5/22 12:52,18.98 zr
+DCAP107,ZTF26aaxtpkn,Cataclysmic variable candidate,2026/5/22 12:52,18.70 zr
+DCAP106,ZTF18abnuemk,Cataclysmic variable candidate,2026/5/21 13:14,
+DCAP105,ZTF19aboknme,Cataclysmic variable candidate,2026/5/21 13:13,
+DCAP104,ZTF23aakmwyq,Cataclysmic variable candidate,2026/5/21 13:07,
+DCAP103,ZTF19aatvvvj,Cataclysmic variable candidate,2026/5/21 13:06,
+DCAP102,ZTF22absxtza,Cataclysmic variable candidate,2026/5/21 13:02,
+DCAP101,ZTF26aaxnkkb,SN candidate,2026/5/21 12:59,
+DCAP100,ZTF26aaxmxkc,Cataclysmic variable candidate,2026/5/21 12:58,
+DCAP99,ZTF26aaxhvtq,SN candidate,2026/5/21 12:58,
+DCAP98,ZTF26aaxbigr,SN candidate,2026/5/20 13:28,
+DCAP97,ZTF26aawxapq,SN candidate,2026/5/20 13:27,
+DCAP96,ZTF26aawxayq,SN candidate,2026/5/20 13:27,
+DCAP95,ZTF26aaxifeu,SN candidate,2026/5/20 13:26,
+DCAP94,ZTF26aawnlrb,SN candidate,2026/5/19 13:00,
+DCAP93,ZTF26aaxchoq,SN candidate,2026/5/19 12:59,
+DCAP92,ZTF26aawsizn,Cataclysmic variable candidate,2026/5/19 12:57,
+DCAP91,ZTF18abznkyr,Cataclysmic variable candidate,2026/5/16 13:41,
+DCAP90,ZTF26aawzpcp,SN candidate,2026/5/16 13:40,
+DCAP89,ZTF26aawlagq,Cataclysmic variable candidate,2026/5/16 13:39,
+DCAP88,ZTF26aawdrhu,Cataclysmic variable candidate,2026/5/16 13:33,
+DCAP87,ZTF26aawvsjv,SN candidate,2026/5/16 13:32,
+DCAP86,ZTF26aawkdqa,Cataclysmic variable candidate,2026/5/16 13:29,
