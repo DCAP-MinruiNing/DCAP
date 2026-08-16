@@ -1,7 +1,7 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
 DCAP365,ZTF26abogglw,Cataclysmic variable candidate,2026/8/16 1:30:26,18.54 zg
 DCAP364,ZTF26abokynq,SN candidate,2026/8/16 1:25:47,19.94 zr
-DCAP363,ZTF26abnuqyj,Cataclysmic variable candidate,2026/8/13 13:21:06,"18.49 zr drops rapidly, and the PS1 image appears to be bluish."
+DCAP363,ZTF26abnuqyj,Cataclysmic variable candidate,2026/8/13 13:21:06,18.49 zr drops rapidly and the PS1 image appears to be bluish.
 DCAP362,ZTF26abmripd,SN candidate,2026/8/12 13:26:00,20.17 zg
 DCAP361,ZTF26abnhxpt,Cataclysmic variable candidate,2026/8/12 13:07:43,19.76 zr |b|=0.0065
 DCAP360,ZTF26abngxfo,SN candidate,2026/8/12 4:37:03,17.54 zr
