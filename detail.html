@@ -132,6 +132,62 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://aladin.u-strasbg.fr/AladinLite/api/v3/latest/aladin.js" charset="utf-8"></script>
 
+    <!-- ==================== 误差棒插件（新增，不干扰其他功能） ==================== -->
+    <script>
+    (function() {
+        const errorBarsPlugin = {
+            id: 'errorBars',
+            afterDatasetsDraw(chart, args, options) {
+                const { ctx } = chart;
+                const meta = chart.getDatasetMeta(args.index);
+                const dataset = chart.data.datasets[args.index];
+
+                if (!dataset || !dataset.drawErrorBars) return;
+                if (!dataset.data || !Array.isArray(dataset.data)) return;
+
+                ctx.save();
+                ctx.strokeStyle = dataset.errorColor || dataset.backgroundColor || '#888';
+                ctx.lineWidth = dataset.errorLineWidth || 1.5;
+
+                const xScale = chart.scales.x;
+                const yScale = chart.scales.y;
+
+                meta.data.forEach((point, i) => {
+                    const d = dataset.data[i];
+                    if (!d || d.err === undefined || d.err === null || d.err <= 0) return;
+
+                    const x = point.x;
+                    const yTop = yScale.getPixelForValue(d.y - d.err);
+                    const yBottom = yScale.getPixelForValue(d.y + d.err);
+
+                    ctx.beginPath();
+                    ctx.moveTo(x, yTop);
+                    ctx.lineTo(x, yBottom);
+                    ctx.stroke();
+
+                    const capSize = dataset.errorCapSize || 4;
+                    ctx.beginPath();
+                    ctx.moveTo(x - capSize, yTop);
+                    ctx.lineTo(x + capSize, yTop);
+                    ctx.moveTo(x - capSize, yBottom);
+                    ctx.lineTo(x + capSize, yBottom);
+                    ctx.stroke();
+                });
+
+                ctx.restore();
+            }
+        };
+
+        if (window.Chart) {
+            Chart.register(errorBarsPlugin);
+        } else {
+            window.addEventListener('DOMContentLoaded', () => {
+                if (window.Chart) Chart.register(errorBarsPlugin);
+            });
+        }
+    })();
+    </script>
+
     <!-- 核心前端逻辑 -->
     <script>
         let aladin = null;
@@ -140,7 +196,6 @@
         let currentDec = null;
 
         // note: 全局核心判断函数：是否为纯粹的有效探测 (det)
-        // note: 规则：只要有标记为 limit 或 forced，或没有有效星等，一律不算 det
         function isDetection(p) {
             const hasMag = (p.mag !== undefined && p.mag !== null) || (p.magpsf !== undefined && p.magpsf !== null);
             const isForced = p.is_forced || p.forced || p.type === 'forced';
@@ -222,34 +277,71 @@
             });
         }
 
-        // note: 渲染光变曲线：去除了强制测光，只保留 det 和 limit
+        // =============================== 修改后的光变曲线渲染（含误差棒） ===============================
         function renderLightCurve(item) {
             const history = item.history_map || item.history || [];
             let points = Array.isArray(history) ? history : Object.values(history);
 
-            let gReg = [], rReg = [], iReg = [];
-            let gLimit = [], rLimit = [], iLimit = [];
+            let buckets = { g: { data: [], limits: [] }, r: { data: [], limits: [] }, i: { data: [], limits: [] } };
 
             points.forEach(p => {
                 const jd = p.jd || p.mjd;
                 if (!jd) return;
 
                 const isDet = isDetection(p);
-                // note: 如果是 limit，优先使用探测极限(diffmaglim)，没有的话就用 magpsf 顶替
                 let plotMag = isDet ? (p.mag || p.magpsf) : (p.diffmaglim || p.mag || p.magpsf);
                 if (plotMag === undefined || plotMag === null) return;
 
-                const filter = (p.filter || p.fid || '').toString().toLowerCase();
-                const pt = { x: jd, y: plotMag, err: p.magerr || p.sigmapsf || 0 };
+                const filterRaw = (p.filter || p.fid || '').toString().toLowerCase();
+                let key = 'r';
+                if (filterRaw.includes('g') || filterRaw === '1' || filterRaw === 'zg') key = 'g';
+                else if (filterRaw.includes('i') || filterRaw === '3' || filterRaw === 'zi') key = 'i';
 
-                if (filter.includes('g') || filter === '1' || filter === 'zg') {
-                    if (isDet) gReg.push(pt); else gLimit.push(pt);
-                } else if (filter.includes('r') || filter === '2' || filter === 'zr') {
-                    if (isDet) rReg.push(pt); else rLimit.push(pt);
-                } else if (filter.includes('i') || filter === '3' || filter === 'zi') {
-                    if (isDet) iReg.push(pt); else iLimit.push(pt);
-                } else {
-                    if (isDet) rReg.push(pt); else rLimit.push(pt);
+                const errVal = (isDet && (p.magerr || p.sigmapsf)) ? Number(p.magerr || p.sigmapsf) : 0;
+                const pt = { x: jd, y: plotMag, err: errVal };
+
+                if (isDet) buckets[key].data.push(pt);
+                else buckets[key].limits.push(pt);
+            });
+
+            function styleFor(key) {
+                if (key === 'g') return { color: '#28a745', label: 'zg' };
+                if (key === 'i') return { color: '#ffc107', label: 'zi' };
+                return { color: '#dc3545', label: 'zr' };
+            }
+
+            let datasets = [];
+            ['g', 'r', 'i'].forEach(key => {
+                const { color, label } = styleFor(key);
+                const detData = buckets[key].data;
+                const limData = buckets[key].limits;
+
+                if (detData.length) {
+                    datasets.push({
+                        label: `${label} (det)`,
+                        data: detData,
+                        backgroundColor: color,
+                        pointStyle: 'circle',
+                        pointRadius: 5,
+                        showLine: false,
+                        drawErrorBars: true,
+                        errorColor: color,
+                        errorLineWidth: 1.5,
+                        errorCapSize: 4
+                    });
+                }
+
+                if (limData.length) {
+                    datasets.push({
+                        label: `${label} (limit)`,
+                        data: limData,
+                        backgroundColor: 'rgba(255,255,255,0.8)',
+                        borderColor: color,
+                        borderWidth: 1.5,
+                        pointStyle: 'rectRot',
+                        pointRadius: 4,
+                        showLine: false
+                    });
                 }
             });
 
@@ -258,31 +350,41 @@
 
             lcChart = new Chart(ctx, {
                 type: 'scatter',
-                data: {
-                    datasets: [
-                        { label: 'zg (det)', data: gReg, backgroundColor: '#28a745', pointStyle: 'circle', pointRadius: 5, showLine: false },
-                        { label: 'zr (det)', data: rReg, backgroundColor: '#dc3545', pointStyle: 'circle', pointRadius: 5, showLine: false },
-                        { label: 'zi (det)', data: iReg, backgroundColor: '#ffc107', pointStyle: 'circle', pointRadius: 5, showLine: false },
-                        { label: 'zg (limit)', data: gLimit, backgroundColor: 'rgba(255,255,255,0.8)', borderColor: '#28a745', borderWidth: 1.5, pointStyle: 'rectRot', pointRadius: 4, showLine: false },
-                        { label: 'zr (limit)', data: rLimit, backgroundColor: 'rgba(255,255,255,0.8)', borderColor: '#dc3545', borderWidth: 1.5, pointStyle: 'rectRot', pointRadius: 4, showLine: false },
-                        { label: 'zi (limit)', data: iLimit, backgroundColor: 'rgba(255,255,255,0.8)', borderColor: '#ffc107', borderWidth: 1.5, pointStyle: 'rectRot', pointRadius: 4, showLine: false }
-                    ]
-                },
+                data: { datasets: datasets },
                 options: {
-                    responsive: true, maintainAspectRatio: false,
+                    responsive: true,
+                    maintainAspectRatio: false,
                     scales: {
-                        x: { type: 'linear', title: { display: true, text: 'JD / MJD' }, ticks: { callback: v => v.toFixed(1) } },
-                        y: { reverse: true, title: { display: true, text: 'Magnitude (星等)' } }
+                        x: {
+                            type: 'linear',
+                            title: { display: true, text: 'JD / MJD' },
+                            ticks: { callback: v => v.toFixed(1) }
+                        },
+                        y: {
+                            reverse: true,
+                            title: { display: true, text: 'Magnitude (星等)' }
+                        }
                     },
                     plugins: {
                         legend: { labels: { boxWidth: 12, font: { size: 11 } } },
-                        tooltip: { callbacks: { label: function(context) { return `${context.dataset.label} | JD: ${context.parsed.x.toFixed(4)}, Mag: ${context.parsed.y.toFixed(2)}`; } } }
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    const d = context.parsed;
+                                    const ds = context.dataset;
+                                    let txt = `${ds.label} | JD: ${d.x.toFixed(4)}, Mag: ${d.y.toFixed(2)}`;
+                                    const pt = ds.data[context.dataIndex];
+                                    if (pt && pt.err) txt += `, err: ±${pt.err.toFixed(3)}`;
+                                    return txt;
+                                }
+                            }
+                        }
                     }
                 }
             });
         }
 
-        // note: 渲染表格：去除了强制测光逻辑，类型严格非黑即白
+        // note: 渲染表格（完全保留原样）
         function renderPhotometryTable(item) {
             const history = item.history_map || item.history || [];
             let points = Array.isArray(history) ? history : Object.values(history);
@@ -295,7 +397,6 @@
                 
                 const isDet = isDetection(p);
                 const filter = (p.filter || p.fid || '-').toString();
-                // note: 同样，如果是 limit 显示 diffmaglim（如果存在的话）
                 let mag = isDet ? (p.mag || p.magpsf) : (p.diffmaglim || p.mag || p.magpsf);
                 
                 allRows.push({
@@ -331,7 +432,7 @@
         }
 
         // ==========================================
-        // note: 图像切片加载：严格过滤，只用 det 的日期，并精确到时分秒
+        // note: 图像切片加载（完全保留原样）
         // ==========================================
         function jdToDateString(jd) {
             if (!jd) return null;
@@ -344,10 +445,9 @@
             let min = String(d.getUTCMinutes()).padStart(2, '0');
             let ss = String(d.getUTCSeconds()).padStart(2, '0');
             
-            // note: 返回一个对象，包含两种格式
             return {
-                fileStr: `${yyyy}-${mm}-${dd}_${hh}${min}${ss}`, // note: 用于拼接文件名的格式
-                displayStr: `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}` // note: 用于下拉菜单显示的格式
+                fileStr: `${yyyy}-${mm}-${dd}_${hh}${min}${ss}`,
+                displayStr: `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`
             };
         }
 
@@ -358,12 +458,10 @@
             const history = item.history_map || item.history || [];
             let points = Array.isArray(history) ? history : Object.values(history);
             
-            // note: 使用 Map 来存储，避免同一天的不同时间点被错误去重
             let uniqueDates = new Map();
 
             points.forEach(p => {
                 const jd = p.jd || p.mjd;
-                // note: 只有当该点是真正的探测 (det) 时，才提取该历元用于图片请求
                 if (jd && isDetection(p)) {
                     let dateObj = jdToDateString(jd);
                     if (dateObj) {
@@ -372,7 +470,6 @@
                 }
             });
             
-            // note: 将 Map 转换为数组，并按时间降序排列（最新的在最上面）
             let parsedDates = Array.from(uniqueDates.entries()).sort().reverse();
 
             if (parsedDates.length === 0) {
@@ -383,12 +480,10 @@
             }
 
             selectElem.prop('disabled', false);
-            // note: 填充下拉菜单
             parsedDates.forEach(([fileStr, displayStr]) => {
                 selectElem.append($('<option>', { value: fileStr, text: `时间: ${displayStr} (det)` }));
             });
 
-            // note: 默认展示最新一条观测记录的图像
             setStampsImages(parsedDates[0][0], targetId);
 
             selectElem.off('change').on('change', function() {
@@ -400,7 +495,6 @@
         function setStampsImages(dateStr, targetId) {
             if (!dateStr || !targetId) return;
 
-            // note: 拼接基于具体时分秒文件名的图片路径
             let sci = `static/stamps/${targetId}_${dateStr}_science.png`;
             let tmpl = `static/stamps/${targetId}_${dateStr}_template.png`;
             let diff = `static/stamps/${targetId}_${dateStr}_difference.png`;
