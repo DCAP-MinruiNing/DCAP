@@ -132,56 +132,61 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://aladin.u-strasbg.fr/AladinLite/api/v3/latest/aladin.js" charset="utf-8"></script>
 
-    <!-- ==================== 误差棒插件（新增，不干扰其他功能） ==================== -->
+    <!-- ==================== 误差棒插件（修复版） ==================== -->
     <script>
     (function() {
         const errorBarsPlugin = {
             id: 'errorBars',
-            afterDatasetsDraw(chart, args, options) {
+            afterDraw(chart) {
                 const { ctx } = chart;
-                const meta = chart.getDatasetMeta(args.index);
-                const dataset = chart.data.datasets[args.index];
+                if (!ctx) return;
 
-                if (!dataset || !dataset.drawErrorBars) return;
-                if (!dataset.data || !Array.isArray(dataset.data)) return;
+                chart.data.datasets.forEach((dataset, dsIndex) => {
+                    if (!dataset.drawErrorBars) return;
+                    const meta = chart.getDatasetMeta(dsIndex);
+                    if (!meta || !meta.data) return;
 
-                ctx.save();
-                ctx.strokeStyle = dataset.errorColor || dataset.backgroundColor || '#888';
-                ctx.lineWidth = dataset.errorLineWidth || 1.5;
+                    const xScale = chart.scales.x;
+                    const yScale = chart.scales.y;
+                    if (!xScale || !yScale) return;
 
-                const xScale = chart.scales.x;
-                const yScale = chart.scales.y;
+                    ctx.save();
+                    ctx.strokeStyle = dataset.errorColor || dataset.backgroundColor || '#888';
+                    ctx.lineWidth = dataset.errorLineWidth || 1.5;
 
-                meta.data.forEach((point, i) => {
-                    const d = dataset.data[i];
-                    if (!d || d.err === undefined || d.err === null || d.err <= 0) return;
+                    meta.data.forEach((point, i) => {
+                        const d = dataset.data[i];
+                        if (!d || d.err === undefined || d.err === null || d.err <= 0) return;
 
-                    const x = point.x;
-                    const yTop = yScale.getPixelForValue(d.y - d.err);
-                    const yBottom = yScale.getPixelForValue(d.y + d.err);
+                        const x = point.x;
+                        // y轴反转：+err 对应更暗（数值更大），-err 对应更亮（数值更小）
+                        const yUpper = yScale.getPixelForValue(d.y + d.err);
+                        const yLower = yScale.getPixelForValue(d.y - d.err);
 
-                    ctx.beginPath();
-                    ctx.moveTo(x, yTop);
-                    ctx.lineTo(x, yBottom);
-                    ctx.stroke();
+                        ctx.beginPath();
+                        ctx.moveTo(x, yUpper);
+                        ctx.lineTo(x, yLower);
+                        ctx.stroke();
 
-                    const capSize = dataset.errorCapSize || 4;
-                    ctx.beginPath();
-                    ctx.moveTo(x - capSize, yTop);
-                    ctx.lineTo(x + capSize, yTop);
-                    ctx.moveTo(x - capSize, yBottom);
-                    ctx.lineTo(x + capSize, yBottom);
-                    ctx.stroke();
+                        const cap = dataset.errorCapSize || 4;
+                        ctx.beginPath();
+                        ctx.moveTo(x - cap, yUpper);
+                        ctx.lineTo(x + cap, yUpper);
+                        ctx.moveTo(x - cap, yLower);
+                        ctx.lineTo(x + cap, yLower);
+                        ctx.stroke();
+                    });
+
+                    ctx.restore();
                 });
-
-                ctx.restore();
             }
         };
 
+        // 注册插件
         if (window.Chart) {
             Chart.register(errorBarsPlugin);
         } else {
-            window.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('load', () => {
                 if (window.Chart) Chart.register(errorBarsPlugin);
             });
         }
@@ -277,7 +282,7 @@
             });
         }
 
-        // =============================== 修改后的光变曲线渲染（含误差棒） ===============================
+        // =============================== 光变曲线渲染（含误差棒） ===============================
         function renderLightCurve(item) {
             const history = item.history_map || item.history || [];
             let points = Array.isArray(history) ? history : Object.values(history);
@@ -297,7 +302,8 @@
                 if (filterRaw.includes('g') || filterRaw === '1' || filterRaw === 'zg') key = 'g';
                 else if (filterRaw.includes('i') || filterRaw === '3' || filterRaw === 'zi') key = 'i';
 
-                const errVal = (isDet && (p.magerr || p.sigmapsf)) ? Number(p.magerr || p.sigmapsf) : 0;
+                // 关键修复：使用 sigmapsf 作为误差，若不存在则用 magerr
+                const errVal = isDet ? Number(p.sigmapsf ?? p.magerr ?? 0) : 0;
                 const pt = { x: jd, y: plotMag, err: errVal };
 
                 if (isDet) buckets[key].data.push(pt);
