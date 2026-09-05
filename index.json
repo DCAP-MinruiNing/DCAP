@@ -1,4 +1,74 @@
 {
+    "ZTF26absgawy": {
+        "RA": 0,
+        "Dec": 0,
+        "latest_detection": {
+            "mag": null,
+            "filter": null,
+            "mjd": null
+        },
+        "detail_json": "targets/ZTF26absgawy.json"
+    },
+    "ZTF26abrzqpp": {
+        "RA": 0,
+        "Dec": 0,
+        "latest_detection": {
+            "mag": null,
+            "filter": null,
+            "mjd": null
+        },
+        "detail_json": "targets/ZTF26abrzqpp.json"
+    },
+    "ZTF26absfken": {
+        "RA": 24.27966,
+        "Dec": 5.28913,
+        "latest_detection": {
+            "mag": 19.99,
+            "filter": "zg",
+            "mjd": 61287.3786
+        },
+        "detail_json": "targets/ZTF26absfken.json"
+    },
+    "ZTF26absfgdt": {
+        "RA": 11.78337,
+        "Dec": -20.63533,
+        "latest_detection": {
+            "mag": 19.7,
+            "filter": "zg",
+            "mjd": 61287.3565
+        },
+        "detail_json": "targets/ZTF26absfgdt.json"
+    },
+    "ZTF26absfire": {
+        "RA": 29.68191,
+        "Dec": 1.46075,
+        "latest_detection": {
+            "mag": 19.89,
+            "filter": "zg",
+            "mjd": 61287.3786
+        },
+        "detail_json": "targets/ZTF26absfire.json"
+    },
+    "ZTF26absapgo": {
+        "RA": 256.43063,
+        "Dec": 10.54744,
+        "latest_detection": {
+            "mag": 20.24,
+            "filter": "zg",
+            "mjd": 61287.1809
+        },
+        "detail_json": "targets/ZTF26absapgo.json"
+    },
+    "ZTF26abrshyo": {
+        "RA": 0,
+        "Dec": 0,
+        "latest_detection": {
+            "mag": null,
+            "filter": null,
+            "mjd": null
+        },
+        "detail_json": "targets/ZTF26abrshyo.json"
+    },
     "ZTF26abrufau": {
         "RA": 0,
         "Dec": 0,
@@ -10,12 +80,12 @@
         "detail_json": "targets/ZTF26abrufau.json"
     },
     "ZTF26abrojcw": {
-        "RA": 340.07782,
-        "Dec": -0.99536,
+        "RA": 340.07789,
+        "Dec": -0.99537,
         "latest_detection": {
-            "mag": 20.3,
-            "filter": "zr",
-            "mjd": 61284.2699
+            "mag": 20.1,
+            "filter": "zg",
+            "mjd": 61287.3195
         },
         "detail_json": "targets/ZTF26abrojcw.json"
     },
@@ -30,52 +100,52 @@
         "detail_json": "targets/ZTF26abrnwah.json"
     },
     "ZTF26abrslzx": {
-        "RA": 0,
-        "Dec": 0,
+        "RA": 338.6862,
+        "Dec": -18.47559,
         "latest_detection": {
-            "mag": null,
-            "filter": null,
-            "mjd": null
+            "mag": 20.03,
+            "filter": "zr",
+            "mjd": 61287.2326
         },
         "detail_json": "targets/ZTF26abrslzx.json"
     },
     "ZTF26abrnbey": {
         "RA": 285.20906,
-        "Dec": -9.10984,
+        "Dec": -9.10982,
         "latest_detection": {
-            "mag": 18.41,
+            "mag": 18.6,
             "filter": "zr",
-            "mjd": 61284.2328
+            "mjd": 61287.1896
         },
         "detail_json": "targets/ZTF26abrnbey.json"
     },
     "ZTF26abrnoqt": {
-        "RA": 287.95724,
-        "Dec": -1.68865,
+        "RA": 287.95722,
+        "Dec": -1.68869,
         "latest_detection": {
-            "mag": 18.2,
-            "filter": "zi",
-            "mjd": 61284.2823
+            "mag": 18.25,
+            "filter": "zr",
+            "mjd": 61287.1901
         },
         "detail_json": "targets/ZTF26abrnoqt.json"
     },
     "ZTF26abrijuh": {
         "RA": 300.51629,
-        "Dec": -5.71466,
+        "Dec": -5.71463,
         "latest_detection": {
-            "mag": 19.82,
-            "filter": "zr",
-            "mjd": 61284.2314
+            "mag": 19.68,
+            "filter": "zg",
+            "mjd": 61287.3244
         },
         "detail_json": "targets/ZTF26abrijuh.json"
     },
     "ZTF26abredts": {
-        "RA": 280.98599,
-        "Dec": 7.56173,
+        "RA": 280.986,
+        "Dec": 7.56172,
         "latest_detection": {
-            "mag": 16.94,
-            "filter": "zi",
-            "mjd": 61284.278
+            "mag": 17.42,
+            "filter": "zr",
+            "mjd": 61287.191
         },
         "detail_json": "targets/ZTF26abredts.json"
     },
@@ -91,11 +161,11 @@
     },
     "ZTF26abrcopp": {
         "RA": 276.15209,
-        "Dec": -14.8536,
+        "Dec": -14.85362,
         "latest_detection": {
-            "mag": 16.97,
-            "filter": "zr",
-            "mjd": 61284.2123
+            "mag": 17.17,
+            "filter": "zi",
+            "mjd": 61287.1472
         },
         "detail_json": "targets/ZTF26abrcopp.json"
     },
@@ -120,12 +190,12 @@
         "detail_json": "targets/ZTF26abqfafz.json"
     },
     "ZTF26abqgbkd": {
-        "RA": 312.74038,
+        "RA": 312.74036,
         "Dec": 7.65854,
         "latest_detection": {
-            "mag": 18.03,
-            "filter": "zg",
-            "mjd": 61284.3026
+            "mag": 18.5,
+            "filter": "zr",
+            "mjd": 61287.3484
         },
         "detail_json": "targets/ZTF26abqgbkd.json"
     },
@@ -170,12 +240,12 @@
         "detail_json": "targets/ZTF26abpbqtk.json"
     },
     "ZTF26abpanks": {
-        "RA": 352.79846,
+        "RA": 352.79839,
         "Dec": -10.17867,
         "latest_detection": {
-            "mag": 18.25,
-            "filter": "zr",
-            "mjd": 61278.3478
+            "mag": 18.43,
+            "filter": "zg",
+            "mjd": 61287.3368
         },
         "detail_json": "targets/ZTF26abpanks.json"
     },
@@ -211,11 +281,11 @@
     },
     "ZTF26abowhgq": {
         "RA": 298.25167,
-        "Dec": -5.43089,
+        "Dec": -5.43086,
         "latest_detection": {
-            "mag": 20.34,
-            "filter": "zg",
-            "mjd": 61269.2314
+            "mag": 20.42,
+            "filter": "zr",
+            "mjd": 61287.212
         },
         "detail_json": "targets/ZTF26abowhgq.json"
     },
@@ -241,11 +311,11 @@
     },
     "ZTF26abohaoe": {
         "RA": 327.17159,
-        "Dec": 1.5483,
+        "Dec": 1.54839,
         "latest_detection": {
-            "mag": 19.69,
+            "mag": 19.91,
             "filter": "zg",
-            "mjd": 61284.2946
+            "mjd": 61287.2945
         },
         "detail_json": "targets/ZTF26abohaoe.json"
     },
@@ -340,12 +410,12 @@
         "detail_json": "targets/ZTF26abngxfo.json"
     },
     "ZTF26abnhuvz": {
-        "RA": 263.32335,
-        "Dec": 3.47723,
+        "RA": 263.32336,
+        "Dec": 3.47725,
         "latest_detection": {
-            "mag": 19.02,
+            "mag": 19.09,
             "filter": "zr",
-            "mjd": 61284.218
+            "mjd": 61287.2064
         },
         "detail_json": "targets/ZTF26abnhuvz.json"
     },
@@ -500,12 +570,12 @@
         "detail_json": "targets/ZTF26ablozec.json"
     },
     "ZTF26ablvayc": {
-        "RA": 271.92007,
-        "Dec": 9.97828,
+        "RA": 271.92001,
+        "Dec": 9.97826,
         "latest_detection": {
-            "mag": 19.88,
+            "mag": 19.68,
             "filter": "zr",
-            "mjd": 61282.1915
+            "mjd": 61287.2079
         },
         "detail_json": "targets/ZTF26ablvayc.json"
     },
@@ -521,11 +591,11 @@
     },
     "ZTF26ablxqyx": {
         "RA": 262.52253,
-        "Dec": 13.78859,
+        "Dec": 13.78862,
         "latest_detection": {
-            "mag": 19.65,
+            "mag": 20.0,
             "filter": "zr",
-            "mjd": 61284.2175
+            "mjd": 61287.206
         },
         "detail_json": "targets/ZTF26ablxqyx.json"
     },
@@ -630,12 +700,12 @@
         "detail_json": "targets/ZTF26ablevyf.json"
     },
     "ZTF26ableajr": {
-        "RA": 263.86586,
-        "Dec": 8.75661,
+        "RA": 263.86575,
+        "Dec": 8.75659,
         "latest_detection": {
-            "mag": 19.98,
+            "mag": 20.07,
             "filter": "zr",
-            "mjd": 61284.2175
+            "mjd": 61287.206
         },
         "detail_json": "targets/ZTF26ableajr.json"
     },
@@ -650,12 +720,12 @@
         "detail_json": "targets/ZTF26abledjc.json"
     },
     "ZTF26ablfjzk": {
-        "RA": 300.72978,
-        "Dec": -20.64748,
+        "RA": 300.72979,
+        "Dec": -20.64745,
         "latest_detection": {
-            "mag": 19.34,
+            "mag": 19.47,
             "filter": "zr",
-            "mjd": 61284.2305
+            "mjd": 61287.2101
         },
         "detail_json": "targets/ZTF26ablfjzk.json"
     },
@@ -800,12 +870,12 @@
         "detail_json": "targets/ZTF26abjekzx.json"
     },
     "ZTF26abkbfhh": {
-        "RA": 276.47857,
-        "Dec": 8.81786,
+        "RA": 276.47861,
+        "Dec": 8.81791,
         "latest_detection": {
-            "mag": 17.68,
-            "filter": "zi",
-            "mjd": 61269.2632
+            "mag": 19.27,
+            "filter": "zr",
+            "mjd": 61287.3307
         },
         "detail_json": "targets/ZTF26abkbfhh.json"
     },
@@ -840,12 +910,12 @@
         "detail_json": "targets/ZTF26abjmlfs.json"
     },
     "ZTF26abjqico": {
-        "RA": 12.67483,
+        "RA": 12.6749,
         "Dec": 9.22143,
         "latest_detection": {
-            "mag": 19.46,
+            "mag": 20.14,
             "filter": "zg",
-            "mjd": 61278.4651
+            "mjd": 61287.3585
         },
         "detail_json": "targets/ZTF26abjqico.json"
     },
@@ -1090,12 +1160,12 @@
         "detail_json": "targets/ZTF19abgprjx.json"
     },
     "ZTF26abhlaue": {
-        "RA": 304.34984,
-        "Dec": -1.64089,
+        "RA": 304.34989,
+        "Dec": -1.64088,
         "latest_detection": {
-            "mag": 19.41,
+            "mag": 19.53,
             "filter": "zr",
-            "mjd": 61284.2548
+            "mjd": 61287.2111
         },
         "detail_json": "targets/ZTF26abhlaue.json"
     },
@@ -1243,9 +1313,9 @@
         "RA": 277.81507,
         "Dec": -5.57553,
         "latest_detection": {
-            "mag": 13.73,
+            "mag": 14.85,
             "filter": "zg",
-            "mjd": 61284.1716
+            "mjd": 61287.1838
         },
         "detail_json": "targets/ZTF26abfokua.json"
     },
@@ -1551,11 +1621,11 @@
     },
     "ZTF26abemjfk": {
         "RA": 288.63069,
-        "Dec": 12.06489,
+        "Dec": 12.0649,
         "latest_detection": {
-            "mag": 13.39,
-            "filter": "zr",
-            "mjd": 61284.2066
+            "mag": 12.76,
+            "filter": "zi",
+            "mjd": 61287.1643
         },
         "detail_json": "targets/ZTF26abemjfk.json"
     },
@@ -2910,12 +2980,12 @@
         "detail_json": "targets/ZTF22absxtza.json"
     },
     "ZTF26aaxnkkb": {
-        "RA": 311.93977,
-        "Dec": -19.89069,
+        "RA": 311.93981,
+        "Dec": -19.89067,
         "latest_detection": {
-            "mag": 19.59,
+            "mag": 19.8,
             "filter": "zr",
-            "mjd": 61275.2517
+            "mjd": 61287.329
         },
         "detail_json": "targets/ZTF26aaxnkkb.json"
     },

@@ -1,4 +1,11 @@
 object_ID,ZTF_ID,Type,Classification_time(UTC),Note
+DCAP400,ZTF26absgawy,SN candidate,2026/9/5 13:05:25,18.71 zr
+DCAP399,ZTF26abrzqpp,SN candidate,2026/9/5 12:53:38,20.03 zi
+DCAP398,ZTF26absfken,SN candidate,2026/9/5 12:52:00,20.03 zr
+DCAP397,ZTF26absfgdt,SN candidate,2026/9/5 12:49:48,19.70 zg
+DCAP396,ZTF26absfire,SN candidate,2026/9/5 12:25:49,19.87 zg
+DCAP395,ZTF26absapgo,SN candidate,2026/9/5 12:24:35,20.24 zg
+DCAP394,ZTF26abrshyo,Cataclysmic variable candidate,2026/9/3 12:28:05,18.90 zr
 DCAP393,ZTF26abrufau,SN candidate,2026/9/2 12:57:19,20.08 zr
 DCAP392,ZTF26abrojcw,SN candidate,2026/9/2 12:55:21,20.30 zr WISEA J224018.80-005942.0
 DCAP391,ZTF26abrnwah,SN candidate,2026/9/2 12:50:11,19.67 zr
